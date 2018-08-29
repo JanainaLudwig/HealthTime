@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -64,14 +65,16 @@ public class LoginController implements Initializable {
 
         User user = new User(code, pass, loginType);
         if (user.login()) {
-            /*
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../dashboard/view/Dashboard.fxml"));
-            Stage stage = (Stage) errorLabel.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
+            /* Goes to dashboard passing the user id */
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../dashboard/view/Dashboard.fxml"));
+            DashboardController controller = new DashboardController(2);
+            fxmlLoader.setController(controller);
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Node node=(Node) event.getSource();
+            Stage stage=(Stage) node.getScene().getWindow();
             stage.setScene(scene);
-*/
-            System.out.println("logged in");
-
+            stage.show();
         } else {
             errorLabel.setText(INVALID);
         }

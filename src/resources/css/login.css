@@ -2,3 +2,13 @@
     -fx-selected-color: #168EE9;
     -fx-unselected-color: #000;
 }
+
+.shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.calendarday {
+    /*-fx-background-color: #709cbb;
+    -fx-border-color: rgba(91, 132, 155, 0.57);
+    -fx-border-radius: 10px;*/
+}
