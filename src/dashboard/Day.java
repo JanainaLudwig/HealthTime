@@ -1,5 +1,7 @@
 package dashboard;
 
-public class Data {
-    
+import java.util.Date;
+
+public class Day {
+    Date day;
 }

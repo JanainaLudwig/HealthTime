@@ -7,8 +7,8 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 8, 0, 0, 0);
 }
 
-.calendarday {
-    /*-fx-background-color: #709cbb;
-    -fx-border-color: rgba(91, 132, 155, 0.57);
-    -fx-border-radius: 10px;*/
+.greenDay {
+    -fx-background-color: #A0CA88;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #f8f8f8;
 }

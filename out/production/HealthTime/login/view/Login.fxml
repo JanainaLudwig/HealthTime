@@ -15,14 +15,14 @@
 <AnchorPane id="AnchorPane" maxHeight="660.0" maxWidth="1010.0" minHeight="660.0" minWidth="1010.0" prefHeight="660.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.view.LoginController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <ImageView fitHeight="71.0" fitWidth="237.0" layoutX="893.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="84.0" fitWidth="361.0" layoutX="866.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/images/logo.png" />
+            <Image url="@../../resources/images/logonew.png" />
          </image>
       </ImageView>
-      <Text fill="#ff504b" layoutX="646.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HealthTime">
+      <Text fill="#ff504b" layoutX="646.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health">
          <font>
-            <Font name="Segoe UI Light" size="40.0" />
+            <Font name="Segoe UI Semilight" size="40.0" />
          </font>
       </Text>
       <JFXTextField fx:id="userCode" focusColor="#ff504b" layoutX="669.0" layoutY="298.0" promptText="Código" unFocusColor="#e05959">
@@ -53,6 +53,11 @@
             <Image url="@../../resources/images/intro.jpg" />
          </image>
       </ImageView>
+      <Text fill="#5dafed" layoutX="757.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+         <font>
+            <Font name="Segoe UI Semibold" size="40.0" />
+         </font>
+      </Text>
 
     </children>
 </AnchorPane>
