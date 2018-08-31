@@ -1,25 +1,21 @@
-
 package login;
 
-
-import DAO.DAOLogin;
+import DAO.DAODoctorLogin;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-
 import java.sql.SQLException;
 
-public class Doctor extends User {
+public class DoctorLogin extends UserLogin implements IUserLogin {
 
-    
-    public Doctor(String userCode, String password, char userType) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        super(userCode, password, userType);
+    public DoctorLogin(String userCode, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        super(userCode, password);
     }
 
-    @Override
-    public boolean login() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, UnsupportedEncodingException, NoSuchAlgorithmException {
-        DAOLogin dao = new DAOLogin(this.getUserType());
+    public boolean login() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        DAODoctorLogin dao = new DAODoctorLogin();
 
         int id = dao.getIdUser(this.userCode);
+
         if (id > 0) {
             this.userId = id;
         } else {

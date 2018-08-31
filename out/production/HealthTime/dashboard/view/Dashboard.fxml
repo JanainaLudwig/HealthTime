@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -54,109 +55,110 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <JFXButton id="d1" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.rowIndex="1">
+            <JFXButton id="d1" fx:id="b0" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.rowIndex="1">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <JFXButton id="d2" fx:id="b1" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <JFXButton id="d2" fx:id="b2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <JFXButton id="d2" fx:id="b3" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font name="Segoe UI" size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <JFXButton id="d2" fx:id="b4" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="5" GridPane.rowIndex="1">
+            <JFXButton id="d2" fx:id="b5" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="5" GridPane.rowIndex="1">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="6" GridPane.rowIndex="1">
+            <JFXButton id="d2" fx:id="b6" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="6" GridPane.rowIndex="1">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="7" textFill="#617380" GridPane.rowIndex="2">
+            <JFXButton id="d2" fx:id="b7" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.rowIndex="2">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <JFXButton id="d2" fx:id="b8" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <JFXButton id="d2" fx:id="b9" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <JFXButton id="d2" fx:id="b10" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <JFXButton id="d2" fx:id="b11" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="5" GridPane.rowIndex="2">
+            <JFXButton id="d2" fx:id="b12" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="6" GridPane.rowIndex="2">
+            <JFXButton id="d2" fx:id="b13" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="14" textFill="#617380" GridPane.rowIndex="3">
+            <JFXButton id="d2" fx:id="b14" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.rowIndex="3">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="15" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="16" textFill="#617380" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="17" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="18" textFill="#617380" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="19" textFill="#617380" GridPane.columnIndex="5" GridPane.rowIndex="3">
+            <JFXButton id="d2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="5" GridPane.rowIndex="3">
                <font>
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="20" textFill="#617380" GridPane.columnIndex="6" GridPane.rowIndex="3">
+            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="6" GridPane.rowIndex="3">
                <font>
                   <Font size="32.0" />
                </font>
@@ -231,6 +233,41 @@
                   <Font size="32.0" />
                </font>
             </JFXButton>
+            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.rowIndex="6">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="6">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="4" GridPane.rowIndex="6">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="5" GridPane.rowIndex="6">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="d2" disable="true" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="6" GridPane.rowIndex="6">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </JFXButton>
             <Text fill="#5dafed" strokeType="OUTSIDE" strokeWidth="0.0" text="DOM" textAlignment="CENTER" wrappingWidth="78.9365234375">
                <font>
                   <Font name="Segoe UI Semibold" size="25.0" />
@@ -275,7 +312,7 @@
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Text>
-            <Text fill="#f2f2f2" layoutX="8.0" layoutY="41.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clínico geral" wrappingWidth="202.31349521130323">
+            <Text fill="#f2f2f2" layoutX="8.0" layoutY="41.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clínico Geral" wrappingWidth="202.31349521130323">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -286,7 +323,7 @@
                   <Image url="@../../resources/images/down.png" />
                </image>
             </ImageView>
-            <Text fill="#f2f2f2" layoutX="8.0" layoutY="112.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médico" wrappingWidth="202.31349521130323">
+            <Text fill="#f2f2f2" layoutX="8.0" layoutY="112.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos" wrappingWidth="202.31349521130323">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -305,8 +342,48 @@
             </ImageView>
          </children>
       </Pane>
-      <JFXButton layoutX="647.0" layoutY="37.0" onAction="#nextMonth" text="Próximo" />
-      <JFXButton fx:id="previousM" layoutX="511.0" layoutY="37.0" onAction="#previousMonth" text="Anterior" />
+      <JFXButton layoutX="242.0" layoutY="624.0" onAction="#logout" prefHeight="18.0" prefWidth="50.0" style="-fx-background-color: #E05959;" text="Sair" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="12.0" />
+         </font>
+      </JFXButton>
+      <Pane layoutX="329.0" prefHeight="98.0" prefWidth="305.0">
+         <children>
+            <Text fx:id="month" fill="#168ee9" layoutX="83.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Month">
+               <font>
+                  <Font name="Segoe UI Semilight" size="36.0" />
+               </font>
+            </Text>
+            <Text fx:id="year" fill="#168ee9" layoutX="86.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2018">
+               <font>
+                  <Font name="Segoe UI Light" size="36.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="previousM" layoutY="64.0" onAction="#previousMonth" text="Anterior" textFill="#168ee9" />
+            <ImageView fitHeight="50.0" fitWidth="25.0" layoutX="265.0" layoutY="16.0" onMouseClicked="#nextMonth" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/arrow_right.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="previousArrow" fitHeight="50.0" fitWidth="25.0" layoutX="18.0" layoutY="17.0" onMouseClicked="#previousMonth" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/arrow_left.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <JFXButton layoutX="246.0" layoutY="63.0" onAction="#nextMonth" text="Próximo" textFill="#168ee9" />
+         </children>
+      </Pane>
+      <JFXButton layoutX="26.0" layoutY="620.0" style="-fx-background-color: #75FA87;" text="Gerenciador de Consultas" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="16.0" />
+         </font>
+      </JFXButton>
 
     </children>
 </AnchorPane>

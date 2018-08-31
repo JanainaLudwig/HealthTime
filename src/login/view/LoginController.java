@@ -2,15 +2,12 @@
 package login.view;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import dashboard.view.DashboardController;
-import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +17,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import login.User;
+import login.ConsultantLogin;
+import login.DoctorLogin;
+import login.UserLogin;
 
 public class LoginController implements Initializable {
     
@@ -50,24 +49,32 @@ public class LoginController implements Initializable {
                 pass = password.getText();
         char loginType;
         Toggle type = userType.getSelectedToggle();
+
         if (code.equals("") || pass.equals("")) {
             errorLabel.setText(INCOMPLETE);
             return;
         }
+
+        UserLogin user;
+        boolean loginValidation;
+        //int id;
+
         if (type == consultant) {
-            loginType = 'C';
+            user = new ConsultantLogin(code, pass);
+            loginValidation = ((ConsultantLogin) user).login();
         } else if (type == doctor ){
-            loginType = 'D';
-        } else  {
+            user = new DoctorLogin(code, pass);
+            loginValidation = ((DoctorLogin) user).login();
+        } else {
             errorLabel.setText(INCOMPLETE);
             return;
         }
 
-        User user = new User(code, pass, loginType);
-        if (user.login()) {
+        if (loginValidation) {
+            int id = user.getUserId();
             /* Goes to dashboard passing the user id */
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../dashboard/view/Dashboard.fxml"));
-            DashboardController controller = new DashboardController(2);
+            DashboardController controller = new DashboardController(id);
             fxmlLoader.setController(controller);
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
