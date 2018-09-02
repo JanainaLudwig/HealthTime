@@ -2,6 +2,7 @@
 package dashboard.view;
 
 import com.jfoenix.controls.JFXButton;
+import dashboard.Day;
 import dashboard.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
@@ -48,14 +51,14 @@ public class DashboardController implements Initializable {
     private GridPane calendar;
     @FXML
     private JFXButton previousM;
-    //@FXML
-    //private Image previousArrow;
+    @FXML
+    private ImageView previousArrow;
     @FXML
     private Text month, year;
 
 
     @FXML
-    public void nextMonth() {
+    public void nextMonth() throws FileNotFoundException {
         if (this.monthDisplayed== 11) {
             this.yearDisplayed++;
             this.monthDisplayed = 0;
@@ -66,13 +69,22 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    public void previousMonth() {
+    public void previousMonth() throws FileNotFoundException {
         if (this.monthDisplayed == 0) {
             this.yearDisplayed--;
             this.monthDisplayed = 11;
         } else {
             this.monthDisplayed--;
         }
+
+        createCalendar();
+    }
+
+    @FXML
+    public void goToday() throws FileNotFoundException {
+        GregorianCalendar calendar = new GregorianCalendar();
+        this.monthDisplayed = calendar.get(Calendar.MONTH);
+        this.yearDisplayed = calendar.get(Calendar.YEAR);
         createCalendar();
     }
 
@@ -82,6 +94,53 @@ public class DashboardController implements Initializable {
         Stage stage = (Stage) calendar.getScene().getWindow();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
+    }
+
+
+    //Creates calendar visualization based on month and year displayed
+    private void createCalendar() throws FileNotFoundException {
+        //Labels for navigation
+        month.setText(MONTH_NAME[this.monthDisplayed]);
+        year.setText(String.valueOf(this.yearDisplayed));
+
+        GregorianCalendar date = new GregorianCalendar(yearDisplayed, monthDisplayed, 1);
+        date.add(Calendar.DATE, - (date.get(Calendar.DAY_OF_WEEK) - 1));
+
+        ArrayList<Day> days = new ArrayList<>();
+
+        for (int i = 0; i < 42; i++) {
+            days.add(new Day((JFXButton) calendar.getChildren().get(i), date));
+
+            JFXButton button = days.get(i).getButton();
+
+            if (days.get(i).buttonIsDisabled()) {
+                button.setDisable(true);
+            } else {
+                button.setDisable(false);
+            }
+
+            date.add(Calendar.DATE, 1);
+        }
+
+        GregorianCalendar today = new GregorianCalendar();
+        /**
+         * TODO: Buscar as imagens na classe principal (Healthtime), para usar o resources e não a pasta view do controller
+         */
+        Class<?> clazz = DashboardController.class;
+        InputStream input;
+
+        if (this.monthDisplayed == today.get(Calendar.MONTH) && this.yearDisplayed == today.get(Calendar.YEAR)) {
+            previousM.setDisable(true);
+            previousArrow.setDisable(true);
+            input = clazz.getResourceAsStream("/dashboard/view/arrow_left_disabled.png");
+        } else {
+            previousM.setDisable(false);
+            previousArrow.setDisable(false);
+            input = clazz.getResourceAsStream("/dashboard/view/arrow_left.png");
+        }
+
+        Image previousArrowImg = new Image(input);
+        previousArrow.setImage(previousArrowImg);
     }
 
     @Override
@@ -99,75 +158,12 @@ public class DashboardController implements Initializable {
         }
 
         userName.setText(name);
-        createCalendar();
+        try {
+            createCalendar();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
-
-
-    /*
-     * Creates calendar visualization based on month and year displayed
-     */
-    private void createCalendar() {
-        month.setText(MONTH_NAME[this.monthDisplayed]);
-        year.setText(String.valueOf(this.yearDisplayed));
-
-        ArrayList<JFXButton> buttons = new ArrayList<JFXButton>();
-        for (int i = 0; i < 42; i++) {
-            buttons.add((JFXButton) calendar.getChildren().get(i));
-        }
-
-        GregorianCalendar day = new GregorianCalendar(yearDisplayed, monthDisplayed, 1);
-        GregorianCalendar today = new GregorianCalendar();
-        int dayOfWeekStart = day.get(Calendar.DAY_OF_WEEK) - 1;
-
-        // Month days
-        for (int i = dayOfWeekStart; i < 42; i++) {
-            JFXButton button = buttons.get(i);
-            button.setText(String.valueOf(day.get(Calendar.DAY_OF_MONTH)));
-
-            if (day.get(Calendar.DAY_OF_MONTH) < today.get(Calendar.DAY_OF_MONTH) && today.get(Calendar.MONTH) == this.monthDisplayed) {
-                button.setDisable(true);
-            } else {
-                button.setDisable(false);
-            }
-
-            //Disable weekends
-            if (calendar.getColumnIndex(button) == null || calendar.getColumnIndex(button) == 6) {
-                button.setDisable(true);
-            }
-
-            day.add(Calendar.DATE, 1);
-        }
-
-        //Previous days
-        GregorianCalendar previousDay = new GregorianCalendar(yearDisplayed, monthDisplayed, 1);
-
-        for (int i = dayOfWeekStart-1; i >= 0; i--) {
-            JFXButton button = buttons.get(i);
-            previousDay.add(Calendar.DATE, -1);
-            button.setText(String.valueOf(previousDay.get(Calendar.DAY_OF_MONTH)));
-
-            if (today.get(Calendar.MONTH) == this.monthDisplayed) {
-                button.setDisable(true);
-            } else {
-                button.setDisable(false);
-            }
-
-            //Disable weekends
-            if (calendar.getColumnIndex(button) == null) {
-                button.setDisable(true);
-            }
-        }
-
-        //Disable past months
-        if (this.monthDisplayed == today.get(Calendar.MONTH) && this.yearDisplayed == today.get(Calendar.YEAR)) {
-            previousM.setDisable(true);
-
-        } else {
-            previousM.setDisable(false);
-        }
-
-    }
-
 
     public DashboardController(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         this.userId = userId;

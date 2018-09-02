@@ -1,0 +1,14 @@
+.radio {
+    -fx-selected-color: #168EE9;
+    -fx-unselected-color: #000;
+}
+
+.shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 8, 0, 0, 0);
+}
+
+.greenDay {
+    -fx-background-color: #A0CA88;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #f8f8f8;
+}
