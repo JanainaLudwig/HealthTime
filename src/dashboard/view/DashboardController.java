@@ -4,6 +4,7 @@ package dashboard.view;
 import com.jfoenix.controls.JFXButton;
 import dashboard.Day;
 import dashboard.User;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +19,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import utils.DateUtils;
 
 import java.io.*;
 import java.net.URL;
@@ -25,7 +27,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class DashboardController implements Initializable {
-
+    private ArrayList<Day> days;
     private int userId;
     private int monthDisplayed;
     private  int yearDisplayed;
@@ -56,6 +58,14 @@ public class DashboardController implements Initializable {
     @FXML
     private Text month, year;
 
+
+    @FXML
+    public void buttonClick(Event e) {
+        //days.get(days.indexOf((Button) e.getSource())).buttonClick();
+        //Pegar id do botão
+        //Definir indice de days pelo id
+        //Executar ação definida na classe dia
+    }
 
     @FXML
     public void nextMonth() throws FileNotFoundException {
@@ -106,7 +116,7 @@ public class DashboardController implements Initializable {
         GregorianCalendar date = new GregorianCalendar(yearDisplayed, monthDisplayed, 1);
         date.add(Calendar.DATE, - (date.get(Calendar.DAY_OF_WEEK) - 1));
 
-        ArrayList<Day> days = new ArrayList<>();
+        days = new ArrayList<>();
 
         for (int i = 0; i < 42; i++) {
             days.add(new Day((JFXButton) calendar.getChildren().get(i), date));
@@ -119,24 +129,25 @@ public class DashboardController implements Initializable {
                 button.setDisable(false);
             }
 
+            if (DateUtils.isToday(date)) {
+                button.setStyle("-fx-text-fill: #168EE9;");
+            }
+
             date.add(Calendar.DATE, 1);
         }
 
         GregorianCalendar today = new GregorianCalendar();
-        /**
-         * TODO: Buscar as imagens na classe principal (Healthtime), para usar o resources e não a pasta view do controller
-         */
-        Class<?> clazz = DashboardController.class;
+        Class<?> classDashboardController = DashboardController.class;
         InputStream input;
 
         if (this.monthDisplayed == today.get(Calendar.MONTH) && this.yearDisplayed == today.get(Calendar.YEAR)) {
             previousM.setDisable(true);
             previousArrow.setDisable(true);
-            input = clazz.getResourceAsStream("/dashboard/view/arrow_left_disabled.png");
+            input = classDashboardController.getResourceAsStream("/resources/images/arrow_left_disabled.png");
         } else {
             previousM.setDisable(false);
             previousArrow.setDisable(false);
-            input = clazz.getResourceAsStream("/dashboard/view/arrow_left.png");
+            input = classDashboardController.getResourceAsStream("/resources/images/arrow_left.png");
         }
 
         Image previousArrowImg = new Image(input);

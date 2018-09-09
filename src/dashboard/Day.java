@@ -1,6 +1,7 @@
 package dashboard;
 
 import com.jfoenix.controls.JFXButton;
+import utils.DateUtils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -22,15 +23,19 @@ public class Day {
             return true;
         }
 
-        Calendar today = new GregorianCalendar();
+        GregorianCalendar today = new GregorianCalendar();
         //Past days
-        if (date.compareTo(today) < 0 && date.get(Calendar.MONTH) < today.get(Calendar.MONTH)) {
+        if (DateUtils.compareDates(date, today) == -1) {
             return true;
         }
 
         return false;
     }
-
+/*
+    private void buttonClick() {
+        System.out.println(this.date.toString());
+    }
+*/
     public GregorianCalendar getDate() {
         return date;
     }

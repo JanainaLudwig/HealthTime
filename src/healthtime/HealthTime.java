@@ -23,7 +23,8 @@ public class HealthTime extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/login/view/Login.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("/dashboard/view/Dashboard.fxml"));
         Scene scene = new Scene(root);
-        
+
+
         stage.setScene(scene);
         stage.show();
     }
