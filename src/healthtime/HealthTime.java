@@ -21,7 +21,7 @@ public class HealthTime extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/login/view/Login.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("/dashboard/view/Dashboard.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/dashboard/view/DashboardMonth.fxml"));
         Scene scene = new Scene(root);
 
 

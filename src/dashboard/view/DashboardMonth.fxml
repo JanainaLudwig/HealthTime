@@ -63,7 +63,7 @@
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d1" fx:id="b1" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onAction="#buttonClick" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <JFXButton id="d1" fx:id="b1" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onAction="#dayButtonClick" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="32.0" />
                </font>
@@ -108,7 +108,7 @@
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="d10" fx:id="b10" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onAction="#buttonClick" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <JFXButton id="d10" fx:id="b10" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onAction="#dayButtonClick" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="32.0" />
                </font>
@@ -143,7 +143,7 @@
                   <Font size="32.0" />
                </font>
             </JFXButton>
-            <JFXButton id="17" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onAction="#buttonClick" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <JFXButton id="17" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" onAction="#dayButtonClick" stylesheets="@../../resources/css/login.css" text="d" textFill="#617380" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="32.0" />
                </font>

@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import dashboard.view.DashboardController;
+import dashboard.view.DashboardMonthController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import login.ConsultantLogin;
 import login.DoctorLogin;
 import login.UserLogin;
+import utils.ControllerUtils;
 
 public class LoginController implements Initializable {
     
@@ -73,15 +74,18 @@ public class LoginController implements Initializable {
         if (loginValidation) {
             int id = user.getUserId();
             /* Goes to dashboard passing the user id */
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../dashboard/view/Dashboard.fxml"));
-            DashboardController controller = new DashboardController(id);
+            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../dashboard/view/DashboardMonth.fxml"));
+            DashboardMonthController controller = new DashboardMonthController(id);
             fxmlLoader.setController(controller);
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Node node=(Node) event.getSource();
             Stage stage=(Stage) node.getScene().getWindow();
             stage.setScene(scene);
-            stage.show();
+            stage.show();*/
+
+            DashboardMonthController controller = new DashboardMonthController(id);
+            ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardMonth.fxml");
         } else {
             errorLabel.setText(INVALID);
         }

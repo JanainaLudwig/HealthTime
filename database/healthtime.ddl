@@ -23,7 +23,7 @@ CREATE DOMAIN DMN_appointment_time
 
 CREATE TABLE users (
     id_user SERIAL,
-    name VARCHAR(50) NOT NULL;
+    name VARCHAR(50) NOT NULL
 );
 
 ALTER TABLE users ADD CONSTRAINT PK_USERS
@@ -103,3 +103,19 @@ ALTER TABLE appointment ADD CONSTRAINT FK_CONSULTANT
     FOREIGN KEY (id_consultant) REFERENCES consultant (id_user);
 ALTER TABLE appointment ADD CONSTRAINT FK_SPECIALTY
     FOREIGN KEY (id_specialty) REFERENCES specialty (id_specialty);
+
+
+CREATE TABLE working_time (
+    id_doctor INT,
+    appointment_time DMN_appointment_time,
+    week_day INT,
+    id_city INT NOT NULL
+
+);
+
+ALTER TABLE working_time ADD CONSTRAINT PK_WORKING_TIME
+    PRIMARY KEY (id_doctor, appointment_time, week_day);
+ALTER TABLE working_time ADD CONSTRAINT FK_WORKING_TIME
+    FOREIGN KEY (id_doctor) REFERENCES doctor (id_user);
+ALTER TABLE working_time ADD CONSTRAINT CHECK_WEEK_DAY
+    CHECK (week_day BETWEEN 1 AND 7);

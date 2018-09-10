@@ -31,6 +31,17 @@ INSERT INTO doctor_specialty (id_doctor, id_specialty) VALUES
 	(3, 1),
 	(3, 3);
 
-INSERT INTO appointment (id_doctor, id_consultant, id_specialty, id_city, appointment_date, 			appointment_time) VALUES 
+INSERT INTO appointment (id_doctor, id_consultant, id_specialty, id_city, appointment_date, appointment_time) VALUES
 	(3, 1, 1, 1, '2018-09-11', 14),
 	(3, 1, 2, 1, '2018-09-19', 12);
+
+INSERT INTO working_time (id_doctor, id_city, appointment_time, week_day) VALUES
+    (3, 1, 1, 1),
+    (3, 1, 2, 1),
+    (3, 1, 3, 1),
+    (3, 1, 5, 1),
+    (3, 1, 6, 1),
+    (3, 1, 2, 2),
+    (3, 1, 2, 4),
+    (3, 1, 2, 5);
+
