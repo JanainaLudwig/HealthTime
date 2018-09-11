@@ -109,9 +109,9 @@ public class DashboardMonthController extends DashboardController implements Ini
             }
 
             if (DateUtils.isToday(date)) {
-                button.setStyle("-fx-text-fill: #168EE9;");
+                button.setStyle("-fx-text-fill: " + BLUE + ";");
             } else {
-                button.setStyle("-fx-text-fill: #617380;");
+                button.setStyle("-fx-text-fill: " + GRAY + ";");
             }
 
             date.add(Calendar.DATE, 1);

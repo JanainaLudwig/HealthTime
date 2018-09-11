@@ -8,13 +8,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
-
+    protected final String BLUE = "#168EE9";
+    protected final String GRAY = "#617380";
     protected int userId;
     protected User user;
     protected static final String[] MONTH_NAME = {
@@ -34,7 +39,6 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Text userName;
-
 
     @FXML
     public void logout() throws IOException {

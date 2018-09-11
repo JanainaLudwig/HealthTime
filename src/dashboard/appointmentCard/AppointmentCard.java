@@ -1,5 +1,6 @@
 package dashboard.appointmentCard;
 
+import dashboard.AppointmentTime;
 import dashboard.WeekDay;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,7 @@ import java.io.IOException;
 public class AppointmentCard extends Pane {
 
     private WeekDay weekDay;
-
+    private AppointmentTime time;
 
     public AppointmentCard() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
