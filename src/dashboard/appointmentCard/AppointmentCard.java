@@ -2,9 +2,12 @@ package dashboard.appointmentCard;
 
 import dashboard.AppointmentTime;
 import dashboard.WeekDay;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import java.io.IOException;
 

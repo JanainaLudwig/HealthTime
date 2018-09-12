@@ -42,11 +42,16 @@ public class DashboardMonthController extends DashboardController implements Ini
             year;
 
     @FXML
-    public void dayButtonClick(Event e) {
+    public void dayButtonClick(Event e) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
         JFXButton button = (JFXButton) e.getSource();
         int id = Integer.parseInt(button.getId());
 
         MonthDay monthDay = monthDays.get(id);
+
+        ActionEvent event = (ActionEvent) e;
+
+        DashboardWeekController controller = new DashboardWeekController(this.userId, monthDay.getDate());
+        ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardWeek.fxml");
     }
 
     @FXML
@@ -98,7 +103,8 @@ public class DashboardMonthController extends DashboardController implements Ini
         monthDays = new ArrayList<>();
 
         for (int i = 0; i < 42; i++) {
-            monthDays.add(new MonthDay((JFXButton) calendar.getChildren().get(i), date));
+            GregorianCalendar parameterDate = new GregorianCalendar(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
+            monthDays.add(new MonthDay((JFXButton) calendar.getChildren().get(i), parameterDate));
 
             JFXButton button = monthDays.get(i).getButton();
 

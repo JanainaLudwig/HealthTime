@@ -2,6 +2,7 @@ package dashboard.view;
 
 import com.jfoenix.controls.JFXButton;
 import dashboard.WeekDay;
+import dashboard.appointmentCard.AppointmentCard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import utils.ControllerUtils;
 import utils.DateUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -98,6 +98,9 @@ public class DashboardWeekController extends DashboardController implements Init
         //Go to fisrt monday of week
         dayDisplayed.add(Calendar.DATE, -(dayDisplayed.get(Calendar.DAY_OF_WEEK) - 1));
 
+        AppointmentCard card = new AppointmentCard();
+        schedule.add(card, 3, 4);
+
         Text today = null;
 
         for (int i = 0; i < 7; i++) {
@@ -123,15 +126,26 @@ public class DashboardWeekController extends DashboardController implements Init
             dayOfMonth.setText(String.valueOf(dayDisplayed.get(Calendar.DAY_OF_MONTH)));
 
 
-            //Highlight on today
+            //Highlight on today and disable weekend
             if (today == null && DateUtils.isToday(dayDisplayed)) {
+
                 today = dayOfMonth;
 
-                dayOfMonth.setStyle("-fx-fill: " + BLUE + ";");
-                dayOfWeek.setStyle("-fx-fill: " + BLUE + ";");
+                if (i == 0 || i == 6) {
+                    dayOfWeek.setStyle("-fx-fill:  #5DAFED;");
+                    dayOfMonth.setStyle("-fx-fill:  #5DAFED;");
+                } else {
+                    dayOfWeek.setStyle("-fx-fill: " + BLUE + ";");
+                    dayOfMonth.setStyle("-fx-fill: " + BLUE + ";");
+                }
             } else {
-                dayOfMonth.setStyle("-fx-fill: " + GRAY + ";");
-                dayOfWeek.setStyle("-fx-fill: " + GRAY + ";");
+                if (i == 0 || i == 6) {
+                    dayOfWeek.setStyle("-fx-fill:  #b5bbbf;");
+                    dayOfMonth.setStyle("-fx-fill: #b5bbbf;");
+                } else {
+                    dayOfWeek.setStyle("-fx-fill: " + GRAY + ";");
+                    dayOfMonth.setStyle("-fx-fill: " + GRAY + ";");
+                }
             }
 
             dayDisplayed.add(Calendar.DATE, 1);

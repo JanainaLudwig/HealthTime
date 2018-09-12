@@ -12,3 +12,15 @@
     -fx-border-radius: 5px;
     -fx-text-fill: #f8f8f8;
 }
+
+.card .cardBorder {
+    -fx-fill: #168EE9;
+}
+
+.card:hover .cardBorder {
+    -fx-fill: #A0CA88;
+}
+
+.card:hover {
+    -fx-background-color: #d8d8d8;
+}

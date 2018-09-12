@@ -214,6 +214,9 @@
                </font>
             </Text>
             <Pane GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Pane GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="110.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+            </Pane>
          </children>
       </GridPane>
       <GridPane fx:id="weekDays" layoutX="402.0" layoutY="108.0" prefHeight="59.0" prefWidth="810.0">
@@ -239,7 +242,7 @@
                   </Text>
                   <Text fill="#617380" strokeType="OUTSIDE" strokeWidth="0.0" text="DOM" textAlignment="CENTER" wrappingWidth="60.8033447265625">
                      <font>
-                        <Font name="Segoe UI Light" size="20.0" />
+                        <Font name="Segoe UI Semibold" size="20.0" />
                      </font>
                   </Text>
                </children>
@@ -253,7 +256,7 @@
                   </Text>
                   <Text fill="#394e5e" strokeType="OUTSIDE" strokeWidth="0.0" text="SEG" textAlignment="CENTER" wrappingWidth="60.8033447265625">
                      <font>
-                        <Font name="Segoe UI Light" size="20.0" />
+                        <Font name="Segoe UI Semibold" size="20.0" />
                      </font>
                   </Text>
                </children>
@@ -267,7 +270,7 @@
                   </Text>
                   <Text fill="#394e5e" strokeType="OUTSIDE" strokeWidth="0.0" text="TER" textAlignment="CENTER" wrappingWidth="60.8033447265625">
                      <font>
-                        <Font name="Segoe UI Light" size="20.0" />
+                        <Font name="Segoe UI Semibold" size="20.0" />
                      </font>
                   </Text>
                </children>
@@ -281,7 +284,7 @@
                   </Text>
                   <Text fill="#394e5e" strokeType="OUTSIDE" strokeWidth="0.0" text="QUA" textAlignment="CENTER" wrappingWidth="60.8033447265625">
                      <font>
-                        <Font name="Segoe UI Light" size="20.0" />
+                        <Font name="Segoe UI Semibold" size="20.0" />
                      </font>
                   </Text>
                </children>
@@ -295,7 +298,7 @@
                   </Text>
                   <Text fill="#394e5e" strokeType="OUTSIDE" strokeWidth="0.0" text="QUI" textAlignment="CENTER" wrappingWidth="60.8033447265625">
                      <font>
-                        <Font name="Segoe UI Light" size="20.0" />
+                        <Font name="Segoe UI Semibold" size="20.0" />
                      </font>
                   </Text>
                </children>
@@ -309,7 +312,7 @@
                   </Text>
                   <Text fill="#394e5e" strokeType="OUTSIDE" strokeWidth="0.0" text="SEX" textAlignment="CENTER" wrappingWidth="60.8033447265625">
                      <font>
-                        <Font name="Segoe UI Light" size="20.0" />
+                        <Font name="Segoe UI Semibold" size="20.0" />
                      </font>
                   </Text>
                </children>
@@ -323,7 +326,7 @@
                   </Text>
                   <Text fill="#617380" strokeType="OUTSIDE" strokeWidth="0.0" text="SAB" textAlignment="CENTER" wrappingWidth="60.8033447265625">
                      <font>
-                        <Font name="Segoe UI Light" size="20.0" />
+                        <Font name="Segoe UI Semibold" size="20.0" />
                      </font>
                   </Text>
                </children>

@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
     protected final String BLUE = "#168EE9";
-    protected final String GRAY = "#617380";
+    protected final String GRAY = "#394e5e";
     protected int userId;
     protected User user;
     protected static final String[] MONTH_NAME = {
