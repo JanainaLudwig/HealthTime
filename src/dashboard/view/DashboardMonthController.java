@@ -2,6 +2,7 @@
 package dashboard.view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import dashboard.MonthDay;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -31,6 +32,8 @@ public class DashboardMonthController extends DashboardController implements Ini
     //FXML elements
     @FXML
     private Text userName;
+    @FXML
+    private JFXComboBox specialtyCombo;
     @FXML
     private GridPane calendar;
     @FXML
@@ -114,10 +117,14 @@ public class DashboardMonthController extends DashboardController implements Ini
                 button.setDisable(false);
             }
 
-            if (DateUtils.isToday(date)) {
-                button.setStyle("-fx-text-fill: " + BLUE + ";");
+            if (date.get(Calendar.MONTH) != monthDisplayed) {
+                button.setStyle("-fx-text-fill: #838c9c;");
             } else {
                 button.setStyle("-fx-text-fill: " + GRAY + ";");
+            }
+
+            if (DateUtils.isToday(date)) {
+                button.setStyle("-fx-text-fill: " + BLUE + ";");
             }
 
             date.add(Calendar.DATE, 1);

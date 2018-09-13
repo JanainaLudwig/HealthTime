@@ -1,10 +1,13 @@
 package DAO;
 
+import dashboard.Doctor;
+import dashboard.Specialty;
 import database.ConnectionDB;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DAODoctorSpecialty {
     private Connection connection;
@@ -29,31 +32,35 @@ public class DAODoctorSpecialty {
         }
     }
 
-    public String getDescription(int code) throws SQLException {
-        String query = "SELECT description FROM specialty WHERE id_specialty='" + code + "';";
+    public ArrayList<Specialty> getAllDescription() throws SQLException {
+        String query = "SELECT * FROM specialty;";
 
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
 
-        if (rs.next()) {
-            return  rs.getString("description");
-        } else {
-            return null;
+        ArrayList<Specialty> specialtyList = new ArrayList<>();
+
+        while (rs.next()) {
+            Specialty specialty = new Specialty(rs.getInt("id_specialty"), rs.getString("description"));
+            specialtyList.add(specialty);
         }
+        return specialtyList;
     }
 
-    //Talvez em novo DAO
-    public int getIdDoctor(String code) throws SQLException {
-        String query = "SELECT id_doctor FROM doctor_specialty WHERE id_specialty = '" + code + "';";
+    public ArrayList<Doctor> getDoctor(String code) throws SQLException {
+        String query = "SELECT u.id_user, u.name " +
+                "FROM users u JOIN doctor_specialty ds ON u.id_user = ds.id_doctor " +
+                "JOIN specialty s ON ds.id_specialty = s.id_specialty " +
+                "WHERE s.description = '" + code + "'";
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
 
-        if (rs.next()) {
-            this.idDoctor = rs.getInt("id_doctor");
+        ArrayList<Doctor> doctorList = new ArrayList<>();
 
-            return this.idDoctor;
-        } else {
-            return -1;
+        while (rs.next()) {
+            Doctor doctor = new Doctor(rs.getInt("id_user"), rs.getString("name"));
+            doctorList.add(doctor);
         }
+        return doctorList;
     }
 }
