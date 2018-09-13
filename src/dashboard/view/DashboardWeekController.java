@@ -36,25 +36,25 @@ public class DashboardWeekController extends DashboardController implements Init
     private ImageView previousArrow;
     @FXML
     private Text fDay, lDay,
-                 fMonth, lMonth,
-                 fYear, lYear;
+            fMonth, lMonth,
+            fYear, lYear;
 
     private boolean morning;
     private GregorianCalendar dayDisplayed;
     private ArrayList<WeekDay> days;
     private String[] morningHours = {
-        "8:00",
-        "9:00",
-        "10:00",
-        "11:00",
-        "12:00"
+            "8:00",
+            "9:00",
+            "10:00",
+            "11:00",
+            "12:00"
     };
     private String[] afternoonHours = {
-        "13:00",
-        "14:00",
-        "15:00",
-        "16:00",
-        "17:00"
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00"
     };
 
     @FXML

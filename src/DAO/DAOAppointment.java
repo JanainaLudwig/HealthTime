@@ -19,9 +19,6 @@ public class DAOAppointment {
 
 
     public ArrayList<Appointment> getAvailableAppointments(int id_specialty, int id_city, WeekDay date) throws SQLException {
-
-        System.out.println(date.getDateString());
-
         String query = "SELECT * FROM available_appointments(" + id_city + ", '" + date.getDateString() + "', " + id_specialty + ");";
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
