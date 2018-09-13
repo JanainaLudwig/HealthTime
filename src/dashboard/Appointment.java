@@ -5,10 +5,15 @@ import dashboard.appointmentCard.AppointmentCard;
 public class Appointment {
     private AppointmentTime time;
     private AppointmentCard card;
+    private WeekDay day;
+    //TODO: change int to Doctor
+    private int id_doctor;
 
-    public Appointment(AppointmentTime time, AppointmentCard card) {
-        this.time = time;
-        this.card = card;
+    public Appointment(WeekDay day, int time, int id_doctor) {
+        this.day = day;
+        this.time = new AppointmentTime(time);
+        card = new AppointmentCard();
+        this.id_doctor = id_doctor;
     }
 
     public AppointmentTime getTime() {
@@ -25,5 +30,13 @@ public class Appointment {
 
     public void setCard(AppointmentCard card) {
         this.card = card;
+    }
+
+    public WeekDay getDay() {
+        return day;
+    }
+
+    public void setDay(WeekDay day) {
+        this.day = day;
     }
 }

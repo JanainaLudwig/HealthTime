@@ -1,6 +1,8 @@
 package dashboard.view;
 
+import DAO.DAOAppointment;
 import com.jfoenix.controls.JFXButton;
+import dashboard.Appointment;
 import dashboard.WeekDay;
 import dashboard.appointmentCard.AppointmentCard;
 import javafx.event.ActionEvent;
@@ -59,6 +61,11 @@ public class DashboardWeekController extends DashboardController implements Init
     public void changePeriod() {
         morning = !morning;
         displayHours();
+        try {
+            createSchedule();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -68,24 +75,24 @@ public class DashboardWeekController extends DashboardController implements Init
     }
 
     @FXML
-    public void nextWeek() {
+    public void nextWeek() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         dayDisplayed.add(Calendar.DATE, 1);
         createSchedule();
     }
 
     @FXML
-    public void previousWeek() {
-        dayDisplayed.add(Calendar.DATE, -8);
+    public void previousWeek() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        dayDisplayed.add(Calendar.DATE, -7);
         createSchedule();
     }
 
     @FXML
-    public void goToday()  {
+    public void goToday() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         dayDisplayed = new GregorianCalendar();
         createSchedule();
     }
 
-    public void displayHours() {
+    private void displayHours() {
         String[] hours = (morning) ? morningHours : afternoonHours;
 
         for (int i = 0; i < 5; i++) {
@@ -94,12 +101,56 @@ public class DashboardWeekController extends DashboardController implements Init
         }
     }
 
-    public void createSchedule() {
-        //Go to fisrt monday of week
+    private void createSchedule() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        //Removes existing cards
+        schedule.getChildren().removeIf(node -> node instanceof AppointmentCard);
+
+        //Goes to fisrt monday of week
         dayDisplayed.add(Calendar.DATE, -(dayDisplayed.get(Calendar.DAY_OF_WEEK) - 1));
 
-        AppointmentCard card = new AppointmentCard();
-        schedule.add(card, 3, 4);
+        //Goes to monday
+        GregorianCalendar startDay = DateUtils.copyGregorianCalendar(dayDisplayed);
+        startDay.add(Calendar.DATE, 1);
+
+        for (int i = 0; i < 5; i++) {
+            GregorianCalendar day = DateUtils.copyGregorianCalendar(startDay);
+
+            WeekDay weekDay = new WeekDay(day);
+            days.add(weekDay);
+
+            //TODO: get city and speciality from filters
+            weekDay.setAppointments((new DAOAppointment()).getAvailableAppointments(1, 1, weekDay));
+
+            int time = (morning) ? 1 : 8;
+            for (int j = 0; j < 9; j++) {
+                Appointment appointment = weekDay.getAppointment(time);
+
+                if (appointment != null) {
+                    AppointmentCard card = appointment.getCard();
+
+                     /*//************DEBUG*****************
+                    System.out.println("*****************CARD*****************\nTime: " + appointment.getTime().getTimeCode());
+                    System.out.println("Date: " + appointment.getDay().getDate().get(Calendar.DATE));
+                    System.out.println();
+                    */
+
+                    card.setStartHour(appointment.getTime().getInitialTime());
+                    card.setEndHour(appointment.getTime().getFinalTime());
+
+                    int rowIndex;
+
+                    if (morning) rowIndex = time - 1;
+                    else rowIndex = time - 8;
+
+                    schedule.add(card, i+2, rowIndex);
+                }
+
+                time++;
+            }
+
+            startDay.add(Calendar.DATE, 1);
+        }
+
 
         Text today = null;
 
@@ -148,7 +199,8 @@ public class DashboardWeekController extends DashboardController implements Init
                 }
             }
 
-            dayDisplayed.add(Calendar.DATE, 1);
+            //Does not get out of week
+            if (i != 6) dayDisplayed.add(Calendar.DATE, 1);
         }
 
 
@@ -176,7 +228,11 @@ public class DashboardWeekController extends DashboardController implements Init
         super.initialize(url, rb);
         morning = true;
         displayHours();
-        createSchedule();
+        try {
+            createSchedule();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     public DashboardWeekController(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {

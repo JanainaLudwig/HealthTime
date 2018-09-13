@@ -26,4 +26,10 @@ public class DateUtils {
         return date.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)
                 && date.get(Calendar.YEAR) == today.get(Calendar.YEAR);
     }
+
+    public static GregorianCalendar copyGregorianCalendar(GregorianCalendar calendar) {
+        calendar = new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+        return calendar;
+    }
 }

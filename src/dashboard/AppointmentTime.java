@@ -50,4 +50,12 @@ public class AppointmentTime {
     public String getFinalTime() {
         return finalTime[timeCode-1];
     }
+
+    public int getTimeCode() {
+        return timeCode;
+    }
+
+    public void setTimeCode(int timeCode) {
+        this.timeCode = timeCode;
+    }
 }

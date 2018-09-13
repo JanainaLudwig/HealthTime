@@ -119,3 +119,34 @@ ALTER TABLE working_time ADD CONSTRAINT FK_WORKING_TIME
     FOREIGN KEY (id_doctor) REFERENCES doctor (id_user);
 ALTER TABLE working_time ADD CONSTRAINT CHECK_WEEK_DAY
     CHECK (week_day BETWEEN 1 AND 7);
+
+
+-- Select available appointments
+
+CREATE OR REPLACE FUNCTION available_appointments(city int, search_day DATE default CURRENT_TIMESTAMP, specialty int default 1)
+  RETURNS TABLE (appointment_time dmn_appointment_time, week_day double precision, id_doctor int)
+AS
+$body$
+SELECT DISTINCT
+    wt.appointment_time,
+    wt.week_day,
+    wt.id_doctor
+  FROM working_time AS wt
+    JOIN doctor AS d ON wt.id_doctor = d.id_user
+    JOIN doctor_specialty AS ds ON d.id_user = ds.id_doctor
+  WHERE ds.id_specialty = specialty
+        AND wt.id_city = city
+        AND wt.week_day = extract(ISODOW FROM search_day)
+
+EXCEPT
+
+SELECT
+      a.appointment_time,
+      extract(ISODOW FROM a.appointment_date) AS week_day,
+      a.id_doctor
+  FROM appointment AS a
+  WHERE a.id_city = city
+        AND a.appointment_date = search_day
+ORDER BY appointment_time
+$body$
+language sql;
