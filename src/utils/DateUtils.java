@@ -27,6 +27,18 @@ public class DateUtils {
                 && date.get(Calendar.YEAR) == today.get(Calendar.YEAR);
     }
 
+    public static boolean isPast(GregorianCalendar date) {
+        GregorianCalendar today = new GregorianCalendar();
+
+        if (date.get(Calendar.YEAR) < today.get(Calendar.YEAR)) {
+            return true;
+        } else if (date.get(Calendar.YEAR) == today.get(Calendar.YEAR)
+                && date.get(Calendar.DAY_OF_YEAR) < today.get(Calendar.DAY_OF_YEAR)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public static GregorianCalendar copyGregorianCalendar(GregorianCalendar calendar) {
         calendar = new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 

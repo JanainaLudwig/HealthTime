@@ -33,7 +33,7 @@ public class DashboardWeekController extends DashboardController implements Init
     @FXML
     private JFXButton previousW;
     @FXML
-    private ImageView previousArrow;
+    private ImageView previousArrow, timeArrow;
     @FXML
     private Text fDay, lDay,
             fMonth, lMonth,
@@ -59,7 +59,21 @@ public class DashboardWeekController extends DashboardController implements Init
 
     @FXML
     public void changePeriod() {
+        Class<?> classDashboardController = DashboardMonthController.class;
+        InputStream input;
+
+        System.out.println("MORNING::::::: " + morning);
+        if (this.morning) {
+            input = classDashboardController.getResourceAsStream("/resources/images/up.png");
+        } else {
+            input = classDashboardController.getResourceAsStream("/resources/images/down.png");
+        }
+
+        Image timeArrowImg = new Image(input);
+        timeArrow.setImage(timeArrowImg);
+
         morning = !morning;
+
         displayHours();
         try {
             createSchedule();
@@ -113,9 +127,9 @@ public class DashboardWeekController extends DashboardController implements Init
         startDay.add(Calendar.DATE, 1);
 
         for (int i = 0; i < 5; i++) {
-            GregorianCalendar day = DateUtils.copyGregorianCalendar(startDay);
+            GregorianCalendar weekDate = DateUtils.copyGregorianCalendar(startDay);
 
-            WeekDay weekDay = new WeekDay(day);
+            WeekDay weekDay = new WeekDay(weekDate);
             days.add(weekDay);
 
             //TODO: get city and speciality from filters
@@ -123,7 +137,10 @@ public class DashboardWeekController extends DashboardController implements Init
 
             int time = (morning) ? 1 : 8;
             for (int j = 0; j < 9; j++) {
-                Appointment appointment = weekDay.getAppointment(time);
+                Appointment appointment = null;
+                //If date is not past, get available appointments
+                if (! DateUtils.isPast(weekDate)) appointment = weekDay.getAppointment(time);
+
 
                 if (appointment != null) {
                     AppointmentCard card = appointment.getCard();
@@ -199,7 +216,7 @@ public class DashboardWeekController extends DashboardController implements Init
                 }
             }
 
-            //Does not get out of week
+            //Avoid forwarding week
             if (i != 6) dayDisplayed.add(Calendar.DATE, 1);
         }
 
@@ -231,7 +248,7 @@ public class DashboardWeekController extends DashboardController implements Init
         try {
             createSchedule();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
