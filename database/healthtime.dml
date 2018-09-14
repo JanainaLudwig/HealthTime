@@ -1,7 +1,10 @@
 INSERT  INTO users (name) VALUES 
 	('Janaina Ludwig'), 
 	('Alessandro Gambin da Silva'), 
-	('Ricardo Andreis Balbinot');
+	('Ricardo Andreis Balbinot'),
+	('Pedro Silva'), 
+	('Antônio José Marques'), 
+	('Jaine Rodrigues');
 
 
 INSERT INTO consultant (id_user, sus_number) VALUES 
@@ -10,7 +13,10 @@ INSERT INTO consultant (id_user, sus_number) VALUES
 
 
 INSERT INTO doctor (id_user, crm_number) VALUES 
-	(3, 12541254);
+	(3, 12541254),
+	(4, 78961546),
+	(5, 14785236),
+	(6, 36985214);
 
 
 INSERT INTO login (id_user, password) VALUES 
@@ -29,7 +35,10 @@ INSERT INTO specialty (description) VALUES
 
 INSERT INTO doctor_specialty (id_doctor, id_specialty) VALUES 
 	(3, 1),
-	(3, 3);
+	(3, 3),
+	(4, 1),
+	(5, 1),
+	(6, 1);
 
 INSERT INTO appointment (id_doctor, id_consultant, id_specialty, id_city, appointment_date, appointment_time) VALUES
 	(3, 1, 2, 1, '2018-09-17', 1),
