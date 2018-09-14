@@ -129,6 +129,7 @@ public class DashboardMonthController extends DashboardController implements Ini
                 if (date.get(Calendar.MONTH) != monthDisplayed) {
                     button.setStyle("-fx-text-fill: #30cfcb;");
                 }
+                System.out.println();
             }
 
             if (DateUtils.isToday(date)) {
