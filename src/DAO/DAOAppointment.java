@@ -3,12 +3,14 @@ package DAO;
 import dashboard.Appointment;
 import dashboard.WeekDay;
 import database.ConnectionDB;
+import utils.DateUtils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class DAOAppointment {
     private Connection connection;
@@ -18,59 +20,26 @@ public class DAOAppointment {
     }
 
 
-    public ArrayList<Appointment> getAvailableAppointments(int id_specialty, int id_city, WeekDay date) throws SQLException {
-        String query = "SELECT * FROM available_appointments(" + id_city + ", '" + date.getDateString() + "', " + id_specialty + ");";
+    public ArrayList<Appointment> getAvailableAppointments(int id_specialty, int id_city, WeekDay weekDay) throws SQLException {
+        String query = "SELECT * FROM available_appointments(" + id_city + ", '" + DateUtils.getDateString(weekDay.getDate()) + "', " + id_specialty + ");";
+
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
 
         ArrayList<Appointment> appointments = new ArrayList<>();
         while (rs.next()) {
-            appointments.add(new Appointment(date, rs.getInt("appointment_time"), rs.getInt("id_doctor")));
+            appointments.add(new Appointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor")));
         }
 
         return appointments;
     }
-/*
-    public int getIdSpecialty(String code) throws SQLException {
-        String query = "SELECT id_specialty FROM doctor_specialty WHERE id_doctor = '" + code + "';";
-        Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery(query);
 
-        if (rs.next()) {
-            this.idSpecialty = rs.getInt("id_specialty");
-
-            return this.idSpecialty;
-        } else {
-            return -1;
-        }
-    }
-
-    public String getDescription(int code) throws SQLException {
-        String query = "SELECT description FROM specialty WHERE id_specialty='" + code + "';";
+    public boolean hasAny(int id_specialty, int id_city, GregorianCalendar date) throws SQLException {
+        String query = "SELECT * FROM available_appointments(" + id_city + ", '" + DateUtils.getDateString(date) + "', " + id_specialty + ");";
 
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
 
-        if (rs.next()) {
-            return  rs.getString("description");
-        } else {
-            return null;
-        }
+        return rs.next();
     }
-
-    //Talvez em novo DAO
-    public int getIdDoctor(String code) throws SQLException {
-        String query = "SELECT id_doctor FROM doctor_specialty WHERE id_specialty = '" + code + "';";
-        Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery(query);
-
-        if (rs.next()) {
-            this.idDoctor = rs.getInt("id_doctor");
-
-            return this.idDoctor;
-        } else {
-            return -1;
-        }
-    }
-    */
 }

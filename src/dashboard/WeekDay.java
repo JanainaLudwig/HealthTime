@@ -30,15 +30,6 @@ public class WeekDay {
         this.date = date;
     }
 
-    public String getDateString() {
-        String year = String.valueOf(date.get(Calendar.YEAR));
-        //Months start at 0
-        String month = String.valueOf(date.get(Calendar.MONTH) + 1);
-        String day = String.valueOf(date.get(Calendar.DAY_OF_MONTH));
-
-        return year + "-" + month + "-" + day;
-    }
-
     public Appointment getAppointment(int time) {
         for (Appointment appointment: appointments) {
             if (appointment.getTime().getTimeCode() == time) {

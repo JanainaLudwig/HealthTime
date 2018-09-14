@@ -64,7 +64,7 @@ public class DashboardMonthController extends DashboardController implements Ini
     }
 
     @FXML
-    public void nextMonth() throws FileNotFoundException {
+    public void nextMonth() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         if (this.monthDisplayed == 11) {
             this.yearDisplayed++;
             this.monthDisplayed = 0;
@@ -75,7 +75,7 @@ public class DashboardMonthController extends DashboardController implements Ini
     }
 
     @FXML
-    public void previousMonth() throws FileNotFoundException {
+    public void previousMonth() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         if (this.monthDisplayed == 0) {
             this.yearDisplayed--;
             this.monthDisplayed = 11;
@@ -87,7 +87,7 @@ public class DashboardMonthController extends DashboardController implements Ini
     }
 
     @FXML
-    public void goToday() throws FileNotFoundException {
+    public void goToday() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         GregorianCalendar calendar = new GregorianCalendar();
         this.monthDisplayed = calendar.get(Calendar.MONTH);
         this.yearDisplayed = calendar.get(Calendar.YEAR);
@@ -95,7 +95,7 @@ public class DashboardMonthController extends DashboardController implements Ini
     }
 
     //Creates calendar visualization based on month and year displayed
-    private void createCalendar() throws FileNotFoundException {
+    private void createCalendar() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         //Labels for navigation
         month.setText(MONTH_NAME[this.monthDisplayed]);
         year.setText(String.valueOf(this.yearDisplayed));
@@ -121,6 +121,14 @@ public class DashboardMonthController extends DashboardController implements Ini
                 button.setStyle("-fx-text-fill: #838c9c;");
             } else {
                 button.setStyle("-fx-text-fill: " + GRAY + ";");
+            }
+
+            //TODO: define specialty, city and doctor
+            if ((! DateUtils.isPast(parameterDate)) && monthDays.get(i).hasAvailableAppointment(1, 1)) {
+                button.setStyle("-fx-text-fill: #22918e;");
+                if (date.get(Calendar.MONTH) != monthDisplayed) {
+                    button.setStyle("-fx-text-fill: #30cfcb;");
+                }
             }
 
             if (DateUtils.isToday(date)) {
@@ -153,7 +161,7 @@ public class DashboardMonthController extends DashboardController implements Ini
         super.initialize(url, rb);
         try {
             createCalendar();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

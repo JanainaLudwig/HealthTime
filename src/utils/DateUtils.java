@@ -44,4 +44,13 @@ public class DateUtils {
 
         return calendar;
     }
+
+    public static String getDateString(GregorianCalendar date) {
+        String year = String.valueOf(date.get(Calendar.YEAR));
+        //Months start at 0
+        String month = String.valueOf(date.get(Calendar.MONTH) + 1);
+        String day = String.valueOf(date.get(Calendar.DAY_OF_MONTH));
+
+        return year + "-" + month + "-" + day;
+    }
 }
