@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import utils.ControllerUtils;
 
@@ -24,20 +25,17 @@ public class HealthTime extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Starts at login
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("/login/view/Login.fxml"));
-        Scene scene = new Scene(root);
+        //Parent root = FXMLLoader.load(getClass().getResource("/login/view/Login.fxml"));
 
-
-        stage.setScene(scene);
-        stage.show();
-        */
         //Starts at month view
         DashboardMonthController controller = new DashboardMonthController(1);
 
         FXMLLoader fxmlLoader = new FXMLLoader(controller.getClass().getResource("../../dashboard/view/DashboardMonth.fxml"));
         fxmlLoader.setController(controller);
         Parent root = fxmlLoader.load();
+
+        stage.setTitle("HealthTime");
+        stage.getIcons().add(new Image("/resources/images/logo.png"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
