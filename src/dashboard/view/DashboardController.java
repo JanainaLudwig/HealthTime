@@ -75,6 +75,8 @@ public class DashboardController implements Initializable {
         ArrayList<Doctor> doctorList = new ArrayList<>();
 
         doctorList = dao.getDoctor((String) specialtyComboBox.getValue());
+        this.doctorComboBox.getItems().clear();
+        this.doctorComboBox.getItems().add("Todos");
 
         for (int i = 0; i < doctorList.size(); i++) {
             this.doctorComboBox.getItems().add(doctorList.get(i).getDoctorName());

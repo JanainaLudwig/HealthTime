@@ -306,7 +306,7 @@
             </Text>
          </children>
       </GridPane>
-      <Pane layoutX="38.0" layoutY="207.0" prefHeight="227.0" prefWidth="225.0">
+      <Pane layoutX="38.0" layoutY="207.0" prefHeight="227.0" prefWidth="225.0" stylesheets="@../../resources/css/comboBox.css">
          <children>
             <Text fill="#f2f2f2" layoutX="8.0" layoutY="186.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dois Vizinhos" wrappingWidth="202.31349521130323">
                <font>
@@ -319,7 +319,7 @@
                </image>
             </ImageView>
             <Line endX="137.0" layoutX="81.0" layoutY="192.0" startX="-75.0" stroke="#f2f2f2" strokeWidth="2.0" />
-            <JFXComboBox fx:id="specialtyComboBox" layoutX="5.0" layoutY="27.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
+            <JFXComboBox fx:id="specialtyComboBox" layoutX="5.0" layoutY="27.0" onAction="#doctorCombo" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
             <JFXComboBox fx:id="doctorComboBox" layoutX="6.0" layoutY="92.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
          </children>
       </Pane>
