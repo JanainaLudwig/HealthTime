@@ -41,6 +41,14 @@ public class DashboardController implements Initializable {
             "Novembro",
             "Dezembro"
     };
+    /*
+     * Change according to filter ComboBoxes and call createCalendar()
+     * selectedSpecialty: clínica geral = 0
+     * selectedDoctor: 0
+     */
+    protected int selectedSpecialty = 1,
+                  selectedDoctor = 0,
+                  selectedCity = 1;
 
     @FXML
     private Text userName;

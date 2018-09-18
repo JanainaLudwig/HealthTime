@@ -76,7 +76,7 @@ public class DashboardWeekController extends DashboardController implements Init
 
         displayHours();
         try {
-            createSchedule();
+            createCalendar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -91,19 +91,19 @@ public class DashboardWeekController extends DashboardController implements Init
     @FXML
     public void nextWeek() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         dayDisplayed.add(Calendar.DATE, 1);
-        createSchedule();
+        createCalendar();
     }
 
     @FXML
     public void previousWeek() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         dayDisplayed.add(Calendar.DATE, -7);
-        createSchedule();
+        createCalendar();
     }
 
     @FXML
     public void goToday() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         dayDisplayed = new GregorianCalendar();
-        createSchedule();
+        createCalendar();
     }
 
     private void displayHours() {
@@ -115,7 +115,7 @@ public class DashboardWeekController extends DashboardController implements Init
         }
     }
 
-    private void createSchedule() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    private void createCalendar() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         //Removes existing cards
         schedule.getChildren().removeIf(node -> node instanceof AppointmentCard);
 
@@ -132,8 +132,7 @@ public class DashboardWeekController extends DashboardController implements Init
             WeekDay weekDay = new WeekDay(weekDate);
             days.add(weekDay);
 
-            //TODO: get city and speciality from filters
-            weekDay.setAppointments((new DAOAppointment()).getAvailableAppointments(1, 1, weekDay));
+            weekDay.setAppointments((new DAOAppointment()).getAvailableAppointments(selectedSpecialty, selectedCity, weekDay, selectedDoctor));
 
             int time = (morning) ? 1 : 8;
             for (int j = 0; j < 9; j++) {
@@ -246,7 +245,7 @@ public class DashboardWeekController extends DashboardController implements Init
         morning = true;
         displayHours();
         try {
-            createSchedule();
+            createCalendar();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             //e.printStackTrace();
         }

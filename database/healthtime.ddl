@@ -120,11 +120,11 @@ ALTER TABLE working_time ADD CONSTRAINT FK_WORKING_TIME
 ALTER TABLE working_time ADD CONSTRAINT CHECK_WEEK_DAY
     CHECK (week_day BETWEEN 1 AND 7);
 
-
 -- Select available appointments
 
 CREATE OR REPLACE FUNCTION available_appointments(city int, search_day DATE default CURRENT_TIMESTAMP, specialty int default 1)
   RETURNS TABLE (appointment_time dmn_appointment_time, week_day double precision, id_doctor int)
+
 AS
 $body$
 SELECT DISTINCT
@@ -150,3 +150,4 @@ SELECT
 ORDER BY appointment_time
 $body$
 language sql;
+

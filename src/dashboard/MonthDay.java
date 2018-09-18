@@ -46,9 +46,9 @@ public class MonthDay {
         this.button = button;
     }
 
-    public boolean hasAvailableAppointment(int id_specialty, int id_city) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public boolean hasAvailableAppointment(int id_specialty, int id_city, int id_doctor) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         DAOAppointment dao = new DAOAppointment();
 
-        return dao.hasAny(id_specialty, id_city, this.getDate());
+        return dao.hasAny(id_specialty, id_city, this.getDate(), id_doctor);
     }
 }

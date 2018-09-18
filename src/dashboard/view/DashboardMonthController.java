@@ -123,13 +123,11 @@ public class DashboardMonthController extends DashboardController implements Ini
                 button.setStyle("-fx-text-fill: " + GRAY + ";");
             }
 
-            //TODO: define specialty, city and doctor
-            if ((! DateUtils.isPast(parameterDate)) && monthDays.get(i).hasAvailableAppointment(1, 1)) {
+            if ((! DateUtils.isPast(parameterDate)) && monthDays.get(i).hasAvailableAppointment(selectedSpecialty, selectedCity, selectedDoctor)) {
                 button.setStyle("-fx-text-fill: #22918e;");
                 if (date.get(Calendar.MONTH) != monthDisplayed) {
                     button.setStyle("-fx-text-fill: #30cfcb;");
                 }
-                System.out.println();
             }
 
             if (DateUtils.isToday(date)) {

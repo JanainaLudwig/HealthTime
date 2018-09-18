@@ -1,9 +1,9 @@
-INSERT  INTO users (name) VALUES 
+INSERT  INTO users (name) VALUES
 	('Janaina Ludwig'), 
 	('Alessandro Gambin da Silva'), 
 	('Ricardo Andreis Balbinot'),
-	('Pedro Silva'), 
-	('Antônio José Marques'), 
+	('Pedro Silva'),
+	('Antônio José Marques'),
 	('Jaine Rodrigues');
 
 
@@ -11,13 +11,11 @@ INSERT INTO consultant (id_user, sus_number) VALUES
 	(1, '123456'), 
 	(2, '456789');
 
-
-INSERT INTO doctor (id_user, crm_number) VALUES 
+INSERT INTO doctor (id_user, crm_number) VALUES
 	(3, 12541254),
 	(4, 78961546),
 	(5, 14785236),
 	(6, 36985214);
-
 
 INSERT INTO login (id_user, password) VALUES 
 	(1, 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3'), 
@@ -56,6 +54,14 @@ INSERT INTO appointment (id_doctor, id_consultant, id_specialty, id_city, appoin
 	(3, 1, 2, 1, '2018-09-19', 12);
 
 INSERT INTO working_time (id_doctor, id_city, appointment_time, week_day) VALUES
+    (4, 1, 1, 1),
+    (4, 1, 12, 5),
+    (4, 1, 14, 4),
+    (5, 1, 7, 4),
+    (5, 1, 7, 3),
+    (6, 1, 5, 3),
+    (6, 1, 4, 2),
+    (6, 1, 1, 2),
     (3, 1, 1, 1),
     (3, 1, 2, 1),
     (3, 1, 3, 1),
