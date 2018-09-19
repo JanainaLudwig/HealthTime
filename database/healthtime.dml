@@ -24,7 +24,7 @@ INSERT INTO login (id_user, password) VALUES
 
 
 INSERT INTO specialty (description) VALUES 
-	('Clínica'),
+	('Clínica Geral'),
 	('Pediatria'),
 	('Urologia'),
 	('Obstetria'),

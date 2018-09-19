@@ -319,8 +319,8 @@
                </image>
             </ImageView>
             <Line endX="137.0" layoutX="81.0" layoutY="192.0" startX="-75.0" stroke="#f2f2f2" strokeWidth="2.0" />
-            <JFXComboBox fx:id="specialtyComboBox" layoutX="5.0" layoutY="27.0" onAction="#doctorCombo" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
-            <JFXComboBox fx:id="doctorComboBox" layoutX="6.0" layoutY="92.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
+            <JFXComboBox fx:id="specialtyComboBox" layoutX="5.0" layoutY="27.0" onAction="#switchSpecialty" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
+            <JFXComboBox fx:id="doctorComboBox" layoutX="6.0" layoutY="92.0" onAction="#switchDoctor" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
          </children>
       </Pane>
       <JFXButton layoutX="242.0" layoutY="624.0" onAction="#logout" prefHeight="18.0" prefWidth="50.0" style="-fx-background-color: #E05959;" text="Sair" textFill="WHITE">

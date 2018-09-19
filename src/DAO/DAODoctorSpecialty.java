@@ -57,6 +57,8 @@ public class DAODoctorSpecialty {
 
         ArrayList<Doctor> doctorList = new ArrayList<>();
 
+        Doctor todos = new Doctor(0, "Todos");
+        doctorList.add(todos);
         while (rs.next()) {
             Doctor doctor = new Doctor(rs.getInt("id_user"), rs.getString("name"));
             doctorList.add(doctor);
