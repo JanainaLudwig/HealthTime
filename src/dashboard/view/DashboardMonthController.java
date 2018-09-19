@@ -96,7 +96,8 @@ public class DashboardMonthController extends DashboardController implements Ini
     }
 
     //Creates calendar visualization based on month and year displayed
-    private void createCalendar() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    @Override
+    public void createCalendar() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         //Labels for navigation
         month.setText(MONTH_NAME[this.monthDisplayed]);
         year.setText(String.valueOf(this.yearDisplayed));

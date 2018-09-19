@@ -94,7 +94,7 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    public void switchSpecialty() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException{
+    public void switchSpecialty() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException, FileNotFoundException {
         for (int i = 0; i < specialtyList.size(); i++) {
             if (specialtyList.get(i).getDescription().equals(specialtyComboBox.getValue())) {
                 this.selectedSpecialty = specialtyList.get(i).getSpecialtyId();
@@ -102,15 +102,17 @@ public class DashboardController implements Initializable {
         }
         this.selectedDoctor = 0;
         doctorCombo();
+        createCalendar();
     }
 
     @FXML
-    public void switchDoctor() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException{
+    public void switchDoctor() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException, FileNotFoundException {
         for (int i = 0; i < doctorList.size(); i++) { //Verifica na lista de doutores
             if (doctorList.get(i).getDoctorName().equals(doctorComboBox.getValue())) {
                 this.selectedDoctor = doctorList.get(i).getDoctorId();
             }
         }
+        createCalendar();
     }
 
     @Override
@@ -162,6 +164,9 @@ public class DashboardController implements Initializable {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    public void createCalendar() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
     }
 
     public DashboardController(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {

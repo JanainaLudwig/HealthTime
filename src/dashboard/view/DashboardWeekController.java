@@ -115,7 +115,8 @@ public class DashboardWeekController extends DashboardController implements Init
         }
     }
 
-    private void createCalendar() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    @Override
+    public void createCalendar() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         //Removes existing cards
         schedule.getChildren().removeIf(node -> node instanceof AppointmentCard);
 
