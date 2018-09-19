@@ -53,4 +53,16 @@ public class DateUtils {
 
         return year + "-" + month + "-" + day;
     }
+
+    public static String getDateDMY(GregorianCalendar date) {
+        String year = String.valueOf(date.get(Calendar.YEAR));
+        //Months start at 0
+        String month = String.valueOf(date.get(Calendar.MONTH) + 1);
+        if (Integer.parseInt(month) < 10) month = "0" + month;
+
+        String day = String.valueOf(date.get(Calendar.DAY_OF_MONTH));
+        if (Integer.parseInt(day) < 10) day = "0" + day;
+
+        return day + '/' + month + '/' + year;
+    }
 }

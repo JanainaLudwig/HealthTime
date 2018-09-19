@@ -140,15 +140,8 @@ public class DashboardWeekController extends DashboardController implements Init
                 //If date is not past, get available appointments
                 if (! DateUtils.isPast(weekDate)) appointment = weekDay.getAppointment(time);
 
-
                 if (appointment != null) {
                     AppointmentCard card = appointment.getCard();
-
-                     /*//************DEBUG*****************
-                    System.out.println("*****************CARD*****************\nTime: " + appointment.getTime().getTimeCode());
-                    System.out.println("Date: " + appointment.getDay().getDate().get(Calendar.DATE));
-                    System.out.println();
-                    */
 
                     card.setStartHour(appointment.getTime().getInitialTime());
                     card.setEndHour(appointment.getTime().getFinalTime());

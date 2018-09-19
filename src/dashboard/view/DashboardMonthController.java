@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -118,7 +119,7 @@ public class DashboardMonthController extends DashboardController implements Ini
             }
 
             if (date.get(Calendar.MONTH) != monthDisplayed) {
-                button.setStyle("-fx-text-fill: #838c9c;");
+                ((Node) button).setStyle("-fx-text-fill: #838c9c;");
             } else {
                 button.setStyle("-fx-text-fill: " + GRAY + ";");
             }

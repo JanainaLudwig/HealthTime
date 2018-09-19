@@ -33,7 +33,7 @@ public class DAOAppointment {
 
         ArrayList<Appointment> appointments = new ArrayList<>();
         while (rs.next()) {
-            appointments.add(new Appointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor")));
+            appointments.add(new Appointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor"), id_specialty));
         }
 
         return appointments;

@@ -63,4 +63,13 @@ public class DAODoctorSpecialty {
         }
         return doctorList;
     }
+
+    public String getSpecialty(int id_specialty) throws SQLException {
+        String query = "SELECT description FROM specialty WHERE id_specialty = " + id_specialty;
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        return (rs.next()) ? rs.getString("description") : null;
+    }
 }
