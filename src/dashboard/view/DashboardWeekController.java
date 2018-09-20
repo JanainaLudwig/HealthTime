@@ -5,7 +5,9 @@ import com.jfoenix.controls.JFXButton;
 import dashboard.Appointment;
 import dashboard.WeekDay;
 import dashboard.appointmentCard.AppointmentCard;
+import dashboard.modal.ConfirmAppointment;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -62,7 +64,6 @@ public class DashboardWeekController extends DashboardController implements Init
         Class<?> classDashboardController = DashboardMonthController.class;
         InputStream input;
 
-        System.out.println("MORNING::::::: " + morning);
         if (this.morning) {
             input = classDashboardController.getResourceAsStream("/resources/images/up.png");
         } else {
@@ -130,7 +131,7 @@ public class DashboardWeekController extends DashboardController implements Init
         for (int i = 0; i < 5; i++) {
             GregorianCalendar weekDate = DateUtils.copyGregorianCalendar(startDay);
 
-            WeekDay weekDay = new WeekDay(weekDate);
+            WeekDay weekDay = new WeekDay(weekDate, this.user, this);
             days.add(weekDay);
 
             weekDay.setAppointments((new DAOAppointment()).getAvailableAppointments(selectedSpecialty, selectedCity, weekDay, selectedDoctor));
@@ -177,8 +178,6 @@ public class DashboardWeekController extends DashboardController implements Init
                 lMonth.setText(MONTH_NAME[dayDisplayed.get(Calendar.MONTH)]);
                 lYear.setText(String.valueOf(dayDisplayed.get(Calendar.YEAR)));
             }
-
-            days.add(new WeekDay(dayDisplayed));
 
             VBox vbox = (VBox) weekDays.getChildren().get(i);
             Text dayOfMonth = (Text) vbox.getChildren().get(0);
@@ -250,7 +249,6 @@ public class DashboardWeekController extends DashboardController implements Init
         days = new ArrayList<>();
         dayDisplayed = new GregorianCalendar();
     }
-
 
     public DashboardWeekController(int userId, GregorianCalendar date) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         super(userId);

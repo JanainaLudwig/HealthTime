@@ -3,6 +3,7 @@ package dashboard.modal;
 import DAO.DAOAppointment;
 import DAO.DAODoctorSpecialty;
 import dashboard.Appointment;
+import dashboard.view.DashboardWeekController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.ControllerUtils;
 import utils.DateUtils;
 import java.io.IOException;
 import java.net.URL;
@@ -48,6 +50,25 @@ public class ConfirmAppointment implements Initializable {
         modalStage.show();
     }
 
+    @FXML
+    public void confirmAppointment() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        DAOAppointment daoAppointment = new DAOAppointment();
+
+        daoAppointment.scheduleAppointment(appointment);
+
+        closeModal();
+
+        appointment.getDay().getController().createCalendar();
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         DAODoctorSpecialty daoAppointment = null;
@@ -55,7 +76,7 @@ public class ConfirmAppointment implements Initializable {
 
         try {
             daoAppointment = new DAODoctorSpecialty();
-            specialty = daoAppointment.getSpecialty(appointment.getId_specialty());
+            specialty = daoAppointment.getSpecialty(appointment.getIdSpecialty());
 
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
@@ -74,4 +95,6 @@ public class ConfirmAppointment implements Initializable {
     private void closeModal() {
         modalStage.close();
     }
+
+
 }

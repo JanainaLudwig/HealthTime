@@ -51,8 +51,9 @@ public class DashboardController implements Initializable {
      * selectedDoctor: 0
      */
     protected int selectedSpecialty = 1,
-                  selectedDoctor = 0,
-                  selectedCity = 1;
+                  selectedDoctor = 0;
+    public static int selectedCity = 1;
+
 
     @FXML
     private Text userName;

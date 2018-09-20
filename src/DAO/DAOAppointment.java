@@ -2,6 +2,7 @@ package DAO;
 
 import dashboard.Appointment;
 import dashboard.WeekDay;
+import dashboard.view.DashboardController;
 import database.ConnectionDB;
 import utils.DateUtils;
 
@@ -20,10 +21,11 @@ public class DAOAppointment {
     }
 
 
-    public ArrayList<Appointment> getAvailableAppointments(int id_specialty, int id_city, WeekDay weekDay, int id_doctor) throws SQLException {
-        String query = "SELECT * FROM available_appointments(" + id_city + ", '" + DateUtils.getDateString(weekDay.getDate()) + "', " + id_specialty + ")";
-        if (id_doctor != 0) {
-            query += " WHERE id_doctor = " + id_doctor + ";";
+    public ArrayList<Appointment> getAvailableAppointments(int idSpecialty, int idCity, WeekDay weekDay, int idDoctor) throws SQLException {
+        int idUser = weekDay.getUser().getUserId();
+        String query = "SELECT * FROM available_appointments(" + idCity + ", '" + DateUtils.getDateString(weekDay.getDate()) + "', " + idSpecialty + ")";
+        if (idDoctor != 0) {
+            query += " WHERE id_doctor = " + idDoctor + ";";
         } else {
             query += ";";
         }
@@ -33,7 +35,8 @@ public class DAOAppointment {
 
         ArrayList<Appointment> appointments = new ArrayList<>();
         while (rs.next()) {
-            appointments.add(new Appointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor"), id_specialty));
+
+            appointments.add(new Appointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor"), idSpecialty));
         }
 
         return appointments;
@@ -51,5 +54,28 @@ public class DAOAppointment {
         ResultSet rs = stm.executeQuery(query);
 
         return rs.next();
+    }
+
+    public void scheduleAppointment(Appointment appointment) throws SQLException {
+        int idDoctor = appointment.getIdDoctor(),
+            idConsultant = appointment.getDay().getUser().getUserId(),
+            idSpecialty = appointment.getIdSpecialty(),
+            appointmentTime = appointment.getTime().getTimeCode(),
+            idCity = DashboardController.selectedCity;
+
+        String appointmentDate = DateUtils.getDateString(appointment.getDay().getDate());
+
+        String query = "INSERT INTO appointment (id_doctor, id_consultant, \n" +
+                "                         id_specialty, id_city, appointment_date, \n" +
+                "                         appointment_time) VALUES \n" +
+                "(" + idDoctor + ", " +
+                "" + idConsultant + ", " +
+                "" + idSpecialty + ", " +
+                ""+ idCity + ", " +
+                "'" + appointmentDate + "', " +
+                "" + appointmentTime + ");";
+
+        Statement stm = connection.createStatement();
+        stm.execute(query);
     }
 }

@@ -1,20 +1,23 @@
 package dashboard;
 
+import DAO.DAOAppointment;
 import dashboard.appointmentCard.AppointmentCard;
+
+import java.sql.SQLException;
 
 public class Appointment {
     private AppointmentTime time;
     private AppointmentCard card;
     private WeekDay day;
-    private int id_doctor;
-    private int id_specialty;
+    private int idDoctor;
+    private int idSpecialty;
 
-    public Appointment(WeekDay day, int time, int id_doctor, int id_specialty) {
+    public Appointment(WeekDay day, int time, int idDoctor, int idSpecialty) {
         this.day = day;
         this.time = new AppointmentTime(time);
         card = new AppointmentCard(this);
-        this.id_doctor = id_doctor;
-        this.id_specialty = id_specialty;
+        this.idDoctor = idDoctor;
+        this.idSpecialty = idSpecialty;
     }
 
     public AppointmentTime getTime() {
@@ -41,19 +44,19 @@ public class Appointment {
         this.day = day;
     }
 
-    public int getId_doctor() {
-        return id_doctor;
+    public int getIdDoctor() {
+        return idDoctor;
     }
 
-    public void setId_doctor(int id_doctor) {
-        this.id_doctor = id_doctor;
+    public void setIdDoctor(int idDoctor) {
+        this.idDoctor = idDoctor;
     }
 
-    public int getId_specialty() {
-        return id_specialty;
+    public int getIdSpecialty() {
+        return idSpecialty;
     }
 
-    public void setId_specialty(int id_specialty) {
-        this.id_specialty = id_specialty;
+    public void setIdSpecialty(int idSpecialty) {
+        this.idSpecialty = idSpecialty;
     }
 }
