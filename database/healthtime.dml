@@ -80,3 +80,8 @@ INSERT INTO working_time (id_doctor, id_city, appointment_time, week_day) VALUES
     (3, 1, 11, 5),
     (3, 1, 2, 5);
 
+
+INSERT INTO appointment_release (id_specialty, id_patient, id_doctor, id_appointment, release_date) VALUES
+    (1, 1, 5, 0, '2018-10-28'),
+    (3, 1, 5, 0, '2018-10-08'),
+    (5, 1, 5, 0, '2018-10-01');

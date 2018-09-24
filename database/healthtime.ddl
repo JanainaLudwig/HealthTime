@@ -120,6 +120,25 @@ ALTER TABLE working_time ADD CONSTRAINT FK_WORKING_TIME
 ALTER TABLE working_time ADD CONSTRAINT CHECK_WEEK_DAY
     CHECK (week_day BETWEEN 1 AND 7);
 
+
+CREATE TABLE appointment_release (
+    id_specialty INT,
+    id_patient INT,
+    id_doctor INT,
+    id_appointment INT,
+    release_date DATE NOT NULL
+);
+
+ALTER TABLE appointment_release ADD CONSTRAINT PK_APPOINTMENT_RELEASE
+    PRIMARY KEY (id_specialty, id_patient, release_date);
+ALTER TABLE appointment_release ADD CONSTRAINT FK_SPECIALTY
+    FOREIGN KEY (id_specialty) REFERENCES specialty (id_specialty);
+ALTER TABLE appointment_release ADD CONSTRAINT FK_PATIENT
+    FOREIGN KEY (id_patient) REFERENCES consultant (id_user);
+ALTER TABLE appointment_release ADD CONSTRAINT FK_DOCTOR
+    FOREIGN KEY (id_doctor) REFERENCES doctor (id_user);
+
+
 -- Select available appointments
 
 CREATE OR REPLACE FUNCTION available_appointments(city int, search_day DATE default CURRENT_TIMESTAMP, specialty int default 1)

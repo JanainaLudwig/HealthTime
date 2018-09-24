@@ -73,7 +73,7 @@ public class DashboardController implements Initializable {
     @FXML
     public void specialtyCombo() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
         DAODoctorSpecialty dao = new DAODoctorSpecialty();
-        specialtyList = dao.getAllDescription();
+        specialtyList = dao.getAllDescription(this.userId);
 
         for (int i = 0; i < specialtyList.size(); i++) {
             this.specialtyComboBox.getItems().add(specialtyList.get(i).getDescription());

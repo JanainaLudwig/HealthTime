@@ -18,22 +18,10 @@ public class DAODoctorSpecialty {
         connection = ConnectionDB.getConnection();
     }
 
-    public int getIdSpecialty(String code) throws SQLException {
-        String query = "SELECT id_specialty FROM doctor_specialty WHERE id_doctor = '" + code + "';";
-        Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery(query);
-
-        if (rs.next()) {
-            this.idSpecialty = rs.getInt("id_specialty");
-
-            return this.idSpecialty;
-        } else {
-            return -1;
-        }
-    }
-
-    public ArrayList<Specialty> getAllDescription() throws SQLException {
-        String query = "SELECT * FROM specialty;";
+    public ArrayList<Specialty> getAllDescription(int userId) throws SQLException {
+        String query = "SELECT s.id_specialty, s.description " +
+                "FROM specialty s JOIN appointment_release ar ON s.id_specialty = ar.id_specialty " +
+                "WHERE ar.id_patient = '" + userId + "'";
 
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
