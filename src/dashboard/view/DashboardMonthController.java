@@ -60,7 +60,12 @@ public class DashboardMonthController extends DashboardController implements Ini
 
     @FXML
     public void weeklyVision(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
+        GregorianCalendar today = new GregorianCalendar();
         GregorianCalendar date = new GregorianCalendar(yearDisplayed, monthDisplayed, 1);
+
+        if (date.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
+            date = today;
+        }
 
         DashboardWeekController controller = new DashboardWeekController(this.userId, date);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardWeek.fxml");
