@@ -85,7 +85,7 @@ public class DashboardWeekController extends DashboardController implements Init
 
     @FXML
     public void monthVision(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
-        DashboardMonthController controller = new DashboardMonthController(this.userId);
+        DashboardMonthController controller = new DashboardMonthController(this.userId, dayDisplayed);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardMonth.fxml");
     }
 
