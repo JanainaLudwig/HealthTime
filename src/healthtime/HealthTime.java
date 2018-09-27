@@ -33,6 +33,7 @@ public class HealthTime extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(controller.getClass().getResource("../../dashboard/view/DashboardMonth.fxml"));
         fxmlLoader.setController(controller);
         Parent root = fxmlLoader.load();
+        // End of month controller
 
         stage.setTitle("HealthTime");
         stage.getIcons().add(new Image("/resources/images/logo.png"));

@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="HealthTime">
+    <output-path>$PROJECT_DIR$/out/artifacts/HealthTime</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="healthtime.HealthTime" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="HealthTime" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="HealthTime.jar">
+        <element id="module-output" name="HealthTime" />
+      </element>
+    </root>
+  </artifact>
+</component>

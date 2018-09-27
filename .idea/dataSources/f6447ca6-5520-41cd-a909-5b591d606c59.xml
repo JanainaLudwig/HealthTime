@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="healthtime@localhost">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.11">
+    <root id="1">
+      <ServerVersion>9.5.14</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="bd">
+      <ObjectId>17146</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="3" parent="1" name="bd2">
+      <ObjectId>17599</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="4" parent="1" name="healthtime">
+      <ObjectId>17103</ObjectId>
+      <Owner>postgres</Owner>
+      <IntrospectionStateNumber>25</IntrospectionStateNumber>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </database>
+    <database id="5" parent="1" name="postgres">
+      <ObjectId>12373</ObjectId>
+      <Comment>default administrative connection database</Comment>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="6" parent="1" name="procedures">
+      <ObjectId>17548</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <database id="7" parent="1" name="trigger">
+      <ObjectId>17668</ObjectId>
+      <Owner>postgres</Owner>
+    </database>
+    <role id="8" parent="1" name="postgres">
+      <ObjectId>10</ObjectId>
+      <SuperRole>1</SuperRole>
+      <Inherit>1</Inherit>
+      <CreateRole>1</CreateRole>
+      <CreateDb>1</CreateDb>
+      <CanLogin>1</CanLogin>
+      <Replication>1</Replication>
+      <ConnectionLimit>-1</ConnectionLimit>
+      <BypassRls>1</BypassRls>
+    </role>
+    <schema id="9" parent="4" name="information_schema">
+      <ObjectId>12081</ObjectId>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="10" parent="4" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+      <Comment>system catalog schema</Comment>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="11" parent="4" name="pg_temp_1">
+      <ObjectId>11816</ObjectId>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="12" parent="4" name="pg_toast">
+      <ObjectId>99</ObjectId>
+      <Comment>reserved schema for TOAST tables</Comment>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="13" parent="4" name="pg_toast_temp_1">
+      <ObjectId>11817</ObjectId>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="14" parent="4" name="public">
+      <ObjectId>2200</ObjectId>
+      <Comment>standard public schema</Comment>
+      <Owner>postgres</Owner>
+      <IntrospectionTimestamp>2018-09-24.11:47:49.792</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1083</IntrospectionStateNumber>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <access-method id="15" parent="4" name="btree">
+      <ObjectId>403</ObjectId>
+      <Comment>b-tree index access method</Comment>
+    </access-method>
+    <access-method id="16" parent="4" name="hash">
+      <ObjectId>405</ObjectId>
+      <Comment>hash index access method</Comment>
+    </access-method>
+    <access-method id="17" parent="4" name="gist">
+      <ObjectId>783</ObjectId>
+      <Comment>GiST index access method</Comment>
+    </access-method>
+    <access-method id="18" parent="4" name="gin">
+      <ObjectId>2742</ObjectId>
+      <Comment>GIN index access method</Comment>
+    </access-method>
+    <access-method id="19" parent="4" name="spgist">
+      <ObjectId>4000</ObjectId>
+      <Comment>SP-GiST index access method</Comment>
+    </access-method>
+    <access-method id="20" parent="4" name="brin">
+      <ObjectId>3580</ObjectId>
+      <Comment>block range index (BRIN) access method</Comment>
+    </access-method>
+    <sequence id="21" parent="14" name="appointment_id_appointment_seq">
+      <ObjectId>17457</ObjectId>
+      <StateNumber>772</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+      <CacheSize>1</CacheSize>
+    </sequence>
+    <sequence id="22" parent="14" name="specialty_id_specialty_seq">
+      <ObjectId>17432</ObjectId>
+      <StateNumber>766</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+      <CacheSize>1</CacheSize>
+    </sequence>
+    <sequence id="23" parent="14" name="users_id_user_seq">
+      <ObjectId>17390</ObjectId>
+      <StateNumber>755</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+      <CacheSize>1</CacheSize>
+    </sequence>
+    <object-type id="24" parent="14" name="dmn_appointment_time">
+      <ObjectId>17388</ObjectId>
+      <StateNumber>754</StateNumber>
+      <SubKind>domain</SubKind>
+      <SubCategory>numeric</SubCategory>
+      <Definition>smallint</Definition>
+    </object-type>
+    <table id="25" parent="14" name="appointment">
+      <ObjectId>17459</ObjectId>
+      <StateNumber>776</StateNumber>
+    </table>
+    <table id="26" parent="14" name="appointment_release">
+      <ObjectId>25884</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1080</StateNumber>
+    </table>
+    <table id="27" parent="14" name="consultant">
+      <ObjectId>17398</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1079</StateNumber>
+    </table>
+    <table id="28" parent="14" name="doctor">
+      <ObjectId>17410</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1080</StateNumber>
+    </table>
+    <table id="29" parent="14" name="doctor_specialty">
+      <ObjectId>17442</ObjectId>
+      <StateNumber>771</StateNumber>
+    </table>
+    <table id="30" parent="14" name="login">
+      <ObjectId>17422</ObjectId>
+      <StateNumber>765</StateNumber>
+    </table>
+    <table id="31" parent="14" name="specialty">
+      <ObjectId>17434</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1078</StateNumber>
+    </table>
+    <table id="32" parent="14" name="users">
+      <ObjectId>17392</ObjectId>
+      <StateNumber>765</StateNumber>
+    </table>
+    <table id="33" parent="14" name="working_time">
+      <ObjectId>17513</ObjectId>
+      <StateNumber>804</StateNumber>
+    </table>
+    <routine id="34" parent="14" name="available_appointments">
+      <ObjectId>25904</ObjectId>
+      <Owner>postgres</Owner>
+      <SourceTextLength>769</SourceTextLength>
+      <StateNumber>1083</StateNumber>
+      <VolatilityKind>volatile</VolatilityKind>
+      <ArgumentsDefinition>consultant integer, city integer, search_day date DEFAULT now(), specialty integer DEFAULT 1</ArgumentsDefinition>
+      <ResultsDefinition>TABLE(appointment_time dmn_appointment_time, week_day double precision, id_doctor integer)</ResultsDefinition>
+      <LanguageName>sql</LanguageName>
+      <RoutineKind>function</RoutineKind>
+      <ReturnsSet>1</ReturnsSet>
+      <Cost>100.0</Cost>
+      <Rows>1000.0</Rows>
+    </routine>
+    <check id="35" parent="24" name="dmn_appointment_time_check">
+      <ObjectId>17389</ObjectId>
+      <StateNumber>754</StateNumber>
+      <Predicate>(VALUE = ANY (ARRAY[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]))</Predicate>
+    </check>
+    <column id="36" parent="25" name="id_appointment">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>772</StateNumber>
+      <DefaultExpression>nextval(&apos;appointment_id_appointment_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+      <SequenceName>appointment_id_appointment_seq</SequenceName>
+    </column>
+    <column id="37" parent="25" name="id_doctor">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>772</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="38" parent="25" name="id_consultant">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>772</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="39" parent="25" name="id_specialty">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>772</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="40" parent="25" name="id_city">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>772</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="41" parent="25" name="appointment_date">
+      <Position>6</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>772</StateNumber>
+      <TypeId>1082</TypeId>
+    </column>
+    <column id="42" parent="25" name="appointment_time">
+      <Position>7</Position>
+      <DataType>dmn_appointment_time|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>772</StateNumber>
+      <TypeId>17388</TypeId>
+    </column>
+    <index id="43" parent="25" name="pk_appointment">
+      <ObjectId>17463</ObjectId>
+      <ColNames>id_appointment</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="44" parent="25" name="pk_appointment">
+      <ObjectId>17464</ObjectId>
+      <ColNames>id_appointment</ColNames>
+      <UnderlyingIndexName>pk_appointment</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="45" parent="25" name="fk_doctor">
+      <ObjectId>17465</ObjectId>
+      <ColNames>id_doctor</ColNames>
+      <RefTableId>17410</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>doctor</RefTableName>
+      <RefKeyName>pk_doctor</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <foreign-key id="46" parent="25" name="fk_consultant">
+      <ObjectId>17470</ObjectId>
+      <ColNames>id_consultant</ColNames>
+      <RefTableId>17398</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>consultant</RefTableName>
+      <RefKeyName>pk_consultant</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <foreign-key id="47" parent="25" name="fk_specialty">
+      <ObjectId>17475</ObjectId>
+      <ColNames>id_specialty</ColNames>
+      <RefTableId>17434</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>specialty</RefTableName>
+      <RefKeyName>pk_specialty</RefKeyName>
+      <RefColNames>id_specialty</RefColNames>
+    </foreign-key>
+    <column id="48" parent="26" name="id_specialty">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1077</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="49" parent="26" name="id_patient">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1077</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="50" parent="26" name="id_doctor">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>1076</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="51" parent="26" name="id_appointment">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>1076</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="52" parent="26" name="release_date">
+      <Position>5</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1076</StateNumber>
+      <TypeId>1082</TypeId>
+    </column>
+    <index id="53" parent="26" name="pk_appointment_release">
+      <ObjectId>25887</ObjectId>
+      <ColNames>id_specialty
+id_patient
+release_date</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="54" parent="26" name="pk_appointment_release">
+      <ObjectId>25888</ObjectId>
+      <ColNames>id_specialty
+id_patient
+release_date</ColNames>
+      <UnderlyingIndexName>pk_appointment_release</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="55" parent="26" name="fk_specialty">
+      <ObjectId>25889</ObjectId>
+      <ColNames>id_specialty</ColNames>
+      <RefTableId>17434</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>specialty</RefTableName>
+      <RefKeyName>pk_specialty</RefKeyName>
+      <RefColNames>id_specialty</RefColNames>
+    </foreign-key>
+    <foreign-key id="56" parent="26" name="fk_patient">
+      <ObjectId>25894</ObjectId>
+      <ColNames>id_patient</ColNames>
+      <RefTableId>17398</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>consultant</RefTableName>
+      <RefKeyName>pk_consultant</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <foreign-key id="57" parent="26" name="fk_doctor">
+      <ObjectId>25899</ObjectId>
+      <ColNames>id_doctor</ColNames>
+      <RefTableId>17410</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>doctor</RefTableName>
+      <RefKeyName>pk_doctor</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <column id="58" parent="27" name="id_user">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>758</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="59" parent="27" name="sus_number">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>757</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="60" parent="27" name="pk_consultant">
+      <ObjectId>17403</ObjectId>
+      <ColNames>id_user</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="61" parent="27" name="consultant_sus_number_key">
+      <ObjectId>17401</ObjectId>
+      <ColNames>sus_number</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="62" parent="27" name="pk_consultant">
+      <ObjectId>17404</ObjectId>
+      <ColNames>id_user</ColNames>
+      <UnderlyingIndexName>pk_consultant</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="63" parent="27" name="consultant_sus_number_key">
+      <ObjectId>17402</ObjectId>
+      <ColNames>sus_number</ColNames>
+      <UnderlyingIndexName>consultant_sus_number_key</UnderlyingIndexName>
+    </key>
+    <foreign-key id="64" parent="27" name="fk_users">
+      <ObjectId>17405</ObjectId>
+      <ColNames>id_user</ColNames>
+      <RefTableId>17392</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>pk_users</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <column id="65" parent="28" name="id_user">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>761</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="66" parent="28" name="crm_number">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <StateNumber>760</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="67" parent="28" name="pk_doctor">
+      <ObjectId>17415</ObjectId>
+      <ColNames>id_user</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="68" parent="28" name="doctor_crm_number_key">
+      <ObjectId>17413</ObjectId>
+      <ColNames>crm_number</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="69" parent="28" name="pk_doctor">
+      <ObjectId>17416</ObjectId>
+      <ColNames>id_user</ColNames>
+      <UnderlyingIndexName>pk_doctor</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="70" parent="28" name="doctor_crm_number_key">
+      <ObjectId>17414</ObjectId>
+      <ColNames>crm_number</ColNames>
+      <UnderlyingIndexName>doctor_crm_number_key</UnderlyingIndexName>
+    </key>
+    <foreign-key id="71" parent="28" name="fk_users">
+      <ObjectId>17417</ObjectId>
+      <ColNames>id_user</ColNames>
+      <RefTableId>17392</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>pk_users</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <column id="72" parent="29" name="id_doctor">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>769</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="73" parent="29" name="id_specialty">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>769</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="74" parent="29" name="pk_doctor_specialty">
+      <ObjectId>17445</ObjectId>
+      <ColNames>id_doctor
+id_specialty</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="75" parent="29" name="pk_doctor_specialty">
+      <ObjectId>17446</ObjectId>
+      <ColNames>id_doctor
+id_specialty</ColNames>
+      <UnderlyingIndexName>pk_doctor_specialty</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="76" parent="29" name="fk_doctor">
+      <ObjectId>17447</ObjectId>
+      <ColNames>id_doctor</ColNames>
+      <RefTableId>17410</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>doctor</RefTableName>
+      <RefKeyName>pk_doctor</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <foreign-key id="77" parent="29" name="fk_specialty">
+      <ObjectId>17452</ObjectId>
+      <ColNames>id_specialty</ColNames>
+      <RefTableId>17434</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>specialty</RefTableName>
+      <RefKeyName>pk_specialty</RefKeyName>
+      <RefColNames>id_specialty</RefColNames>
+    </foreign-key>
+    <column id="78" parent="30" name="id_user">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>764</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="79" parent="30" name="password">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>763</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="80" parent="30" name="pk_login">
+      <ObjectId>17425</ObjectId>
+      <ColNames>id_user</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="81" parent="30" name="pk_login">
+      <ObjectId>17426</ObjectId>
+      <ColNames>id_user</ColNames>
+      <UnderlyingIndexName>pk_login</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="82" parent="30" name="fk_login">
+      <ObjectId>17427</ObjectId>
+      <ColNames>id_user</ColNames>
+      <RefTableId>17392</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>pk_users</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <column id="83" parent="31" name="id_specialty">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>766</StateNumber>
+      <DefaultExpression>nextval(&apos;specialty_id_specialty_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+      <SequenceName>specialty_id_specialty_seq</SequenceName>
+    </column>
+    <column id="84" parent="31" name="description">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <StateNumber>766</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="85" parent="31" name="pk_specialty">
+      <ObjectId>17440</ObjectId>
+      <ColNames>id_specialty</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="86" parent="31" name="specialty_description_key">
+      <ObjectId>17438</ObjectId>
+      <ColNames>description</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="87" parent="31" name="pk_specialty">
+      <ObjectId>17441</ObjectId>
+      <ColNames>id_specialty</ColNames>
+      <UnderlyingIndexName>pk_specialty</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="88" parent="31" name="specialty_description_key">
+      <ObjectId>17439</ObjectId>
+      <ColNames>description</ColNames>
+      <UnderlyingIndexName>specialty_description_key</UnderlyingIndexName>
+    </key>
+    <column id="89" parent="32" name="id_user">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>755</StateNumber>
+      <DefaultExpression>nextval(&apos;users_id_user_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+      <SequenceName>users_id_user_seq</SequenceName>
+    </column>
+    <column id="90" parent="32" name="name">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>755</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="91" parent="32" name="pk_users">
+      <ObjectId>17396</ObjectId>
+      <ColNames>id_user</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="92" parent="32" name="pk_users">
+      <ObjectId>17397</ObjectId>
+      <ColNames>id_user</ColNames>
+      <UnderlyingIndexName>pk_users</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="93" parent="33" name="id_doctor">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>802</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="94" parent="33" name="id_city">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>801</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="95" parent="33" name="appointment_time">
+      <Position>3</Position>
+      <DataType>dmn_appointment_time|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>802</StateNumber>
+      <TypeId>17388</TypeId>
+    </column>
+    <column id="96" parent="33" name="week_day">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>802</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="97" parent="33" name="pk_working_time">
+      <ObjectId>17516</ObjectId>
+      <ColNames>id_doctor
+appointment_time
+week_day</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="98" parent="33" name="pk_working_time">
+      <ObjectId>17517</ObjectId>
+      <ColNames>id_doctor
+appointment_time
+week_day</ColNames>
+      <UnderlyingIndexName>pk_working_time</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="99" parent="33" name="fk_working_time">
+      <ObjectId>17518</ObjectId>
+      <ColNames>id_doctor</ColNames>
+      <RefTableId>17410</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>doctor</RefTableName>
+      <RefKeyName>pk_doctor</RefKeyName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <check id="100" parent="33" name="check_week_day">
+      <ObjectId>17523</ObjectId>
+      <ColNames>week_day</ColNames>
+      <Predicate>(week_day &gt;= 1) AND (week_day &lt;= 7)</Predicate>
+    </check>
+    <argument id="101" parent="34" name="consultant">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+    </argument>
+    <argument id="102" parent="34" name="city">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+    </argument>
+    <argument id="103" parent="34" name="search_day">
+      <Position>3</Position>
+      <DataType>date|0s</DataType>
+      <DefaultExpression>now()</DefaultExpression>
+    </argument>
+    <argument id="104" parent="34" name="specialty">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <DefaultExpression>1</DefaultExpression>
+    </argument>
+    <argument id="105" parent="34">
+      <ArgumentDirection>T</ArgumentDirection>
+      <DataType>table(appointment_time dmn_appointment_time, week_day double precision, id_doctor integer)|0v</DataType>
+    </argument>
+  </database-model>
+</dataSource>

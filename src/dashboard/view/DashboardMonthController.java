@@ -119,7 +119,7 @@ public class DashboardMonthController extends DashboardController implements Ini
 
         for (int i = 0; i < 42; i++) {
             GregorianCalendar parameterDate = new GregorianCalendar(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
-            monthDays.add(new MonthDay((JFXButton) calendar.getChildren().get(i), parameterDate));
+            monthDays.add(new MonthDay((JFXButton) calendar.getChildren().get(i), parameterDate, user));
 
             JFXButton button = monthDays.get(i).getButton();
 

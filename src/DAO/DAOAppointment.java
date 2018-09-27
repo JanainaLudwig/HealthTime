@@ -23,7 +23,8 @@ public class DAOAppointment {
 
     public ArrayList<Appointment> getAvailableAppointments(int idSpecialty, int idCity, WeekDay weekDay, int idDoctor) throws SQLException {
         int idUser = weekDay.getUser().getUserId();
-        String query = "SELECT * FROM available_appointments(" + idCity + ", '" + DateUtils.getDateString(weekDay.getDate()) + "', " + idSpecialty + ")";
+
+        String query = "SELECT * FROM available_appointments(" + idUser + ", " + idCity + ", '" + DateUtils.getDateString(weekDay.getDate()) + "', " + idSpecialty + ")";
         if (idDoctor != 0) {
             query += " WHERE id_doctor = " + idDoctor + ";";
         } else {
@@ -35,15 +36,14 @@ public class DAOAppointment {
 
         ArrayList<Appointment> appointments = new ArrayList<>();
         while (rs.next()) {
-
-            appointments.add(new Appointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor"), idSpecialty));
+            appointments.add(new Appointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor"), idSpecialty, idCity));
         }
 
         return appointments;
     }
 
-    public boolean hasAny(int id_specialty, int id_city, GregorianCalendar date, int id_doctor) throws SQLException {
-        String query = "SELECT * FROM available_appointments(" + id_city + ", '" + DateUtils.getDateString(date) + "', " + id_specialty + ")";
+    public boolean hasAny(int id_specialty, int id_city, GregorianCalendar date, int id_doctor, int idUser) throws SQLException {
+        String query = "SELECT * FROM available_appointments(" + idUser + ", " + id_city + ", '" + DateUtils.getDateString(date) + "', " + id_specialty + ")";
         if (id_doctor != 0) {
             query += " WHERE id_doctor = " + id_doctor + ";";
         } else {

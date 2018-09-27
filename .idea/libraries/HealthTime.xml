@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="jfoenix-8.0.5">
+  <library name="HealthTime">
     <CLASSES>
-      <root url="jar://D:/Recursos/JFoenix/jfoenix-8.0.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/HealthTime.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
