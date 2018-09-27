@@ -41,6 +41,7 @@ public class DashboardWeekController extends DashboardController implements Init
             fMonth, lMonth,
             fYear, lYear;
 
+    private int currentComboSpecialty, currentComboDoctor;
     private boolean morning;
     private GregorianCalendar dayDisplayed;
     private ArrayList<WeekDay> days;
@@ -85,7 +86,7 @@ public class DashboardWeekController extends DashboardController implements Init
 
     @FXML
     public void monthVision(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
-        DashboardMonthController controller = new DashboardMonthController(this.userId, dayDisplayed);
+        DashboardMonthController controller = new DashboardMonthController(this.userId, dayDisplayed, selectedComboSpecialty, selectedComboDoctor);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardMonth.fxml");
     }
 
@@ -236,6 +237,8 @@ public class DashboardWeekController extends DashboardController implements Init
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
         morning = true;
+        this.specialtyComboBox.getSelectionModel().select(currentComboSpecialty);
+        this.doctorComboBox.getSelectionModel().select(currentComboDoctor);
         displayHours();
         try {
             createCalendar();
@@ -254,5 +257,13 @@ public class DashboardWeekController extends DashboardController implements Init
         super(userId);
         days = new ArrayList<>();
         dayDisplayed = date;
+    }
+
+    public DashboardWeekController(int userId, GregorianCalendar date, int currentComboSpecialty, int currentComboDoctor) throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
+        super(userId);
+        days = new ArrayList<>();
+        dayDisplayed = date;
+        this.currentComboSpecialty = currentComboSpecialty;
+        this.currentComboDoctor = currentComboDoctor;
     }
 }

@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 
 public class DashboardMonthController extends DashboardController implements Initializable {
     private ArrayList<MonthDay> monthDays;
+    private int currentComboSpecialty, currentComboDoctor;
     private int monthDisplayed,
                 yearDisplayed;
 
@@ -35,6 +36,8 @@ public class DashboardMonthController extends DashboardController implements Ini
     private Text userName;
     @FXML
     private JFXComboBox specialtyCombo;
+    @FXML
+    private JFXComboBox doctorCombo;
     @FXML
     private GridPane calendar;
     @FXML
@@ -67,7 +70,7 @@ public class DashboardMonthController extends DashboardController implements Ini
             date = today;
         }
 
-        DashboardWeekController controller = new DashboardWeekController(this.userId, date);
+        DashboardWeekController controller = new DashboardWeekController(this.userId, date, selectedComboSpecialty, selectedComboDoctor);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardWeek.fxml");
     }
 
@@ -167,6 +170,8 @@ public class DashboardMonthController extends DashboardController implements Ini
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
+        this.specialtyComboBox.getSelectionModel().select(currentComboSpecialty);
+        this.doctorComboBox.getSelectionModel().select(currentComboDoctor);
         try {
             createCalendar();
         } catch (FileNotFoundException | IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
@@ -185,6 +190,14 @@ public class DashboardMonthController extends DashboardController implements Ini
         super(userId);
         this.monthDisplayed = calendar.get(Calendar.MONTH);
         this.yearDisplayed = calendar.get(Calendar.YEAR);
+    }
+
+    public DashboardMonthController(int userId, GregorianCalendar calendar, int currentComboSpecialty, int currentComboDoctor) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        super(userId);
+        this.monthDisplayed = calendar.get(Calendar.MONTH);
+        this.yearDisplayed = calendar.get(Calendar.YEAR);
+        this.currentComboSpecialty = currentComboSpecialty;
+        this.currentComboDoctor = currentComboDoctor;
     }
 
 }

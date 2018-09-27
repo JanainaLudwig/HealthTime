@@ -50,17 +50,19 @@ public class DashboardController implements Initializable {
      * selectedSpecialty: clínica geral = 0
      * selectedDoctor: 0
      */
-    protected int selectedSpecialty = 1,
-                  selectedDoctor = 0;
+    public int selectedSpecialty = 1,
+                  selectedComboSpecialty,
+                  selectedDoctor = 0,
+                  selectedComboDoctor;
     public static int selectedCity = 1;
 
 
     @FXML
     private Text userName;
     @FXML
-    private JFXComboBox specialtyComboBox;
+    protected JFXComboBox specialtyComboBox;
     @FXML
-    private JFXComboBox doctorComboBox;
+    protected JFXComboBox doctorComboBox;
 
     @FXML
     public void logout() throws IOException {
@@ -78,7 +80,8 @@ public class DashboardController implements Initializable {
         for (int i = 0; i < specialtyList.size(); i++) {
             this.specialtyComboBox.getItems().add(specialtyList.get(i).getDescription());
         }
-        this.specialtyComboBox.getSelectionModel().select(0);
+
+        this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
     }
 
     @FXML
@@ -91,7 +94,7 @@ public class DashboardController implements Initializable {
             this.doctorComboBox.getItems().add(doctorList.get(i).getDoctorName());
         }
 
-        this.doctorComboBox.getSelectionModel().select(0);
+        this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
     }
 
     @FXML
@@ -101,6 +104,14 @@ public class DashboardController implements Initializable {
                 this.selectedSpecialty = specialtyList.get(i).getSpecialtyId();
             }
         }
+
+        //Encontra a posição do ítem selecionado no ComboBox
+        for (int i = 0; i < this.specialtyComboBox.getItems().size(); i++) {
+            if (specialtyComboBox.getItems().get(i).equals(specialtyComboBox.getValue())) {
+                this.selectedComboSpecialty = i;
+            }
+        }
+
         this.selectedDoctor = 0;
         doctorCombo();
         createCalendar();
@@ -108,11 +119,19 @@ public class DashboardController implements Initializable {
 
     @FXML
     public void switchDoctor() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException, FileNotFoundException {
-        for (int i = 0; i < doctorList.size(); i++) { //Verifica na lista de doutores
+        for (int i = 0; i < doctorList.size(); i++) {
             if (doctorList.get(i).getDoctorName().equals(doctorComboBox.getValue())) {
                 this.selectedDoctor = doctorList.get(i).getDoctorId();
             }
         }
+
+        //Encontra a posição do ítem selecionado no ComboBox
+        for (int i = 0; i < this.doctorComboBox.getItems().size(); i++) {
+            if (doctorComboBox.getItems().get(i).equals(doctorComboBox.getValue())) {
+                this.selectedComboDoctor = i;
+            }
+        }
+
         createCalendar();
     }
 
