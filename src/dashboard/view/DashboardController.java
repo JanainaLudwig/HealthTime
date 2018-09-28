@@ -6,13 +6,15 @@ import com.jfoenix.controls.JFXComboBox;
 import dashboard.Doctor;
 import dashboard.Specialty;
 import dashboard.User;
+import dashboard.appointmentManager.AppointmentManagerController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -45,6 +47,7 @@ public class DashboardController implements Initializable {
     ArrayList<Specialty> specialtyList = new ArrayList<>();
     ArrayList<Doctor> doctorList = new ArrayList<>();
 
+    public Rectangle modalOpened;
     /*
      * Change according to filter ComboBoxes and call createCalendar()
      * selectedSpecialty: clínica geral = 0
@@ -56,7 +59,8 @@ public class DashboardController implements Initializable {
                   selectedComboDoctor;
     public static int selectedCity = 1;
 
-
+    @FXML
+    public AnchorPane pane;
     @FXML
     private Text userName;
     @FXML
@@ -133,6 +137,17 @@ public class DashboardController implements Initializable {
         }
 
         createCalendar();
+    }
+
+    // TODO: check if works
+    @FXML
+    public void openManager() throws IOException {
+        modalOpened = new Rectangle(1220, 660);
+        modalOpened.setStyle("-fx-background-color: #303030b1");
+        modalOpened.setOpacity(0.5);
+        pane.getChildren().addAll(modalOpened);
+
+        AppointmentManagerController manager = new AppointmentManagerController(userName.getScene(), this);
     }
 
     @Override

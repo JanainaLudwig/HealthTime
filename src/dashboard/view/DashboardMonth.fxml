@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="660.0" maxWidth="1220.0" minHeight="660.0" minWidth="1220.0" prefHeight="660.0" prefWidth="1220.0" style="-fx-background-color: #f8f8f8;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" fx:id="pane" maxHeight="660.0" maxWidth="1220.0" minHeight="660.0" minWidth="1220.0" prefHeight="660.0" prefWidth="1220.0" style="-fx-background-color: #f8f8f8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="105.0" layoutX="307.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
@@ -361,7 +361,7 @@
             <JFXButton layoutX="246.0" layoutY="63.0" onAction="#nextMonth" text="Próximo" textFill="#168ee9" />
          </children>
       </Pane>
-      <JFXButton layoutX="26.0" layoutY="620.0" style="-fx-background-color: #A0CA88;" text="Gerenciador de Consultas" textFill="WHITE">
+      <JFXButton layoutX="26.0" layoutY="620.0" onAction="#openManager" style="-fx-background-color: #A0CA88;" text="Gerenciador de Consultas" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="16.0" />
          </font>
