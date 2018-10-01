@@ -6,7 +6,7 @@ import com.jfoenix.controls.JFXComboBox;
 import dashboard.Doctor;
 import dashboard.Specialty;
 import dashboard.User;
-import dashboard.appointmentManager.AppointmentManagerController;
+import manager.AppointmentManagerController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,8 +20,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {

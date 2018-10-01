@@ -1,6 +1,6 @@
 package dashboard.appointmentCard;
 
-import dashboard.Appointment;
+import dashboard.AvailableAppointment;
 import dashboard.modal.ConfirmAppointment;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +10,10 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 
 public class AppointmentCard extends Pane {
-    private Appointment appointment;
+    private AvailableAppointment availableAppointment;
 
-    public AppointmentCard(Appointment appointment) {
-        this.appointment = appointment;
+    public AppointmentCard(AvailableAppointment availableAppointment) {
+        this.availableAppointment = availableAppointment;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "AppointmentCard.fxml"));
@@ -34,7 +34,7 @@ public class AppointmentCard extends Pane {
 
     @FXML
     public void cardClicked() throws IOException {
-        ConfirmAppointment modal = new ConfirmAppointment(this.appointment, this.getScene());
+        ConfirmAppointment modal = new ConfirmAppointment(this.availableAppointment, this.getScene());
     }
 
     public void setStartHour(String text) {
@@ -61,11 +61,11 @@ public class AppointmentCard extends Pane {
         this.endHour = endHour;
     }
 
-    public Appointment getAppointment() {
-        return appointment;
+    public AvailableAppointment getAvailableAppointment() {
+        return availableAppointment;
     }
 
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
+    public void setAvailableAppointment(AvailableAppointment availableAppointment) {
+        this.availableAppointment = availableAppointment;
     }
 }

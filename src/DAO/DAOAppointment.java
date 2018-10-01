@@ -1,6 +1,6 @@
 package DAO;
 
-import dashboard.Appointment;
+import dashboard.AvailableAppointment;
 import dashboard.WeekDay;
 import dashboard.view.DashboardController;
 import database.ConnectionDB;
@@ -21,7 +21,7 @@ public class DAOAppointment {
     }
 
 
-    public ArrayList<Appointment> getAvailableAppointments(int idSpecialty, int idCity, WeekDay weekDay, int idDoctor) throws SQLException {
+    public ArrayList<AvailableAppointment> getAvailableAppointments(int idSpecialty, int idCity, WeekDay weekDay, int idDoctor) throws SQLException {
         int idUser = weekDay.getUser().getUserId();
 
         String query = "SELECT * FROM available_appointments(" + idUser + ", " + idCity + ", '" + DateUtils.getDateString(weekDay.getDate()) + "', " + idSpecialty + ")";
@@ -34,12 +34,12 @@ public class DAOAppointment {
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
 
-        ArrayList<Appointment> appointments = new ArrayList<>();
+        ArrayList<AvailableAppointment> availableAppointments = new ArrayList<>();
         while (rs.next()) {
-            appointments.add(new Appointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor"), idSpecialty, idCity));
+            availableAppointments.add(new AvailableAppointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor"), idSpecialty, idCity));
         }
 
-        return appointments;
+        return availableAppointments;
     }
 
     public boolean hasAny(int id_specialty, int id_city, GregorianCalendar date, int id_doctor, int idUser) throws SQLException {
@@ -56,14 +56,14 @@ public class DAOAppointment {
         return rs.next();
     }
 
-    public void scheduleAppointment(Appointment appointment) throws SQLException {
-        int idDoctor = appointment.getIdDoctor(),
-            idConsultant = appointment.getDay().getUser().getUserId(),
-            idSpecialty = appointment.getIdSpecialty(),
-            appointmentTime = appointment.getTime().getTimeCode(),
+    public void scheduleAppointment(AvailableAppointment availableAppointment) throws SQLException {
+        int idDoctor = availableAppointment.getIdDoctor(),
+            idConsultant = availableAppointment.getDay().getUser().getUserId(),
+            idSpecialty = availableAppointment.getIdSpecialty(),
+            appointmentTime = availableAppointment.getTime().getTimeCode(),
             idCity = DashboardController.selectedCity;
 
-        String appointmentDate = DateUtils.getDateString(appointment.getDay().getDate());
+        String appointmentDate = DateUtils.getDateString(availableAppointment.getDay().getDate());
 
         String query = "INSERT INTO appointment (id_doctor, id_consultant, \n" +
                 "                         id_specialty, id_city, appointment_date, \n" +

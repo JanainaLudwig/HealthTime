@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<fx:root prefHeight="130.0" prefWidth="470.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="130.0" maxWidth="470.0" minHeight="130.0" minWidth="470.0" prefHeight="130.0" prefWidth="470.0" style="-fx-background-color: #EBEBEB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="rectangleTime" arcWidth="5.0" fill="#79eb85" height="130.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="150.0" />
+   </children>
+</AnchorPane>
+</fx:root>

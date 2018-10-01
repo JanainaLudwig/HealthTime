@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class WeekDay {
-    private ArrayList<Appointment> appointments;
+    private ArrayList<AvailableAppointment> availableAppointments;
     private GregorianCalendar date;
     private User user;
     private DashboardWeekController controller;
@@ -32,12 +32,12 @@ public class WeekDay {
         this.user = user;
     }
 
-    public ArrayList<Appointment> getAppointments() {
-        return appointments;
+    public ArrayList<AvailableAppointment> getAvailableAppointments() {
+        return availableAppointments;
     }
 
-    public void setAppointments(ArrayList<Appointment> appointments) {
-        this.appointments = appointments;
+    public void setAvailableAppointments(ArrayList<AvailableAppointment> availableAppointments) {
+        this.availableAppointments = availableAppointments;
     }
 
     public GregorianCalendar getDate() {
@@ -48,10 +48,10 @@ public class WeekDay {
         this.date = date;
     }
 
-    public Appointment getAppointment(int time) {
-        for (Appointment appointment: appointments) {
-            if (appointment.getTime().getTimeCode() == time) {
-                return appointment;
+    public AvailableAppointment getAppointment(int time) {
+        for (AvailableAppointment availableAppointment : availableAppointments) {
+            if (availableAppointment.getTime().getTimeCode() == time) {
+                return availableAppointment;
             }
         }
         return null;
@@ -60,7 +60,7 @@ public class WeekDay {
     @Override
     public String toString() {
         return "WeekDay{" +
-                "appointments=" + appointments +
+                "availableAppointments=" + availableAppointments +
                 ", date=" + date +
                 '}';
     }

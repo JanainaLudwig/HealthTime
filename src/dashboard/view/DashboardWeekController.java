@@ -2,12 +2,10 @@ package dashboard.view;
 
 import DAO.DAOAppointment;
 import com.jfoenix.controls.JFXButton;
-import dashboard.Appointment;
+import dashboard.AvailableAppointment;
 import dashboard.WeekDay;
 import dashboard.appointmentCard.AppointmentCard;
-import dashboard.modal.ConfirmAppointment;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -135,19 +133,19 @@ public class DashboardWeekController extends DashboardController implements Init
             WeekDay weekDay = new WeekDay(weekDate, this.user, this);
             days.add(weekDay);
 
-            weekDay.setAppointments((new DAOAppointment()).getAvailableAppointments(selectedSpecialty, selectedCity, weekDay, selectedDoctor));
+            weekDay.setAvailableAppointments((new DAOAppointment()).getAvailableAppointments(selectedSpecialty, selectedCity, weekDay, selectedDoctor));
 
             int time = (morning) ? 1 : 8;
             for (int j = 0; j < 9; j++) {
-                Appointment appointment = null;
+                AvailableAppointment availableAppointment = null;
                 //If date is not past, get available appointments
-                if (! DateUtils.isPast(weekDate)) appointment = weekDay.getAppointment(time);
+                if (! DateUtils.isPast(weekDate)) availableAppointment = weekDay.getAppointment(time);
 
-                if (appointment != null) {
-                    AppointmentCard card = appointment.getCard();
+                if (availableAppointment != null) {
+                    AppointmentCard card = availableAppointment.getCard();
 
-                    card.setStartHour(appointment.getTime().getInitialTime());
-                    card.setEndHour(appointment.getTime().getFinalTime());
+                    card.setStartHour(availableAppointment.getTime().getInitialTime());
+                    card.setEndHour(availableAppointment.getTime().getFinalTime());
 
                     int rowIndex;
 

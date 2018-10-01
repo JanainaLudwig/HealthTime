@@ -2,8 +2,7 @@ package dashboard.modal;
 
 import DAO.DAOAppointment;
 import DAO.DAODoctorSpecialty;
-import dashboard.Appointment;
-import dashboard.view.DashboardWeekController;
+import dashboard.AvailableAppointment;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +13,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import utils.ControllerUtils;
 import utils.DateUtils;
 import java.io.IOException;
 import java.net.URL;
@@ -29,10 +27,10 @@ public class ConfirmAppointment implements Initializable {
 
     private Stage modalStage;
 
-    private Appointment appointment;
+    private AvailableAppointment availableAppointment;
 
-    public ConfirmAppointment(Appointment appointment, Scene scene) throws IOException {
-        this.appointment = appointment;
+    public ConfirmAppointment(AvailableAppointment availableAppointment, Scene scene) throws IOException {
+        this.availableAppointment = availableAppointment;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ConfirmAppointment.fxml"));
         fxmlLoader.setController(this);
@@ -54,19 +52,19 @@ public class ConfirmAppointment implements Initializable {
     public void confirmAppointment() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         DAOAppointment daoAppointment = new DAOAppointment();
 
-        daoAppointment.scheduleAppointment(appointment);
+        daoAppointment.scheduleAppointment(availableAppointment);
 
         closeModal();
 
-        appointment.getDay().getController().createCalendar();
+        availableAppointment.getDay().getController().createCalendar();
     }
 
-    public Appointment getAppointment() {
-        return appointment;
+    public AvailableAppointment getAvailableAppointment() {
+        return availableAppointment;
     }
 
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
+    public void setAvailableAppointment(AvailableAppointment availableAppointment) {
+        this.availableAppointment = availableAppointment;
     }
 
     @Override
@@ -76,7 +74,7 @@ public class ConfirmAppointment implements Initializable {
 
         try {
             daoAppointment = new DAODoctorSpecialty();
-            specialty = daoAppointment.getSpecialty(appointment.getIdSpecialty());
+            specialty = daoAppointment.getSpecialty(availableAppointment.getIdSpecialty());
 
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
@@ -86,8 +84,8 @@ public class ConfirmAppointment implements Initializable {
             appointmentSpecialty.setText(specialty);
         }
 
-        appointmentTime.setText(appointment.getTime().getInitialTime());
-        appointmentDate.setText(DateUtils.getDateDMY(appointment.getDay().getDate()));
+        appointmentTime.setText(availableAppointment.getTime().getInitialTime());
+        appointmentDate.setText(DateUtils.getDateDMY(availableAppointment.getDay().getDate()));
 
     }
 

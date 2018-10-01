@@ -1,6 +1,10 @@
 package utils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class DateUtils {
@@ -64,5 +68,21 @@ public class DateUtils {
         if (Integer.parseInt(day) < 10) day = "0" + day;
 
         return day + '/' + month + '/' + year;
+    }
+
+    public static GregorianCalendar stringToGregorianCalendar(String dateString) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+
+        try {
+            date = df.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+
+        return cal;
     }
 }

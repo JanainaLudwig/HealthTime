@@ -1,11 +1,15 @@
 package DAO;
 
+import manager.UserAppointment;
 import database.ConnectionDB;
+import utils.DateUtils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class DAOUser {
     private Connection connection;
@@ -27,5 +31,21 @@ public class DAOUser {
         } else {
             return null;
         }
+    }
+
+    public ArrayList<UserAppointment> getAppointments() throws SQLException {
+        String query = "SELECT * FROM  appointment WHERE id_consultant='" + this.idUser + "'";
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        ArrayList<UserAppointment> appointments = new ArrayList();
+        while (rs.next()) {
+            GregorianCalendar date = DateUtils.stringToGregorianCalendar(rs.getString("appointment_date"));
+            //TODO: Instanciar construtor do UserAppointment
+            //appointments.add(new UserAppointment());
+        }
+
+        return appointments;
     }
 }

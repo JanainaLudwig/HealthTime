@@ -1,20 +1,16 @@
 package dashboard;
 
-import DAO.DAOAppointment;
-import dashboard.appointmentCard.AppointmentCard;
-
-import java.sql.SQLException;
+import java.util.GregorianCalendar;
 
 public class Appointment {
-    private AppointmentTime time;
-    private AppointmentCard card = null;
-    private WeekDay day;
-    private int idDoctor;
-    private int idSpecialty;
-    private int idCity;
+    protected AppointmentTime time;
+    protected int idDoctor;
+    protected int idSpecialty;
+    protected int idCity;
+    protected GregorianCalendar date;
 
-    public Appointment(WeekDay day, int time, int idDoctor, int idSpecialty, int idCity) {
-        this.day = day;
+    public Appointment(GregorianCalendar date, int time, int idDoctor, int idSpecialty, int idCity) {
+        this.date = date;
         this.time = new AppointmentTime(time);
         this.idDoctor = idDoctor;
         this.idSpecialty = idSpecialty;
@@ -27,26 +23,6 @@ public class Appointment {
 
     public void setTime(AppointmentTime time) {
         this.time = time;
-    }
-
-    public AppointmentCard getCard() {
-        if (card == null) {
-            card = new AppointmentCard(this);
-        }
-
-        return card;
-    }
-
-    public void setCard(AppointmentCard card) {
-        this.card = card;
-    }
-
-    public WeekDay getDay() {
-        return day;
-    }
-
-    public void setDay(WeekDay day) {
-        this.day = day;
     }
 
     public int getIdDoctor() {
@@ -71,5 +47,13 @@ public class Appointment {
 
     public void setIdCity(int idCity) {
         this.idCity = idCity;
+    }
+
+    public GregorianCalendar getDate() {
+        return date;
+    }
+
+    public void setDate(GregorianCalendar date) {
+        this.date = date;
     }
 }
