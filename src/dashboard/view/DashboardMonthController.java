@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 
 public class DashboardMonthController extends DashboardController implements Initializable {
     private ArrayList<MonthDay> monthDays;
-    private int currentComboSpecialty, currentComboDoctor;
     private int monthDisplayed,
                 yearDisplayed;
 
@@ -170,8 +169,8 @@ public class DashboardMonthController extends DashboardController implements Ini
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
-        this.specialtyComboBox.getSelectionModel().select(currentComboSpecialty);
-        this.doctorComboBox.getSelectionModel().select(currentComboDoctor);
+        this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
+        this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
         try {
             createCalendar();
         } catch (FileNotFoundException | IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
@@ -196,8 +195,8 @@ public class DashboardMonthController extends DashboardController implements Ini
         super(userId);
         this.monthDisplayed = calendar.get(Calendar.MONTH);
         this.yearDisplayed = calendar.get(Calendar.YEAR);
-        this.currentComboSpecialty = currentComboSpecialty;
-        this.currentComboDoctor = currentComboDoctor;
+        this.selectedComboSpecialty = currentComboSpecialty;
+        this.selectedComboDoctor = currentComboDoctor;
     }
 
 }
