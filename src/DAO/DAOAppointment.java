@@ -1,6 +1,7 @@
 package DAO;
 
 import dashboard.AvailableAppointment;
+import dashboard.Doctor;
 import dashboard.WeekDay;
 import dashboard.view.DashboardController;
 import database.ConnectionDB;
@@ -36,7 +37,8 @@ public class DAOAppointment {
 
         ArrayList<AvailableAppointment> availableAppointments = new ArrayList<>();
         while (rs.next()) {
-            availableAppointments.add(new AvailableAppointment(weekDay, rs.getInt("appointment_time"), rs.getInt("id_doctor"), idSpecialty, idCity));
+            Doctor doctor = new Doctor(rs.getInt("id_doctor"));
+            availableAppointments.add(new AvailableAppointment(weekDay, rs.getInt("appointment_time"), doctor, idSpecialty, idCity));
         }
 
         return availableAppointments;
@@ -57,7 +59,7 @@ public class DAOAppointment {
     }
 
     public void scheduleAppointment(AvailableAppointment availableAppointment) throws SQLException {
-        int idDoctor = availableAppointment.getIdDoctor(),
+        int idDoctor = availableAppointment.getDoctor().getDoctorId(),
             idConsultant = availableAppointment.getDay().getUser().getUserId(),
             idSpecialty = availableAppointment.getIdSpecialty(),
             appointmentTime = availableAppointment.getTime().getTimeCode(),

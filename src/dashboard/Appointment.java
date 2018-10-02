@@ -1,18 +1,19 @@
 package dashboard;
 
+import javax.print.Doc;
 import java.util.GregorianCalendar;
 
 public class Appointment {
     protected AppointmentTime time;
-    protected int idDoctor;
+    protected Doctor doctor;
     protected int idSpecialty;
     protected int idCity;
     protected GregorianCalendar date;
 
-    public Appointment(GregorianCalendar date, int time, int idDoctor, int idSpecialty, int idCity) {
+    public Appointment(GregorianCalendar date, int time, Doctor doctor, int idSpecialty, int idCity) {
         this.date = date;
         this.time = new AppointmentTime(time);
-        this.idDoctor = idDoctor;
+        this.doctor = doctor;
         this.idSpecialty = idSpecialty;
         this.idCity = idCity;
     }
@@ -25,12 +26,12 @@ public class Appointment {
         this.time = time;
     }
 
-    public int getIdDoctor() {
-        return idDoctor;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setIdDoctor(int idDoctor) {
-        this.idDoctor = idDoctor;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public int getIdSpecialty() {
@@ -56,4 +57,5 @@ public class Appointment {
     public void setDate(GregorianCalendar date) {
         this.date = date;
     }
+
 }

@@ -9,8 +9,8 @@ public class AvailableAppointment extends Appointment{
     private AppointmentCard card = null;
     private WeekDay day;
 
-    public AvailableAppointment(WeekDay day, int time, int idDoctor, int idSpecialty, int idCity) {
-        super(day.getDate(), time, idDoctor, idSpecialty, idCity);
+    public AvailableAppointment(WeekDay day, int time, Doctor doctor, int idSpecialty, int idCity) {
+        super(day.getDate(), time, doctor, idSpecialty, idCity);
         this.day = day;
     }
 

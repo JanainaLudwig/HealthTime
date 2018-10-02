@@ -1,6 +1,7 @@
 package manager;
 
 import dashboard.Appointment;
+import dashboard.Doctor;
 import dashboard.User;
 
 import java.util.GregorianCalendar;
@@ -8,8 +9,8 @@ import java.util.GregorianCalendar;
 public class UserAppointment extends Appointment {
     private User user;
 
-    public UserAppointment(GregorianCalendar date, int time, int idDoctor, int idSpecialty, int idCity, User user) {
-        super(date, time, idDoctor, idSpecialty, idCity);
+    public UserAppointment(GregorianCalendar date, int time, Doctor doctor, int idSpecialty, int idCity, User user) {
+        super(date, time, doctor, idSpecialty, idCity);
         this.user = user;
     }
 
