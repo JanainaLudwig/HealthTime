@@ -6,7 +6,7 @@ import com.jfoenix.controls.JFXComboBox;
 import dashboard.Doctor;
 import dashboard.Specialty;
 import dashboard.User;
-import manager.AppointmentManagerController;
+import manager.view.AppointmentManagerController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -145,7 +145,7 @@ public class DashboardController implements Initializable {
         modalOpened.setOpacity(0.5);
         pane.getChildren().addAll(modalOpened);
 
-        AppointmentManagerController manager = new AppointmentManagerController(userName.getScene(), this);
+        AppointmentManagerController manager = new AppointmentManagerController(userName.getScene(), this, this.user);
     }
 
     @Override

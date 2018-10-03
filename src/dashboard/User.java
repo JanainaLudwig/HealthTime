@@ -13,8 +13,10 @@ public class User {
 
     public User(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         this.userId = userId;
-        DAOUser dao = new DAOUser(userId);
+
+        DAOUser dao = new DAOUser(this);
         this.userName = dao.getName();
+        this.userAppointments = dao.getAppointments();
     }
 
     public String getUserName() {
@@ -27,5 +29,26 @@ public class User {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public ArrayList<UserAppointment> getUserAppointments() {
+        return userAppointments;
+    }
+
+    public void setUserAppointments(ArrayList<UserAppointment> userAppointments) {
+        this.userAppointments = userAppointments;
+    }
+
+    public void updateUserAppointments() {
+        try {
+            DAOUser dao = new DAOUser(this);
+            this.userAppointments = dao.getAppointments();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

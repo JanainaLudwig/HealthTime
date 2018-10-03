@@ -53,6 +53,7 @@ public class ConfirmAppointment implements Initializable {
         DAOAppointment daoAppointment = new DAOAppointment();
 
         daoAppointment.scheduleAppointment(availableAppointment);
+        availableAppointment.getDay().getUser().updateUserAppointments();
 
         closeModal();
 

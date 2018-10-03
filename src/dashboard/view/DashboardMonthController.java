@@ -169,6 +169,7 @@ public class DashboardMonthController extends DashboardController implements Ini
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
+
         this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
         this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
         try {

@@ -1,5 +1,7 @@
 package DAO;
 
+import dashboard.Doctor;
+import dashboard.User;
 import manager.UserAppointment;
 import database.ConnectionDB;
 import utils.DateUtils;
@@ -13,15 +15,15 @@ import java.util.GregorianCalendar;
 
 public class DAOUser {
     private Connection connection;
-    private int idUser;
+    private User user;
 
-    public DAOUser(int idUser) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public DAOUser(User user) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         connection = ConnectionDB.getConnection();
-        this.idUser = idUser;
+        this.user = user;
     }
 
     public String getName() throws SQLException {
-        String query = "SELECT name FROM  users WHERE id_user='" + this.idUser + "'";
+        String query = "SELECT name FROM  users WHERE id_user='" + user.getUserId() + "'";
 
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
@@ -34,7 +36,7 @@ public class DAOUser {
     }
 
     public ArrayList<UserAppointment> getAppointments() throws SQLException {
-        String query = "SELECT * FROM  appointment WHERE id_consultant='" + this.idUser + "'";
+        String query = "SELECT * FROM  appointment WHERE id_consultant='" + user.getUserId() + "' ORDER BY (appointment_date, appointment_time) DESC";
 
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
@@ -42,8 +44,10 @@ public class DAOUser {
         ArrayList<UserAppointment> appointments = new ArrayList();
         while (rs.next()) {
             GregorianCalendar date = DateUtils.stringToGregorianCalendar(rs.getString("appointment_date"));
-            //TODO: Instanciar construtor do UserAppointment
-            //appointments.add(new UserAppointment());
+            Doctor doctor = new Doctor(rs.getInt("id_doctor"));
+
+            appointments.add(new UserAppointment(date, rs.getInt("appointment_time"), doctor,
+                                                    rs.getInt("id_specialty"), rs.getInt("id_city"), this.user));
         }
 
         return appointments;

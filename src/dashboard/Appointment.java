@@ -7,6 +7,7 @@ public class Appointment {
     protected AppointmentTime time;
     protected Doctor doctor;
     protected int idSpecialty;
+    protected Specialty specialty;
     protected int idCity;
     protected GregorianCalendar date;
 
@@ -15,6 +16,7 @@ public class Appointment {
         this.time = new AppointmentTime(time);
         this.doctor = doctor;
         this.idSpecialty = idSpecialty;
+        specialty = new Specialty(idSpecialty);
         this.idCity = idCity;
     }
 
@@ -58,4 +60,11 @@ public class Appointment {
         this.date = date;
     }
 
+    public Specialty getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
+    }
 }

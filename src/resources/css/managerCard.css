@@ -1,0 +1,6 @@
+.card:hover {
+    -fx-background-color: #c1c1c1;
+}
+.card {
+    -fx-background-color: #EBEBEB;
+}
