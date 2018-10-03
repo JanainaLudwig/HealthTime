@@ -15,6 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import utils.ControllerUtils;
 import utils.DateUtils;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -233,9 +235,16 @@ public class DashboardWeekController extends DashboardController implements Init
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
-        morning = true;
+
         this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
         this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
+        try {
+            switchSpecialty();
+            switchDoctor();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException | FileNotFoundException e) {
+            ///e.printStackTrace();
+        }
+        morning = true;
         displayHours();
         try {
             createCalendar();

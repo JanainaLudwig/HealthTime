@@ -56,7 +56,7 @@ public class DashboardMonthController extends DashboardController implements Ini
 
         ActionEvent event = (ActionEvent) e;
 
-        DashboardWeekController controller = new DashboardWeekController(this.userId, monthDay.getDate());
+        DashboardWeekController controller = new DashboardWeekController(this.userId, monthDay.getDate(), selectedComboSpecialty, selectedComboDoctor);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardWeek.fxml");
     }
 
@@ -172,6 +172,12 @@ public class DashboardMonthController extends DashboardController implements Ini
 
         this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
         this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
+        try {
+            switchSpecialty();
+            switchDoctor();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException | FileNotFoundException e) {
+            ///e.printStackTrace();
+        }
         try {
             createCalendar();
         } catch (FileNotFoundException | IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
