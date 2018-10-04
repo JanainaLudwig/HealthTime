@@ -120,12 +120,11 @@ ALTER TABLE working_time ADD CONSTRAINT FK_WORKING_TIME
 ALTER TABLE working_time ADD CONSTRAINT CHECK_WEEK_DAY
     CHECK (week_day BETWEEN 1 AND 7);
 
-
 CREATE TABLE appointment_release (
     id_specialty INT,
     id_patient INT,
     id_doctor INT,
-    id_appointment INT,
+    id_appointment INT DEFAULT NULL,
     release_date DATE NOT NULL
 );
 
@@ -137,15 +136,14 @@ ALTER TABLE appointment_release ADD CONSTRAINT FK_PATIENT
     FOREIGN KEY (id_patient) REFERENCES consultant (id_user);
 ALTER TABLE appointment_release ADD CONSTRAINT FK_DOCTOR
     FOREIGN KEY (id_doctor) REFERENCES doctor (id_user);
+ALTER TABLE appointment_release ADD CONSTRAINT FK_APPOINTMENT
+    FOREIGN KEY (id_appointment) REFERENCES appointment (id_appointment)
+      ON DELETE SET NULL;
 
 
 -- Select available appointments
-
--- DROP FUNCTION available_appointments(city int, search_day DATE, specialty int);
-
 CREATE OR REPLACE FUNCTION available_appointments(consultant int, city int, search_day DATE default CURRENT_TIMESTAMP, specialty int default 1)
   RETURNS TABLE (appointment_time dmn_appointment_time, week_day double precision, id_doctor int)
-
 AS
 $body$
 SELECT DISTINCT
@@ -178,3 +176,27 @@ ORDER BY appointment_time
 $body$
 language sql;
 
+
+-- Remove appointment release on schedule
+CREATE OR REPLACE FUNCTION set_appointment_on_release()
+RETURNS TRIGGER
+AS
+$body$
+BEGIN
+UPDATE appointment_release
+    SET id_appointment = NEW.id_appointment
+    WHERE id_specialty = NEW.id_specialty
+      AND id_appointment IS NULL
+      AND id_patient = NEW.id_consultant
+      AND release_date = (
+        SELECT max(release_date) FROM appointment_release
+          WHERE id_specialty = NEW.id_specialty
+            AND id_appointment IS NULL
+            AND id_patient = NEW.id_consultant
+      );
+RETURN NULL;
+END;
+$body$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER update_realease_on_insert AFTER INSERT ON appointment FOR EACH ROW EXECUTE PROCEDURE set_appointment_on_release();

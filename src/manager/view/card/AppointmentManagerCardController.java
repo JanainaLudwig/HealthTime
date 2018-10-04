@@ -1,6 +1,7 @@
 package manager.view.card;
 
 import dashboard.User;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import manager.UserAppointment;
 import javafx.fxml.FXML;
@@ -9,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import manager.view.AppointmentManagerController;
+import manager.view.modal.CancelAppointment;
 import utils.DateUtils;
 
 import java.io.IOException;
@@ -27,10 +30,11 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
 
     private UserAppointment appointment;
     private String test;
+    private AppointmentManagerController managerController;
 
-
-    public AppointmentManagerCardController(UserAppointment appointment) {
+    public AppointmentManagerCardController(UserAppointment appointment, AppointmentManagerController managerController) {
         this.appointment = appointment;
+        this.managerController = managerController;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "AppointmentManagerCard.fxml"));
@@ -60,5 +64,22 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
         specialty.setText(appointment.getSpecialty().getDescription());
         doctor.setText(appointment.getDoctor().getDoctorName());
         city.setText("Cidade");
+    }
+
+    @FXML
+    private void deleteAppointment() {
+        try {
+            CancelAppointment modal = new CancelAppointment(appointment, this.getScene(), this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public AppointmentManagerController getManagerController() {
+        return managerController;
+    }
+
+    public void setManagerController(AppointmentManagerController managerController) {
+        this.managerController = managerController;
     }
 }

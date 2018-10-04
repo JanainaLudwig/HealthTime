@@ -47,7 +47,7 @@ public class DAOUser {
             Doctor doctor = new Doctor(rs.getInt("id_doctor"));
 
             appointments.add(new UserAppointment(date, rs.getInt("appointment_time"), doctor,
-                                                    rs.getInt("id_specialty"), rs.getInt("id_city"), this.user));
+                                                    rs.getInt("id_specialty"), rs.getInt("id_city"), this.user, rs.getInt("id_appointment")));
         }
 
         return appointments;

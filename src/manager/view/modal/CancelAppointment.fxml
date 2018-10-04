@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="400.0" maxWidth="500.0" prefHeight="360.0" prefWidth="500.0" style="-fx-background-color: rgba(10, 10, 10, 0.5);;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane maxHeight="400.0" maxWidth="500.0" prefHeight="360.0" prefWidth="500.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebf7ff" height="359.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
+            <Rectangle fill="DODGERBLUE" height="70.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
+            <Text fill="#f8f8f8" layoutX="137.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancelar consulta">
+               <font>
+                  <Font name="Segoe UI Semilight" size="30.0" />
+               </font>
+            </Text>
+            <Text fill="#2c2c2c" layoutX="14.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data: " wrappingWidth="67.4150390625">
+               <font>
+                  <Font name="Segoe UI Semibold" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="#2c2c2c" layoutX="14.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horário:" wrappingWidth="92.3583984375">
+               <font>
+                  <Font name="Segoe UI Semibold" size="25.0" />
+               </font>
+            </Text>
+            <Text fill="#2c2c2c" layoutX="14.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade: ">
+               <font>
+                  <Font name="Segoe UI Semibold" size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="appointmentDate" fill="#2c2c2c" layoutX="81.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="24 de agosto de 2018" wrappingWidth="348.4150390625">
+               <font>
+                  <Font name="Segoe UI" size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="appointmentTime" fill="#2c2c2c" layoutX="124.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8:30" wrappingWidth="297.4150390625">
+               <font>
+                  <Font name="Segoe UI" size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="appointmentSpecialty" fill="#2c2c2c" layoutX="188.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clínica Geral" wrappingWidth="297.4150390625">
+               <font>
+                  <Font name="Segoe UI" size="25.0" />
+               </font>
+            </Text>
+            <JFXButton layoutX="458.0" layoutY="6.0" onAction="#closeModal" style="-fx-background-color: #E05959;" text="X" textFill="#f8f8f8">
+               <font>
+                  <Font name="Segoe UI Semibold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton layoutX="271.0" layoutY="312.0" onAction="#cancelAppointment" style="-fx-background-color: #E05959;" text="Confirmar cancelamento" textFill="#f8f8f8">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -5,6 +5,7 @@ import dashboard.Doctor;
 import dashboard.WeekDay;
 import dashboard.view.DashboardController;
 import database.ConnectionDB;
+import manager.UserAppointment;
 import utils.DateUtils;
 
 import java.sql.Connection;
@@ -76,6 +77,13 @@ public class DAOAppointment {
                 ""+ idCity + ", " +
                 "'" + appointmentDate + "', " +
                 "" + appointmentTime + ");";
+
+        Statement stm = connection.createStatement();
+        stm.execute(query);
+    }
+
+    public void cancelAppointment(UserAppointment userAppointment) throws SQLException {
+        String query = "DELETE FROM appointment WHERE id_appointment = " + userAppointment.getIdAppointment() + ";";
 
         Statement stm = connection.createStatement();
         stm.execute(query);

@@ -55,7 +55,7 @@ public class AppointmentManagerController implements Initializable {
         modalStage.show();
     }
 
-    private void createAppointmentsGrid() {
+    public void createAppointmentsGrid() {
         //Removes existing cards
         gripAppointments.getChildren().removeIf(node -> node instanceof AppointmentManagerCardController);
 
@@ -77,10 +77,10 @@ public class AppointmentManagerController implements Initializable {
 
         //Insert the cards into the grid
         for (int i = 0, appointment = 0; i < numberOfRows; i++, appointment++) {
-            gripAppointments.add(new AppointmentManagerCardController(user.getUserAppointments().get(appointment)), 0, i);
+            gripAppointments.add(new AppointmentManagerCardController(user.getUserAppointments().get(appointment), this), 0, i);
             //If second exists, add it to the grid
             if (numberOfAppointments > ++appointment) {
-                gripAppointments.add(new AppointmentManagerCardController(user.getUserAppointments().get(appointment)), 1, i);
+                gripAppointments.add(new AppointmentManagerCardController(user.getUserAppointments().get(appointment), this), 1, i);
             }
         }
     }
