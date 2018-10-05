@@ -15,6 +15,13 @@ Bibliotecas utilizadas (as biibliotecas estão na pasta _lib_):
  
 DDL e DML estão na pasta _database_
 
+### Instruções de uso:
+Códigos dos pacientes:
+ - 123456
+ - 456789
+
+Senha padrão: **123**
+
 ### Questões conhecidas:
 
 **Usabilidade:** salvar a seleção atual do usuário sobre especialidade e médico ao ser canceladas consultas. (Comportamento atual: filtros são reiniciados)
