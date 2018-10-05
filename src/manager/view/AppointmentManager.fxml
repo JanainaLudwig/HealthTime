@@ -42,5 +42,10 @@
             </AnchorPane>
         </content>
       </ScrollPane>
+      <Text fill="WHITE" layoutX="18.0" layoutY="56.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Barra de ferramentas (filtros)#" wrappingWidth="362.98015170544386">
+         <font>
+            <Font name="Segoe UI" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

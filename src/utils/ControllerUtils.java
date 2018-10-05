@@ -21,6 +21,7 @@ public class ControllerUtils {
         Stage stage=(Stage) node.getScene().getWindow();
 
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 }

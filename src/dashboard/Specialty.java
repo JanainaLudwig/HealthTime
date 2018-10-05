@@ -27,7 +27,23 @@ public class Specialty {
         return specialtyId;
     }
 
+    public void setSpecialtyId(int specialtyId) {
+        this.specialtyId = specialtyId;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Specialty{" +
+                "specialtyId=" + specialtyId +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -2,7 +2,9 @@ package dashboard.view;
 
 import DAO.DAOAppointment;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import dashboard.AvailableAppointment;
+import dashboard.Specialty;
 import dashboard.WeekDay;
 import dashboard.appointmentCard.AppointmentCard;
 import javafx.event.ActionEvent;
@@ -121,6 +123,10 @@ public class DashboardWeekController extends DashboardController implements Init
         //Removes existing cards
         schedule.getChildren().removeIf(node -> node instanceof AppointmentCard);
 
+        //Filters
+        int specialty = specialtyComboBox.getSelectionModel().getSelectedItem().getSpecialtyId();
+        int doctor = doctorComboBox.getSelectionModel().getSelectedItem().getDoctorId();
+
         //Goes to fisrt monday of week
         dayDisplayed.add(Calendar.DATE, -(dayDisplayed.get(Calendar.DAY_OF_WEEK) - 1));
 
@@ -134,7 +140,7 @@ public class DashboardWeekController extends DashboardController implements Init
             WeekDay weekDay = new WeekDay(weekDate, this.user, this);
             days.add(weekDay);
 
-            weekDay.setAvailableAppointments((new DAOAppointment()).getAvailableAppointments(selectedSpecialty, selectedCity, weekDay, selectedDoctor));
+            weekDay.setAvailableAppointments((new DAOAppointment()).getAvailableAppointments(specialty, selectedCity, weekDay, doctor));
 
             int time = (morning) ? 1 : 8;
             for (int j = 0; j < 9; j++) {
@@ -236,14 +242,16 @@ public class DashboardWeekController extends DashboardController implements Init
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
-        this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
+        /*this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
         this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
+
+        }
         try {
             switchSpecialty();
             switchDoctor();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException | FileNotFoundException e) {
             ///e.printStackTrace();
-        }
+        }*/
         morning = true;
         displayHours();
         try {
@@ -272,4 +280,5 @@ public class DashboardWeekController extends DashboardController implements Init
         this.selectedComboSpecialty = currentComboSpecialty;
         this.selectedComboDoctor = currentComboDoctor;
     }
+
 }

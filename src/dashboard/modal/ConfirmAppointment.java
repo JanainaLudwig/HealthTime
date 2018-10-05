@@ -58,6 +58,10 @@ public class ConfirmAppointment implements Initializable {
         closeModal();
 
         availableAppointment.getDay().getController().createCalendar();
+        //TODO: tentar pegar o objeto dos combos para depois de repopular o combo buscar os antigos objetos e setá-los
+        availableAppointment.getDay().getController().setSelectedComboDoctor(0);
+        availableAppointment.getDay().getController().setSelectedComboSpecialty(0);
+        availableAppointment.getDay().getController().specialtyCombo();
     }
 
     public AvailableAppointment getAvailableAppointment() {

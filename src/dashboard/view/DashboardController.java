@@ -1,4 +1,3 @@
-
 package dashboard.view;
 
 import DAO.DAODoctorSpecialty;
@@ -6,6 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import dashboard.Doctor;
 import dashboard.Specialty;
 import dashboard.User;
+import javafx.collections.FXCollections;
+import javafx.util.StringConverter;
 import manager.view.AppointmentManagerController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,15 +47,9 @@ public class DashboardController implements Initializable {
     ArrayList<Doctor> doctorList = new ArrayList<>();
 
     public Rectangle modalOpened;
-    /*
-     * Change according to filter ComboBoxes and call createCalendar()
-     * selectedSpecialty: clínica geral = 0
-     * selectedDoctor: 0
-     */
-    public int selectedSpecialty = 1,
-                  selectedComboSpecialty,
-                  selectedDoctor = 0,
-                  selectedComboDoctor;
+
+    public int selectedComboSpecialty = 0,
+                  selectedComboDoctor = 0;
     public static int selectedCity = 1;
 
     @FXML
@@ -62,9 +57,9 @@ public class DashboardController implements Initializable {
     @FXML
     private Text userName;
     @FXML
-    protected JFXComboBox specialtyComboBox;
+    protected JFXComboBox<Specialty> specialtyComboBox;
     @FXML
-    protected JFXComboBox doctorComboBox;
+    protected JFXComboBox<Doctor> doctorComboBox;
 
     @FXML
     public void logout() throws IOException {
@@ -76,68 +71,95 @@ public class DashboardController implements Initializable {
 
     @FXML
     public void specialtyCombo() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
+        //Get specialties objects available to the patient
         DAODoctorSpecialty dao = new DAODoctorSpecialty();
         specialtyList = dao.getAllDescription(this.userId);
 
-        for (int i = 0; i < specialtyList.size(); i++) {
-            this.specialtyComboBox.getItems().add(specialtyList.get(i).getDescription());
-        }
+        //Prevent onChange behavior
+        specialtyComboBox.setOnAction(null);
+        //Clear items
+        specialtyComboBox.getItems().clear();
+        //Set converter
+        specialtyComboBox.setConverter(new StringConverter<Specialty>() {
+            @Override
+            public String toString(Specialty object) {
+                return object.getDescription();
+            }
 
-        this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
+            @Override
+            public Specialty fromString(String string) {
+                return null;
+            }
+        });
+        //Set items
+        specialtyComboBox.setItems(FXCollections.observableArrayList(specialtyList));
+        //Select one item in the combo
+        specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
+
+        //Set onChange behavior
+        specialtyComboBox.setOnAction((event) -> {
+            try {
+                switchSpecialty();
+            } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException | FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @FXML
     public void doctorCombo() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
+        int specialty = specialtyComboBox.getSelectionModel().getSelectedItem().getSpecialtyId();
+
         DAODoctorSpecialty dao = new DAODoctorSpecialty();
-        doctorList = dao.getDoctor((String) specialtyComboBox.getValue());
+        doctorList = dao.getDoctor(specialty, user.getIdCity());
 
-        this.doctorComboBox.getItems().clear();
-        for (int i = 0; i < doctorList.size(); i++) {
-            this.doctorComboBox.getItems().add(doctorList.get(i).getDoctorName());
-        }
+        //Prevent onChange behavior
+        doctorComboBox.setOnAction(null);
 
-        this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
+        //Clear items
+        doctorComboBox.getItems().clear();
+        //Set converter
+        doctorComboBox.setConverter(new StringConverter<Doctor>() {
+            @Override
+            public String toString(Doctor object) {
+                return object.getDoctorName();
+            }
+
+            @Override
+            public Doctor fromString(String string) {
+                return null;
+            }
+        });
+        //Set items
+        doctorComboBox.setItems(FXCollections.observableArrayList(doctorList));
+
+        //Select one item in the combo
+        doctorComboBox.getSelectionModel().select(selectedComboDoctor);
+        //Set onChange behavior
+        doctorComboBox.setOnAction((event) -> {
+            try {
+                switchDoctor();
+            } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException | FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @FXML
     public void switchSpecialty() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException, FileNotFoundException {
-        for (int i = 0; i < specialtyList.size(); i++) {
-            if (specialtyList.get(i).getDescription().equals(specialtyComboBox.getValue())) {
-                this.selectedSpecialty = specialtyList.get(i).getSpecialtyId();
-            }
-        }
-
-        //Encontra a posição do ítem selecionado no ComboBox
-        for (int i = 0; i < this.specialtyComboBox.getItems().size(); i++) {
-            if (specialtyComboBox.getItems().get(i).equals(specialtyComboBox.getValue())) {
-                this.selectedComboSpecialty = i;
-            }
-        }
-
-        this.selectedDoctor = 0;
+        selectedComboSpecialty = specialtyComboBox.getSelectionModel().getSelectedIndex();
+        selectedComboDoctor = 0;
         doctorCombo();
         createCalendar();
     }
 
     @FXML
     public void switchDoctor() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException, FileNotFoundException {
-        for (int i = 0; i < doctorList.size(); i++) {
-            if (doctorList.get(i).getDoctorName().equals(doctorComboBox.getValue())) {
-                this.selectedDoctor = doctorList.get(i).getDoctorId();
-            }
-        }
-
-        //Encontra a posição do ítem selecionado no ComboBox
-        for (int i = 0; i < this.doctorComboBox.getItems().size(); i++) {
-            if (doctorComboBox.getItems().get(i).equals(doctorComboBox.getValue())) {
-                this.selectedComboDoctor = i;
-            }
-        }
+        selectedComboDoctor = doctorComboBox.getSelectionModel().getSelectedIndex();
 
         createCalendar();
     }
 
-    // TODO: check if works
     @FXML
     public void openManager() throws IOException {
         modalOpened = new Rectangle(1220, 660);
@@ -170,15 +192,7 @@ public class DashboardController implements Initializable {
          */
         try {
             specialtyCombo();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch ( NullPointerException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (ClassNotFoundException | NullPointerException | InstantiationException | SQLException | IllegalAccessException e) {
             e.printStackTrace();
         }
         /*
@@ -186,15 +200,7 @@ public class DashboardController implements Initializable {
          */
         try {
             doctorCombo();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch ( NullPointerException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (ClassNotFoundException | NullPointerException | InstantiationException | SQLException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
@@ -208,11 +214,34 @@ public class DashboardController implements Initializable {
         selectedCity = user.getIdCity();
     }
 
+    public DashboardController(int userId, JFXComboBox<Specialty> comboSpecialty) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        this.userId = userId;
+        this.user = new User(userId);
+        selectedCity = user.getIdCity();
+        this.specialtyComboBox = comboSpecialty;
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getSelectedComboSpecialty() {
+        return selectedComboSpecialty;
+    }
+
+    public void setSelectedComboSpecialty(int selectedComboSpecialty) {
+        this.selectedComboSpecialty = selectedComboSpecialty;
+    }
+
+    public int getSelectedComboDoctor() {
+        return selectedComboDoctor;
+    }
+
+    public void setSelectedComboDoctor(int selectedComboDoctor) {
+        this.selectedComboDoctor = selectedComboDoctor;
     }
 }

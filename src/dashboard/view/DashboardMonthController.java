@@ -4,6 +4,7 @@ package dashboard.view;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import dashboard.MonthDay;
+import dashboard.Specialty;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -107,6 +108,10 @@ public class DashboardMonthController extends DashboardController implements Ini
     //Creates calendar visualization based on month and year displayed
     @Override
     public void createCalendar() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        //Filters
+        int specialty = specialtyComboBox.getSelectionModel().getSelectedItem().getSpecialtyId();
+        int doctor = doctorComboBox.getSelectionModel().getSelectedItem().getDoctorId();
+
         //Labels for navigation
         month.setText(MONTH_NAME[this.monthDisplayed]);
         year.setText(String.valueOf(this.yearDisplayed));
@@ -134,7 +139,7 @@ public class DashboardMonthController extends DashboardController implements Ini
                 button.setStyle("-fx-text-fill: " + GRAY + ";");
             }
 
-            if ((! DateUtils.isPast(parameterDate)) && monthDays.get(i).hasAvailableAppointment(selectedSpecialty, selectedCity, selectedDoctor)) {
+            if ((! DateUtils.isPast(parameterDate)) && monthDays.get(i).hasAvailableAppointment(specialty, selectedCity, doctor)) {
                 button.setStyle("-fx-text-fill: #22918e;");
                 if (date.get(Calendar.MONTH) != monthDisplayed) {
                     button.setStyle("-fx-text-fill: #30cfcb;");
@@ -170,14 +175,6 @@ public class DashboardMonthController extends DashboardController implements Ini
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
-        this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
-        this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
-        try {
-            switchSpecialty();
-            switchDoctor();
-        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException | FileNotFoundException e) {
-            ///e.printStackTrace();
-        }
         try {
             createCalendar();
         } catch (FileNotFoundException | IllegalAccessException | InstantiationException | SQLException | ClassNotFoundException e) {
@@ -205,5 +202,4 @@ public class DashboardMonthController extends DashboardController implements Ini
         this.selectedComboSpecialty = currentComboSpecialty;
         this.selectedComboDoctor = currentComboDoctor;
     }
-
 }

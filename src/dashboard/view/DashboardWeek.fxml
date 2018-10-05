@@ -347,6 +347,16 @@
             </VBox>
          </children>
       </GridPane>
+      <Text fill="#757575" layoutX="73.0" layoutY="484.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Notificação de consulta#" wrappingWidth="168.31349521130323">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#757575" layoutX="78.0" layoutY="559.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Notificação de consulta#" wrappingWidth="168.31349521130323">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Text>
 
     </children>
 </AnchorPane>

@@ -64,6 +64,10 @@ public class CancelAppointment implements Initializable {
         cardController.getManagerController().createAppointmentsGrid();
         try {
             cardController.getManagerController().getDashboard().createCalendar();
+            //TODO: tentar pegar o objeto dos combos para depois de repopular o combo buscar os antigos objetos e setá-los
+            cardController.getManagerController().getDashboard().setSelectedComboDoctor(0);
+            cardController.getManagerController().getDashboard().setSelectedComboSpecialty(0);
+            cardController.getManagerController().getDashboard().specialtyCombo();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

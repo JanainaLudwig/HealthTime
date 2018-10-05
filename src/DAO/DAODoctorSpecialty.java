@@ -20,33 +20,38 @@ public class DAODoctorSpecialty {
 
     public ArrayList<Specialty> getAllDescription(int userId) throws SQLException {
         String query = "SELECT s.id_specialty, s.description " +
-                "FROM specialty s JOIN appointment_release ar ON s.id_specialty = ar.id_specialty " +
-                "WHERE ar.id_patient = '" + userId + "'";
+                "FROM specialty AS s JOIN appointment_release AS ar ON s.id_specialty = ar.id_specialty " +
+                "WHERE ar.id_patient = '" + userId + "' " +
+                "AND id_appointment IS NULL ORDER BY s.description";
 
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
 
         ArrayList<Specialty> specialtyList = new ArrayList<>();
+        specialtyList.add(new Specialty(1, "Clínica Geral"));
 
         while (rs.next()) {
-            Specialty specialty = new Specialty(rs.getInt("id_specialty"), rs.getString("description"));
-            specialtyList.add(specialty);
+            specialtyList.add(new Specialty(rs.getInt("id_specialty"), rs.getString("description")));
         }
         return specialtyList;
     }
 
-    public ArrayList<Doctor> getDoctor(String code) throws SQLException {
-        String query = "SELECT u.id_user, u.name " +
+    public ArrayList<Doctor> getDoctor(int idSpecialty, int idCity) throws SQLException {
+        String query = "SELECT DISTINCT u.id_user, u.name " +
                 "FROM users u JOIN doctor_specialty ds ON u.id_user = ds.id_doctor " +
                 "JOIN specialty s ON ds.id_specialty = s.id_specialty " +
-                "WHERE s.description = '" + code + "'";
+                "JOIN working_time AS wt ON wt.id_doctor = u.id_user " +
+                "WHERE s.id_specialty = '" + idSpecialty + "' " +
+                "AND wt.id_city = '" + idCity + "' " +
+                "ORDER BY u.name;";
+
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(query);
 
         ArrayList<Doctor> doctorList = new ArrayList<>();
 
-        Doctor todos = new Doctor(0, "Todos");
-        doctorList.add(todos);
+        doctorList.add(new Doctor(0, "Todos"));
+
         while (rs.next()) {
             Doctor doctor = new Doctor(rs.getInt("id_user"), rs.getString("name"));
             doctorList.add(doctor);

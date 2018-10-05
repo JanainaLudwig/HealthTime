@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="postgresql-9.4.1209">
     <CLASSES>
-      <root url="jar://C:/Program Files/NetBeans 8.2/ide/modules/ext/postgresql-9.4.1209.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/postgresql-9.4.1209.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
