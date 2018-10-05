@@ -5,6 +5,15 @@
 ### Requisitos:
  - Java 8
  - PostgreSQL
+ 
+### Instruções de instalação:
+IDE utilizada: IntelliJ IDEA
+
+Bibliotecas utilizadas (as biibliotecas estão na pasta _lib_): 
+ - jfoenix-8.0.7 (http://www.jfoenix.com/)
+ - postgresql-9.4.1209 (https://jdbc.postgresql.org/)
+ 
+DDL e DML estão na pasta _database_
 
 ### Questões conhecidas:
 
