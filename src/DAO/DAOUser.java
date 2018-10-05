@@ -52,4 +52,8 @@ public class DAOUser {
 
         return appointments;
     }
+
+    public int getIdCity() {
+        return 1;
+    }
 }

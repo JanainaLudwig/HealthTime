@@ -95,4 +95,12 @@ public class AppointmentManagerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         createAppointmentsGrid();
     }
+
+    public DashboardController getDashboard() {
+        return dashboard;
+    }
+
+    public void setDashboard(DashboardController dashboard) {
+        this.dashboard = dashboard;
+    }
 }

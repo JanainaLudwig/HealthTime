@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class User {
     private int userId;
     private String userName;
+    private int idCity;
     private ArrayList<UserAppointment> userAppointments;
 
     public User(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
@@ -17,6 +18,7 @@ public class User {
         DAOUser dao = new DAOUser(this);
         this.userName = dao.getName();
         this.userAppointments = dao.getAppointments();
+        this.idCity = dao.getIdCity();
     }
 
     public String getUserName() {
@@ -41,6 +43,14 @@ public class User {
 
     public void setUserAppointments(ArrayList<UserAppointment> userAppointments) {
         this.userAppointments = userAppointments;
+    }
+
+    public int getIdCity() {
+        return idCity;
+    }
+
+    public void setIdCity(int idCity) {
+        this.idCity = idCity;
     }
 
     public void updateUserAppointments() {

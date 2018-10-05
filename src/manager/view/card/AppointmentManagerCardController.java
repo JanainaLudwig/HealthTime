@@ -55,6 +55,9 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
             rectangleTime.setStyle("-fx-fill: #5DAFED;");
             cancelAppointment.setDisable(true);
             cancelAppointment.setOpacity(0);
+        } else if (DateUtils.isToday(appointment.getDate())) {
+            cancelAppointment.setDisable(true);
+            cancelAppointment.setOpacity(0);
         } else {
             rectangleTime.setStyle("-fx-fill: #79eb85;");
         }

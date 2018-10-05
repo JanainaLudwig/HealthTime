@@ -18,6 +18,7 @@ import manager.view.AppointmentManagerController;
 import manager.view.card.AppointmentManagerCardController;
 import utils.DateUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -30,12 +31,12 @@ public class CancelAppointment implements Initializable {
                  appointmentTime;
 
     private Stage modalStage;
-    private AppointmentManagerCardController controller;
+    private AppointmentManagerCardController cardController;
     private UserAppointment userAppointment;
 
     public CancelAppointment(UserAppointment userAppointment, Scene scene, AppointmentManagerCardController controller) throws IOException {
         this.userAppointment = userAppointment;
-        this.controller = controller;
+        this.cardController = controller;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CancelAppointment.fxml"));
         fxmlLoader.setController(this);
@@ -60,8 +61,12 @@ public class CancelAppointment implements Initializable {
         daoAppointment.cancelAppointment(this.userAppointment);
 
         userAppointment.getUser().updateUserAppointments();
-        //TODO: atualizar o gerenciador
-        controller.getManagerController().createAppointmentsGrid();
+        cardController.getManagerController().createAppointmentsGrid();
+        try {
+            cardController.getManagerController().getDashboard().createCalendar();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         closeModal();
     }
