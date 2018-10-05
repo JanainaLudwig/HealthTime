@@ -7,9 +7,9 @@ INSERT  INTO users (name) VALUES
 	('Jaine Rodrigues');
 
 
-INSERT INTO consultant (id_user, sus_number) VALUES 
-	(1, '123456'), 
-	(2, '456789');
+INSERT INTO consultant (id_user, sus_number, id_city) VALUES
+	(1, '123456', 1),
+	(2, '456789', 1);
 
 INSERT INTO doctor (id_user, crm_number) VALUES
 	(3, 12541254),

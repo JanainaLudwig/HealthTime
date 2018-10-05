@@ -205,6 +205,14 @@ public class DashboardController implements Initializable {
     public DashboardController(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         this.userId = userId;
         this.user = new User(userId);
+        selectedCity = user.getIdCity();
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

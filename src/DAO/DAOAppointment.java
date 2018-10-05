@@ -2,6 +2,7 @@ package DAO;
 
 import dashboard.AvailableAppointment;
 import dashboard.Doctor;
+import dashboard.User;
 import dashboard.WeekDay;
 import dashboard.view.DashboardController;
 import database.ConnectionDB;
@@ -64,7 +65,7 @@ public class DAOAppointment {
             idConsultant = availableAppointment.getDay().getUser().getUserId(),
             idSpecialty = availableAppointment.getIdSpecialty(),
             appointmentTime = availableAppointment.getTime().getTimeCode(),
-            idCity = DashboardController.selectedCity;
+            idCity = availableAppointment.getDay().getUser().getIdCity();
 
         String appointmentDate = DateUtils.getDateString(availableAppointment.getDay().getDate());
 

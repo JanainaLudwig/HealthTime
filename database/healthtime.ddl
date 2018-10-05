@@ -32,7 +32,8 @@ ALTER TABLE users ADD CONSTRAINT PK_USERS
 
 CREATE TABLE consultant (
     id_user INT,
-    sus_number VARCHAR(20) NOT NULL UNIQUE
+    sus_number VARCHAR(20) NOT NULL UNIQUE,
+    id_city INT NOT NULL
 );
 
 ALTER TABLE consultant ADD CONSTRAINT PK_CONSULTANT

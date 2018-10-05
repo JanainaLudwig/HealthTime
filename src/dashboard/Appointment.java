@@ -1,6 +1,5 @@
 package dashboard;
 
-import javax.print.Doc;
 import java.util.GregorianCalendar;
 
 public class Appointment {

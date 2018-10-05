@@ -53,7 +53,12 @@ public class DAOUser {
         return appointments;
     }
 
-    public int getIdCity() {
-        return 1;
+    public int getIdCity() throws SQLException {
+        String query = "SELECT id_city FROM consultant WHERE id_user='" + user.getUserId() + "'";
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        return (rs.next()) ? rs.getInt("id_city") : 0;
     }
 }
