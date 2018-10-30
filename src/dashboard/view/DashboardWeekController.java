@@ -2,9 +2,7 @@ package dashboard.view;
 
 import DAO.DAOAppointment;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import dashboard.AvailableAppointment;
-import dashboard.Specialty;
 import dashboard.WeekDay;
 import dashboard.appointmentCard.AppointmentCard;
 import javafx.event.ActionEvent;
@@ -17,8 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import utils.ControllerUtils;
 import utils.DateUtils;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;

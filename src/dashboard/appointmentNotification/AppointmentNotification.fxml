@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root prefHeight="50.0" prefWidth="230.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text fx:id="dateTime" fill="#3c3c3c" layoutX="3.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="17/10/2018 - 17:30" wrappingWidth="180.58467054367065">
+            <font>
+                <Font name="Segoe UI" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="specialty" fill="#4d4d4d" layoutX="3.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade" wrappingWidth="180.58467054367065">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+        </Text>
+        <JFXButton fx:id="cancel" layoutX="198.0" layoutY="11.0" onAction="#cancelAppointment" text="X" textFill="#e13c3c">
+            <font>
+                <Font name="Segoe UI Semibold" size="15.0" />
+            </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </JFXButton>
+    </children>
+</fx:root>

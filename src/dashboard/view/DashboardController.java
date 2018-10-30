@@ -1,12 +1,16 @@
 package dashboard.view;
 
 import DAO.DAODoctorSpecialty;
+import DAO.DAOUser;
 import com.jfoenix.controls.JFXComboBox;
 import dashboard.Doctor;
 import dashboard.Specialty;
 import dashboard.User;
+import dashboard.appointmentNotification.AppointmentNotification;
 import javafx.collections.FXCollections;
+import javafx.scene.layout.Pane;
 import javafx.util.StringConverter;
+import manager.UserAppointment;
 import manager.view.AppointmentManagerController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import utils.Controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +28,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class DashboardController implements Initializable {
+public class DashboardController implements Initializable, Controller {
     protected final String BLUE = "#168EE9";
     protected final String GRAY = "#394e5e";
     protected int userId;
@@ -60,6 +65,10 @@ public class DashboardController implements Initializable {
     protected JFXComboBox<Specialty> specialtyComboBox;
     @FXML
     protected JFXComboBox<Doctor> doctorComboBox;
+    @FXML
+    private Pane notification1, notification2;
+    @FXML
+    private Rectangle rectNotification1, rectNotification2;
 
     @FXML
     public void logout() throws IOException {
@@ -203,9 +212,42 @@ public class DashboardController implements Initializable {
         } catch (ClassNotFoundException | NullPointerException | InstantiationException | SQLException | IllegalAccessException e) {
             e.printStackTrace();
         }
+
+        setNotifications();
     }
 
     public void createCalendar() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    }
+
+    public void setNotifications() {
+        //Remove existing notifications
+        notification1.getChildren().removeIf(node -> node instanceof AppointmentNotification);
+        notification2.getChildren().removeIf(node -> node instanceof AppointmentNotification);
+
+        DAOUser dao = null;
+        ArrayList<UserAppointment> nextAppointments = null;
+
+        try {
+            dao = new DAOUser(this.user);
+            nextAppointments = dao.getNextAppointments();
+        } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        if (nextAppointments.size()== 2) {
+            notification1.getChildren().add(new AppointmentNotification(nextAppointments.get(0), this));
+            notification2.getChildren().add(new AppointmentNotification(nextAppointments.get(1), this));
+            rectNotification1.setOpacity(1);
+            rectNotification2.setOpacity(1);
+        } else if (nextAppointments.size()== 1) {
+            notification1.getChildren().add(new AppointmentNotification(nextAppointments.get(0), this));
+            rectNotification1.setOpacity(1);
+            rectNotification2.setOpacity(0);
+        } else {
+            rectNotification1.setOpacity(0);
+            rectNotification2.setOpacity(0);
+        }
+
     }
 
     public DashboardController(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
@@ -243,5 +285,21 @@ public class DashboardController implements Initializable {
 
     public void setSelectedComboDoctor(int selectedComboDoctor) {
         this.selectedComboDoctor = selectedComboDoctor;
+    }
+
+    @Override
+    public void update() {
+        //TODO: ajustar lista
+        user.updateUserAppointments();
+        try {
+            createCalendar();
+            //TODO: tentar pegar o objeto dos combos para depois de repopular o combo buscar os antigos objetos e setá-los
+            setSelectedComboDoctor(0);
+            setSelectedComboSpecialty(0);
+            specialtyCombo();
+            setNotifications();
+        } catch (FileNotFoundException | ClassNotFoundException | InstantiationException | SQLException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

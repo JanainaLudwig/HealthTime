@@ -14,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.DateUtils;
+import utils.Notification;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -57,11 +58,11 @@ public class ConfirmAppointment implements Initializable {
 
         closeModal();
 
-        availableAppointment.getDay().getController().createCalendar();
-        //TODO: tentar pegar o objeto dos combos para depois de repopular o combo buscar os antigos objetos e setá-los
-        availableAppointment.getDay().getController().setSelectedComboDoctor(0);
-        availableAppointment.getDay().getController().setSelectedComboSpecialty(0);
-        availableAppointment.getDay().getController().specialtyCombo();
+        availableAppointment.getDay().getController().update();
+
+        String message = "Sua consulta foi agendada para " + appointmentDate.getText() + " às " + appointmentTime.getText();
+        Notification.showNotification("Consulta agendada", message);
+
     }
 
     public AvailableAppointment getAvailableAppointment() {

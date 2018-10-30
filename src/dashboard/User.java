@@ -2,7 +2,6 @@ package dashboard;
 
 import DAO.DAOUser;
 import manager.UserAppointment;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ public class User {
 
         DAOUser dao = new DAOUser(this);
         this.userName = dao.getName();
-        this.userAppointments = dao.getAppointments();
+        this.userAppointments = null;
         this.idCity = dao.getIdCity();
     }
 
@@ -38,6 +37,11 @@ public class User {
     }
 
     public ArrayList<UserAppointment> getUserAppointments() {
+        System.out.println("get");
+        if (userAppointments == null) {
+            System.out.println("NULL");
+            this.updateUserAppointments();
+        }
         return userAppointments;
     }
 

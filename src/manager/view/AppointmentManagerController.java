@@ -16,12 +16,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.Controller;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
-public class AppointmentManagerController implements Initializable {
+public class AppointmentManagerController implements Initializable, Controller {
     @FXML
     private GridPane gripAppointments;
     @FXML
@@ -102,5 +102,11 @@ public class AppointmentManagerController implements Initializable {
 
     public void setDashboard(DashboardController dashboard) {
         this.dashboard = dashboard;
+    }
+
+    @Override
+    public void update() {
+        createAppointmentsGrid();
+        dashboard.update();
     }
 }

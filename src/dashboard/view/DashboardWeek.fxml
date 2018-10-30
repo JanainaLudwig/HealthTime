@@ -38,8 +38,6 @@
                 <Font name="Segoe UI Historic" size="25.0" />
             </font>
         </Text>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="50.0" layoutX="42.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 0);" width="233.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="50.0" layoutX="41.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 0);" width="233.0" />
         <Pane layoutX="38.0" layoutY="207.0" prefHeight="227.0" prefWidth="225.0" stylesheets="@../../resources/css/comboBox.css">
             <children>
                 <Text fill="#f2f2f2" layoutX="8.0" layoutY="186.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dois Vizinhos" wrappingWidth="202.31349521130323">
@@ -347,16 +345,10 @@
             </VBox>
          </children>
       </GridPane>
-      <Text fill="#757575" layoutX="73.0" layoutY="484.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Notificação de consulta#" wrappingWidth="168.31349521130323">
-         <font>
-            <Font name="Segoe UI" size="14.0" />
-         </font>
-      </Text>
-      <Text fill="#757575" layoutX="78.0" layoutY="559.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Notificação de consulta#" wrappingWidth="168.31349521130323">
-         <font>
-            <Font name="Segoe UI" size="14.0" />
-         </font>
-      </Text>
+      <Rectangle fx:id="rectNotification1" arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="50.0" layoutX="41.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 0);" width="233.0" />
+      <Rectangle fx:id="rectNotification2" arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="50.0" layoutX="41.0" layoutY="529.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 0);" width="233.0" />
+      <Pane fx:id="notification1" layoutX="41.0" layoutY="453.0" prefHeight="50.0" prefWidth="233.0" />
+      <Pane fx:id="notification2" layoutX="41.0" layoutY="529.0" prefHeight="50.0" prefWidth="233.0" />
 
     </children>
 </AnchorPane>

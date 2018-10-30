@@ -16,6 +16,7 @@ import javafx.stage.StageStyle;
 import manager.UserAppointment;
 import manager.view.AppointmentManagerController;
 import manager.view.card.AppointmentManagerCardController;
+import utils.Controller;
 import utils.DateUtils;
 
 import java.io.FileNotFoundException;
@@ -31,12 +32,12 @@ public class CancelAppointment implements Initializable {
                  appointmentTime;
 
     private Stage modalStage;
-    private AppointmentManagerCardController cardController;
+    private Controller controller;
     private UserAppointment userAppointment;
 
-    public CancelAppointment(UserAppointment userAppointment, Scene scene, AppointmentManagerCardController controller) throws IOException {
+    public CancelAppointment(UserAppointment userAppointment, Scene scene, Controller controller) throws IOException {
         this.userAppointment = userAppointment;
-        this.cardController = controller;
+        this.controller = controller;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CancelAppointment.fxml"));
         fxmlLoader.setController(this);
@@ -56,22 +57,9 @@ public class CancelAppointment implements Initializable {
 
     @FXML
     public void cancelAppointment() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        DAOAppointment daoAppointment = new DAOAppointment();
+        this.userAppointment.cancelAppointment();
 
-        daoAppointment.cancelAppointment(this.userAppointment);
-
-        userAppointment.getUser().updateUserAppointments();
-        cardController.getManagerController().createAppointmentsGrid();
-        try {
-            cardController.getManagerController().getDashboard().createCalendar();
-            //TODO: tentar pegar o objeto dos combos para depois de repopular o combo buscar os antigos objetos e setá-los
-            cardController.getManagerController().getDashboard().setSelectedComboDoctor(0);
-            cardController.getManagerController().getDashboard().setSelectedComboSpecialty(0);
-            cardController.getManagerController().getDashboard().specialtyCombo();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
+        controller.update();
         closeModal();
     }
 

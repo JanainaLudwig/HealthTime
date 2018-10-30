@@ -12,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import manager.view.AppointmentManagerController;
 import manager.view.modal.CancelAppointment;
+import utils.Controller;
 import utils.DateUtils;
 
 import java.io.IOException;
@@ -72,7 +73,7 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
     @FXML
     private void deleteAppointment() {
         try {
-            CancelAppointment modal = new CancelAppointment(appointment, this.getScene(), this);
+            CancelAppointment modal = new CancelAppointment(appointment, this.getScene(), managerController);
         } catch (IOException e) {
             e.printStackTrace();
         }
