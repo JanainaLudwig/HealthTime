@@ -21,20 +21,10 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="105.0" layoutX="307.0" layoutY="-6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#168ee9" height="677.0" layoutX="-11.0" layoutY="-12.0" stroke="BLACK" strokeLineJoin="BEVEL" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 8, 0, 0, 0);" width="318.0" />
-      <Text fill="#f2f2f2" layoutX="64.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="27 Ago">
-         <font>
-            <Font name="Segoe UI Light" size="50.0" />
-         </font>
-      </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#116fb6" height="110.0" layoutX="-15.0" layoutY="-11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="322.0" />
       <Text fx:id="userName" fill="#f8f8f8" layoutX="5.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do usuário" textAlignment="CENTER" wrappingWidth="291.08467054367065">
          <font>
             <Font name="Segoe UI" size="30.0" />
-         </font>
-      </Text>
-      <Text fill="#f2f2f2" layoutX="74.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quinta-feira">
-         <font>
-            <Font name="Segoe UI Historic" size="25.0" />
          </font>
       </Text>
       <Rectangle fx:id="rectNotification1" arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="50.0" layoutX="42.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 0);" width="233.0" />
@@ -378,6 +368,16 @@
       </JFXButton>
       <Pane fx:id="notification1" layoutX="41.0" layoutY="453.0" prefHeight="50.0" prefWidth="233.0" />
       <Pane fx:id="notification2" layoutX="41.0" layoutY="529.0" prefHeight="50.0" prefWidth="233.0" />
+      <Text fx:id="dayMonth" fill="#f2f2f2" layoutX="2.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="27 Ago" textAlignment="CENTER" wrappingWidth="303.904296875">
+         <font>
+            <Font name="Segoe UI Light" size="50.0" />
+         </font>
+      </Text>
+      <Text fx:id="dayWeek" fill="#f2f2f2" layoutX="2.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quinta-feira" textAlignment="CENTER" wrappingWidth="303.9042802155018">
+         <font>
+            <Font name="Segoe UI Historic" size="25.0" />
+         </font>
+      </Text>
 
     </children>
 </AnchorPane>

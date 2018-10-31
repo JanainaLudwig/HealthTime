@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <fx:root prefHeight="50.0" prefWidth="230.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Text fx:id="dateTime" fill="#3c3c3c" layoutX="3.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="17/10/2018 - 17:30" wrappingWidth="180.58467054367065">
+        <Text fx:id="day" fill="#464646" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="17" textAlignment="CENTER" wrappingWidth="49.584670543670654">
             <font>
-                <Font name="Segoe UI" size="20.0" />
+                <Font name="Segoe UI" size="22.0" />
             </font>
         </Text>
-        <Text fx:id="specialty" fill="#4d4d4d" layoutX="3.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade" wrappingWidth="180.58467054367065">
+        <Text fx:id="specialty" fill="#646464" layoutX="58.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade" wrappingWidth="156.08467054367065">
             <font>
-                <Font name="Segoe UI" size="16.0" />
+                <Font name="Segoe UI Semilight" size="17.0" />
             </font>
         </Text>
-        <JFXButton fx:id="cancel" layoutX="198.0" layoutY="11.0" onAction="#cancelAppointment" text="X" textFill="#e13c3c">
-            <font>
-                <Font name="Segoe UI Semibold" size="15.0" />
-            </font>
+      <Text fx:id="month" fill="#646464" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jan" textAlignment="CENTER" wrappingWidth="48.57420727601493">
+         <font>
+            <Font name="Segoe UI Semilight" size="16.0" />
+         </font>
+      </Text>
+      <Line endX="3.5000152587890625" endY="17.5" layoutX="43.0" layoutY="24.0" startX="3.5" startY="-16.5" stroke="#aeaeae" />
+      <Text fx:id="time" fill="#464646" layoutX="59.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8:30" wrappingWidth="156.08467054367065">
+         <font>
+            <Font name="Segoe UI Semilight" size="17.0" />
+         </font>
+      </Text>
+      <Pane fx:id="cancel" layoutX="213.0" layoutY="4.0" onMouseClicked="#cancelAppointment" prefHeight="16.0" prefWidth="16.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf4a4a" height="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="16.0" />
+            <Rectangle arcWidth="1.0" fill="#f8f8f8" height="1.5" layoutX="2.5" layoutY="7.5" rotate="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="12.0" />
+            <Rectangle arcWidth="1.0" fill="#f8f8f8" height="1.5" layoutX="2.5" layoutY="7.5" rotate="-45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="12.0" />
+         </children>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-        </JFXButton>
+      </Pane>
     </children>
 </fx:root>

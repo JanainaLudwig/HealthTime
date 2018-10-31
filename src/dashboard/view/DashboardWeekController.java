@@ -171,13 +171,13 @@ public class DashboardWeekController extends DashboardController implements Init
             //Displays start day on navigation
             if (i == 0) {
                 fDay.setText(String.valueOf(dayDisplayed.get(Calendar.DAY_OF_MONTH)));
-                fMonth.setText(MONTH_NAME[dayDisplayed.get(Calendar.MONTH)]);
+                fMonth.setText(DateUtils.MONTH_NAME[dayDisplayed.get(Calendar.MONTH)]);
                 fYear.setText(String.valueOf(dayDisplayed.get(Calendar.YEAR)));
             }
             //Displays end day on navigation
             if (i == 6) {
                 lDay.setText(String.valueOf(dayDisplayed.get(Calendar.DAY_OF_MONTH)));
-                lMonth.setText(MONTH_NAME[dayDisplayed.get(Calendar.MONTH)]);
+                lMonth.setText(DateUtils.MONTH_NAME[dayDisplayed.get(Calendar.MONTH)]);
                 lYear.setText(String.valueOf(dayDisplayed.get(Calendar.YEAR)));
             }
 

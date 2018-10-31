@@ -15,13 +15,14 @@ import utils.DateUtils;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class AppointmentNotification extends Pane implements Initializable {
     @FXML
-    private Text dateTime, specialty;
+    private Text day, time, specialty, month;
     @FXML
-    private Button cancel;
+    private Pane cancel;
 
     private UserAppointment userAppointment;
     private DashboardController controller;
@@ -62,6 +63,8 @@ public class AppointmentNotification extends Pane implements Initializable {
         }
 
         specialty.setText(userAppointment.getSpecialty().getDescription());
-        dateTime.setText(DateUtils.getDateDMY(userAppointment.getDate()) + " - " +  userAppointment.getTime().getInitialTime());
+        day.setText(String.valueOf(userAppointment.getDate().get(Calendar.DAY_OF_MONTH)));
+        month.setText(DateUtils.getThreeMonthLetters(userAppointment.getDate().get(Calendar.MONTH)));
+        time.setText(userAppointment.getTime().getInitialTime());
     }
 }

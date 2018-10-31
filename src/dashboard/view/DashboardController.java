@@ -21,32 +21,20 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.Controller;
+import utils.DateUtils;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DashboardController implements Initializable, Controller {
     protected final String BLUE = "#168EE9";
     protected final String GRAY = "#394e5e";
     protected int userId;
     protected User user;
-    protected static final String[] MONTH_NAME = {
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro"
-    };
+
 
     ArrayList<Specialty> specialtyList = new ArrayList<>();
     ArrayList<Doctor> doctorList = new ArrayList<>();
@@ -60,7 +48,7 @@ public class DashboardController implements Initializable, Controller {
     @FXML
     public AnchorPane pane;
     @FXML
-    private Text userName;
+    private Text userName, dayWeek, dayMonth;
     @FXML
     protected JFXComboBox<Specialty> specialtyComboBox;
     @FXML
@@ -203,6 +191,13 @@ public class DashboardController implements Initializable, Controller {
         }
 
         userName.setText(name);
+
+        //Set actual date
+        GregorianCalendar today = new GregorianCalendar();
+        int day = today.get(Calendar.DAY_OF_MONTH);
+        String month = DateUtils.getThreeMonthLetters(today.get(Calendar.MONTH));
+        dayMonth.setText(day + " " + month);
+        dayWeek.setText(DateUtils.DAY_NAME[today.get(Calendar.DAY_OF_WEEK) - 1]);
 
         /*
          * Specialty ComboBox

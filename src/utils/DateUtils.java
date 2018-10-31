@@ -8,6 +8,30 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class DateUtils {
+    public static final String[] MONTH_NAME = {
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro"
+    };
+
+    public static final String[] DAY_NAME = {
+            "Domingo",
+            "Segunda-Feira",
+            "Terça-Feira",
+            "Quarta-Feira",
+            "Quinta-Feira",
+            "Sexta-Feira",
+            "Sábado"
+    };
 
     /*
      * firstDate < secondDate => -1
@@ -84,5 +108,11 @@ public class DateUtils {
         cal.setTime(date);
 
         return cal;
+    }
+
+    public static String getThreeMonthLetters(int month) {
+        String result = MONTH_NAME[month].substring(0, 3);
+
+        return result;
     }
 }

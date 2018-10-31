@@ -113,7 +113,7 @@ public class DashboardMonthController extends DashboardController implements Ini
         int doctor = doctorComboBox.getSelectionModel().getSelectedItem().getDoctorId();
 
         //Labels for navigation
-        month.setText(MONTH_NAME[this.monthDisplayed]);
+        month.setText(DateUtils.MONTH_NAME[this.monthDisplayed]);
         year.setText(String.valueOf(this.yearDisplayed));
 
         GregorianCalendar date = new GregorianCalendar(yearDisplayed, monthDisplayed, 1);
