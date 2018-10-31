@@ -1,6 +1,8 @@
 package manager.view;
 
 import dashboard.User;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
@@ -52,6 +54,14 @@ public class AppointmentManagerController implements Initializable, Controller {
         modalStage.initOwner(scene.getWindow());
         modalStage.setResizable(false);
         modalStage.centerOnScreen();
+
+        //ESC Key
+        modalStage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                closeModal();
+            }
+        });
+
         modalStage.show();
     }
 

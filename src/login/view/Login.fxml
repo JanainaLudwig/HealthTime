@@ -33,7 +33,7 @@
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font></JFXPasswordField>
-      <JFXButton layoutX="672.0" layoutY="477.0" onAction="#login" prefHeight="38.0" prefWidth="202.0" style="-fx-background-color: #E05959;" text="Entrar" textFill="#f2f2f2">
+      <JFXButton defaultButton="true" layoutX="672.0" layoutY="477.0" onAction="#login" prefHeight="38.0" prefWidth="202.0" style="-fx-background-color: #E05959;" text="Entrar" textFill="#f2f2f2">
          <font>
             <Font name="Segoe UI" size="20.0" />
          </font></JFXButton>

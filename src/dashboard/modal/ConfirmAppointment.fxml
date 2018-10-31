@@ -57,7 +57,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton layoutX="251.0" layoutY="341.0" onAction="#closeModal" style="-fx-background-color: #E05959;" text="Cancelar" textFill="#f8f8f8">
+            <JFXButton cancelButton="true" layoutX="251.0" layoutY="341.0" onAction="#closeModal" style="-fx-background-color: #E05959;" text="Cancelar" textFill="#f8f8f8">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
