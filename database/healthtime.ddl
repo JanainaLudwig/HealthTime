@@ -142,6 +142,18 @@ ALTER TABLE appointment_release ADD CONSTRAINT FK_APPOINTMENT
       ON DELETE SET NULL;
 
 
+CREATE TABLE password_recovery (
+    id_user INT,
+    cpf VARCHAR(11) NOT NULL,
+    mother_name VARCHAR(100) NOT NULL
+);
+
+ALTER TABLE password_recovery ADD CONSTRAINT PK_PASSWORD_RECOVERY
+    PRIMARY KEY (id_user);
+ALTER TABLE password_recovery ADD CONSTRAINT FK_PASSWORD_USER
+    FOREIGN KEY (id_user) REFERENCES users (id_user);
+
+
 -- Select available appointments
 CREATE OR REPLACE FUNCTION available_appointments(consultant int, city int, search_day DATE default CURRENT_TIMESTAMP, specialty int default 1)
   RETURNS TABLE (appointment_time dmn_appointment_time, week_day double precision, id_doctor int)

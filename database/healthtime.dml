@@ -22,6 +22,10 @@ INSERT INTO login (id_user, password) VALUES
 	(2, 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3'), 
 	(3, 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3');
 
+INSERT INTO password_recovery (id_user, cpf, mother_name) VALUES 
+	(1, '123', 'Dona Rosa'), 
+	(2, '321', 'Dona Maria'), 
+	(3, '147', 'Dona Ana');
 
 INSERT INTO specialty (description) VALUES 
 	('Clínica Geral'),

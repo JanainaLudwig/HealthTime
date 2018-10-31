@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -12,31 +13,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="660.0" maxWidth="1010.0" minHeight="660.0" minWidth="1010.0" prefHeight="660.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.view.LoginController">
+<AnchorPane id="AnchorPane" fx:id="forgotPassword" maxHeight="660.0" maxWidth="1010.0" minHeight="660.0" minWidth="1010.0" prefHeight="660.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.view.LoginController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <ImageView fitHeight="84.0" fitWidth="361.0" layoutX="866.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../resources/images/logonew.png" />
-         </image>
-      </ImageView>
-      <Text fill="#ff504b" layoutX="646.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health">
-         <font>
-            <Font name="Segoe UI Semilight" size="40.0" />
-         </font>
-      </Text>
-      <JFXTextField fx:id="userCode" focusColor="#ff504b" layoutX="669.0" layoutY="298.0" promptText="Código" unFocusColor="#e05959">
-         <font>
-            <Font size="18.0" />
-         </font></JFXTextField>
-      <JFXPasswordField fx:id="password" focusColor="#ff504b" layoutX="669.0" layoutY="366.0" promptText="Senha" unFocusColor="#e05959">
-         <font>
-            <Font name="Segoe UI" size="18.0" />
-         </font></JFXPasswordField>
-      <JFXButton defaultButton="true" layoutX="672.0" layoutY="477.0" onAction="#login" prefHeight="38.0" prefWidth="202.0" style="-fx-background-color: #E05959;" text="Entrar" textFill="#f2f2f2">
-         <font>
-            <Font name="Segoe UI" size="20.0" />
-         </font></JFXButton>
+        <ImageView fitHeight="84.0" fitWidth="361.0" layoutX="866.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../resources/images/logonew.png" />
+            </image>
+        </ImageView>
+        <Text fill="#ff504b" layoutX="646.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health">
+            <font>
+                <Font name="Segoe UI Semilight" size="40.0" />
+            </font>
+        </Text>
+        <JFXTextField fx:id="userCode" focusColor="#ff504b" layoutX="669.0" layoutY="298.0" promptText="Código" unFocusColor="#e05959">
+            <font>
+                <Font size="18.0" />
+            </font></JFXTextField>
+        <JFXPasswordField fx:id="password" focusColor="#ff504b" layoutX="669.0" layoutY="366.0" promptText="Senha" unFocusColor="#e05959">
+            <font>
+                <Font name="Segoe UI" size="18.0" />
+            </font></JFXPasswordField>
+        <JFXButton defaultButton="true" layoutX="672.0" layoutY="477.0" onAction="#login" prefHeight="38.0" prefWidth="202.0" style="-fx-background-color: #E05959;" text="Entrar" textFill="#f2f2f2">
+            <font>
+                <Font name="Segoe UI" size="20.0" />
+            </font></JFXButton>
 
         <JFXRadioButton fx:id="consultant" layoutX="672.0" layoutY="229.0" selected="true" text="Paciente">
             <toggleGroup>
@@ -44,20 +45,27 @@
             </toggleGroup>
         </JFXRadioButton>
         <JFXRadioButton fx:id="doctor" layoutX="779.0" layoutY="229.0" text="Médico" toggleGroup="$userType" />
-      <Label fx:id="errorLabel" layoutX="669.0" layoutY="432.0" prefHeight="17.0" prefWidth="202.0" textAlignment="CENTER" textFill="#ff504b">
-         <font>
-            <Font name="Segoe UI Semibold" size="16.0" />
-         </font></Label>
-      <ImageView fitHeight="877.0" fitWidth="587.0" layoutX="-15.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../resources/images/intro.jpg" />
-         </image>
-      </ImageView>
-      <Text fill="#5dafed" layoutX="757.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
-         <font>
-            <Font name="Segoe UI Semibold" size="40.0" />
-         </font>
-      </Text>
-
+        <Label fx:id="errorLabel" layoutX="669.0" layoutY="432.0" prefHeight="17.0" prefWidth="202.0" textAlignment="CENTER" textFill="#ff504b">
+            <font>
+                <Font name="Segoe UI Semibold" size="16.0" />
+            </font></Label>
+        <ImageView fitHeight="877.0" fitWidth="587.0" layoutX="-15.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../resources/images/intro.jpg" />
+            </image>
+        </ImageView>
+        <Text fill="#5dafed" layoutX="757.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+            <font>
+                <Font name="Segoe UI Semibold" size="40.0" />
+            </font>
+        </Text>
+        <JFXButton alignment="CENTER" layoutX="672.0" layoutY="527.0" onAction="#forgotPassword" prefHeight="35.0" prefWidth="202.0" text="Esqueci minha senha" textFill="#617380">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
     </children>
 </AnchorPane>

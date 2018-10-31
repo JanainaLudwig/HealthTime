@@ -81,6 +81,12 @@ public class LoginController implements Initializable {
         }
     }
 
+    @FXML
+    private void forgotPassword(ActionEvent event) throws IOException {
+        PasswordRecoveryController controller = new PasswordRecoveryController();
+        ControllerUtils.changeScene(controller, event, "PasswordRecovery.fxml");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
