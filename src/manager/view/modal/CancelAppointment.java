@@ -3,6 +3,7 @@ package manager.view.modal;
 import DAO.DAOAppointment;
 import DAO.DAODoctorSpecialty;
 import dashboard.AvailableAppointment;
+import dashboard.view.DashboardController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -60,6 +61,7 @@ public class CancelAppointment implements Initializable {
         this.userAppointment.cancelAppointment();
 
         controller.update();
+
         closeModal();
     }
 
@@ -87,6 +89,8 @@ public class CancelAppointment implements Initializable {
 
     @FXML
     private void closeModal() {
+        if (controller instanceof DashboardController) ((DashboardController) controller).closeModal();
+
         modalStage.close();
     }
 }

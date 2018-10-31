@@ -59,6 +59,7 @@ public class ConfirmAppointment implements Initializable {
         closeModal();
 
         availableAppointment.getDay().getController().update();
+        availableAppointment.getDay().getController().closeModal();
 
         String message = "Sua consulta foi agendada para " + appointmentDate.getText() + " às " + appointmentTime.getText();
         Notification.showNotification("Consulta agendada", message);
@@ -92,11 +93,12 @@ public class ConfirmAppointment implements Initializable {
 
         appointmentTime.setText(availableAppointment.getTime().getInitialTime());
         appointmentDate.setText(DateUtils.getDateDMY(availableAppointment.getDay().getDate()));
-
     }
 
     @FXML
     private void closeModal() {
+        availableAppointment.getDay().getController().closeModal();
+
         modalStage.close();
     }
 

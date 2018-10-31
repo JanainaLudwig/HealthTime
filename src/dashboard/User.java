@@ -37,9 +37,7 @@ public class User {
     }
 
     public ArrayList<UserAppointment> getUserAppointments() {
-        System.out.println("get");
         if (userAppointments == null) {
-            System.out.println("NULL");
             this.updateUserAppointments();
         }
         return userAppointments;

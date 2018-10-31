@@ -34,6 +34,8 @@ public class AppointmentCard extends Pane {
 
     @FXML
     public void cardClicked() throws IOException {
+        this.availableAppointment.getDay().getController().openModal();
+
         ConfirmAppointment modal = new ConfirmAppointment(this.availableAppointment, this.getScene());
     }
 

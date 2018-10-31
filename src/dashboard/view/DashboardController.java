@@ -171,12 +171,20 @@ public class DashboardController implements Initializable, Controller {
 
     @FXML
     public void openManager() throws IOException {
+        openModal();
+
+        AppointmentManagerController manager = new AppointmentManagerController(userName.getScene(), this, this.user);
+    }
+
+    public void openModal() {
         modalOpened = new Rectangle(1220, 660);
         modalOpened.setStyle("-fx-background-color: #303030b1");
         modalOpened.setOpacity(0.5);
         pane.getChildren().addAll(modalOpened);
+    }
 
-        AppointmentManagerController manager = new AppointmentManagerController(userName.getScene(), this, this.user);
+    public void closeModal() {
+        pane.getChildren().remove(modalOpened);
     }
 
     @Override

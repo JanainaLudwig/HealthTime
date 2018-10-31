@@ -87,7 +87,7 @@ public class AppointmentManagerController implements Initializable, Controller {
 
     @FXML
     private void closeModal() {
-        dashboard.pane.getChildren().remove(dashboard.modalOpened);
+        dashboard.closeModal();
         modalStage.close();
     }
 

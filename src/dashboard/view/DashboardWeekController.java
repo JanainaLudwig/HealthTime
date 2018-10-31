@@ -238,16 +238,6 @@ public class DashboardWeekController extends DashboardController implements Init
     public void initialize(URL url, ResourceBundle rb) {
         super.initialize(url, rb);
 
-        /*this.specialtyComboBox.getSelectionModel().select(selectedComboSpecialty);
-        this.doctorComboBox.getSelectionModel().select(selectedComboDoctor);
-
-        }
-        try {
-            switchSpecialty();
-            switchDoctor();
-        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException | FileNotFoundException e) {
-            ///e.printStackTrace();
-        }*/
         morning = true;
         displayHours();
         try {

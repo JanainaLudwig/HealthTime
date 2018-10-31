@@ -44,6 +44,8 @@ public class AppointmentNotification extends Pane implements Initializable {
 
     @FXML
     public void cancelAppointment() {
+        controller.openModal();
+
         try {
             CancelAppointment modal = new CancelAppointment(this.userAppointment, this.getScene(), controller);
         } catch (IOException e) {
