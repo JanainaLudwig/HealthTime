@@ -1,14 +1,19 @@
 package login.view;
 
 import DAO.DAOPasswordRecovery;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import utils.ControllerUtils;
 
 import java.io.IOException;
@@ -23,6 +28,7 @@ public class PasswordRecoveryController implements Initializable {
     private int id;
     protected int attempts = 0;
 //    protected int delay = 30000;
+    protected int duration = 2000;
     protected int delay = 2000;
     @FXML
     private Button back;
@@ -38,33 +44,32 @@ public class PasswordRecoveryController implements Initializable {
 
     @FXML
     private void recovery(ActionEvent event) throws IllegalAccessException, IOException, InstantiationException, SQLException, NoSuchAlgorithmException, ClassNotFoundException, InterruptedException {
-        String INCOMPLETE = "Preencha todos os campos.";
+        String CPF_INCOMPLETE = "Informe seu CPF.";
+        String MOTHERNAME_INCOMPLETE = "Informe o nome da mãe.";
         String INVALID_CPF = "CPF não foi encontrado.";
         String INVALID_MOTHERNAME = "Nome da mãe incorreto.";
-        String DISABLE = "Aguarde " + delay/1000 + " segundos";
 
         errorLabel.setText("");
+        duration = delay;
 
         if (attempts >= 2) {
-            errorLabel.setText(DISABLE);
-            confirm.setDisable(true);
-            back.setDisable(true);
-            cpf.setDisable(true);
-            motherName.setDisable(true);
+            disableComponents();
+
+            Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, arg0 -> {
+                updateTimer(duration);
+                duration -= 1000;
+            }), new KeyFrame(Duration.seconds(1)));
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
 
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     Platform.runLater(() -> {
-                        attempts = 0;
-                        confirm.setDisable(false);
-                        back.setDisable(false);
-                        cpf.setDisable(false);
-                        motherName.setDisable(false);
-                        errorLabel.setText("");
-                        cpf.setText("");
-                        motherName.setText("");
+                        enableComponents();
+                        timeline.stop();
+                        timer.cancel();
                     });
                 }
             }, delay);
@@ -81,9 +86,13 @@ public class PasswordRecoveryController implements Initializable {
         String cpfCode = cpf.getText(),
                 name = motherName.getText();
 
-        if (cpfCode.equals("") || name.equals("")) {
-            errorLabel.setText(INCOMPLETE);
-            attempts++;
+        if (cpfCode.equals("")) {
+            errorLabel.setText(CPF_INCOMPLETE);
+            return;
+        }
+
+        if (name.equals("")) {
+            errorLabel.setText(MOTHERNAME_INCOMPLETE);
             return;
         }
 
@@ -117,6 +126,28 @@ public class PasswordRecoveryController implements Initializable {
         Stage stage = (Stage) errorLabel.getScene().getWindow();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
+    }
+
+    private void updateTimer(int duration) {
+        errorLabel.setText("Aguarde " + duration/1000 + " segundos");
+    }
+
+    private void disableComponents() {
+        confirm.setDisable(true);
+        back.setDisable(true);
+        cpf.setDisable(true);
+        motherName.setDisable(true);
+    }
+
+    private void enableComponents() {
+        attempts = 0;
+        confirm.setDisable(false);
+        back.setDisable(false);
+        cpf.setDisable(false);
+        motherName.setDisable(false);
+        errorLabel.setText("");
+        cpf.setText("");
+        motherName.setText("");
     }
 
     @Override
