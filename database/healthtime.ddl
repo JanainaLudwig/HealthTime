@@ -23,7 +23,10 @@ CREATE DOMAIN DMN_appointment_time
 
 CREATE TABLE users (
     id_user SERIAL,
-    name VARCHAR(50) NOT NULL
+    name VARCHAR(50) NOT NULL,
+    cpf VARCHAR(11) NOT NULL,
+    mother_name VARCHAR(100) NOT NULL
+
 );
 
 ALTER TABLE users ADD CONSTRAINT PK_USERS
@@ -140,18 +143,6 @@ ALTER TABLE appointment_release ADD CONSTRAINT FK_DOCTOR
 ALTER TABLE appointment_release ADD CONSTRAINT FK_APPOINTMENT
     FOREIGN KEY (id_appointment) REFERENCES appointment (id_appointment)
       ON DELETE SET NULL;
-
-
-CREATE TABLE password_recovery (
-    id_user INT,
-    cpf VARCHAR(11) NOT NULL,
-    mother_name VARCHAR(100) NOT NULL
-);
-
-ALTER TABLE password_recovery ADD CONSTRAINT PK_PASSWORD_RECOVERY
-    PRIMARY KEY (id_user);
-ALTER TABLE password_recovery ADD CONSTRAINT FK_PASSWORD_USER
-    FOREIGN KEY (id_user) REFERENCES users (id_user);
 
 
 -- Select available appointments

@@ -1,6 +1,6 @@
 package login.view;
 
-import DAO.DAOPasswordRecovery;
+import DAO.DAOUser;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -96,7 +96,7 @@ public class PasswordRecoveryController implements Initializable {
             return;
         }
 
-        DAOPasswordRecovery dao = new DAOPasswordRecovery();
+        DAOUser dao = new DAOUser();
 
         String bdCpf = dao.getCpf(cpf.getText());
 

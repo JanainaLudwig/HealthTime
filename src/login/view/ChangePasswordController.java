@@ -1,6 +1,6 @@
 package login.view;
 
-import DAO.DAOPasswordRecovery;
+import DAO.DAOUser;
 import dashboard.view.DashboardMonthController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +54,7 @@ public class ChangePasswordController implements Initializable {
         }
 
         if(changeValidate) {
-            DAOPasswordRecovery dao = new DAOPasswordRecovery();
+            DAOUser dao = new DAOUser();
             dao.setNewPassword(idUser, newPass);
             closeRecovery();
         } else {
