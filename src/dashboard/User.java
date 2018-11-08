@@ -1,15 +1,17 @@
 package dashboard;
 
 import DAO.DAOUser;
+import location.City;
 import manager.UserAppointment;
+import utils.LocationUtils;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class User {
     private int userId;
     private String userName;
-    private int idCity;
     private ArrayList<UserAppointment> userAppointments;
+    private City city;
 
     public User(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         this.userId = userId;
@@ -17,7 +19,15 @@ public class User {
         DAOUser dao = new DAOUser(this);
         this.userName = dao.getName();
         this.userAppointments = null;
-        this.idCity = dao.getIdCity();
+        this.city = LocationUtils.getCity(String.valueOf(dao.getIdCity()));
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public String getUserName() {
@@ -45,14 +55,6 @@ public class User {
 
     public void setUserAppointments(ArrayList<UserAppointment> userAppointments) {
         this.userAppointments = userAppointments;
-    }
-
-    public int getIdCity() {
-        return idCity;
-    }
-
-    public void setIdCity(int idCity) {
-        this.idCity = idCity;
     }
 
     public void updateUserAppointments() {

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="400.0" maxWidth="500.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: rgba(10, 10, 10, 0.5);;" xmlns="http://javafx.com/javafx/8.0.192" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="pane" maxHeight="400.0" maxWidth="500.0" prefHeight="400.0" prefWidth="500.0" stylesheets="@../../resources/css/location.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebf7ff" height="400.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
+            <Rectangle fill="DODGERBLUE" height="70.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
+            <Text fill="#f8f8f8" layoutX="137.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alterar localização">
+               <font>
+                  <Font name="Segoe UI Semilight" size="30.0" />
+               </font>
+            </Text>
+            <JFXButton layoutX="370.0" layoutY="341.0" onAction="#confirmChange" style="-fx-background-color: #84cc5a;" text="Confirmar" textFill="#f8f8f8">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton cancelButton="true" layoutX="251.0" layoutY="341.0" onAction="#closeModal" style="-fx-background-color: #E05959;" text="Cancelar" textFill="#f8f8f8">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXTextField fx:id="searchInput" focusColor="DODGERBLUE" layoutX="136.0" layoutY="101.0" onKeyReleased="#searchCities" prefHeight="25.0" prefWidth="235.0" unFocusColor="#5b5b5b" />
+            <JFXListView fx:id="cityList" layoutX="91.0" layoutY="138.0" onMouseClicked="#itemSelected" prefHeight="178.0" prefWidth="337.0" style="-fx-background-color: #ebf7ff;" />
+            <Text fill="#515151" layoutX="161.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite o nome da cidade:">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="cityNotSelected" fill="#eb4343" layoutX="176.0" layoutY="331.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione uma cidade.">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

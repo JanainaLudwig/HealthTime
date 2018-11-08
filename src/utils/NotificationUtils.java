@@ -2,7 +2,7 @@ package utils;
 
 import java.awt.*;
 
-public class Notification {
+public class NotificationUtils {
     public static void showNotification(String title, String content) {
         if (!SystemTray.isSupported()) {
             return;

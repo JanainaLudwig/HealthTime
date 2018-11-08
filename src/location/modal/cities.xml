@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+  <city>
+    <id>4106902</id>
+    <name>Curitiba</name>
+    <state>PR</state>
+  </city>
+  <city>
+    <id>4118501</id>
+    <name>Pato Branco</name>
+    <state>PR</state>
+  </city>
+  <city>
+    <id>4111209</id>
+    <name>Itapejara d'Oeste</name>
+    <state>PR</state>
+  </city>
+  <city>
+    <id>4106506</id>
+    <name>Coronel Vivida</name>
+    <state>PR</state>
+  </city>
+  <city>
+    <id>4108403</id>
+    <name>Francisco Beltrao</name>
+    <state>PR</state>
+  </city>
+  <city>
+    <id>4115408</id>
+    <name>Marmeleiro</name>
+    <state>PR</state>
+  </city>
+  <city>
+    <id>4123006</id>
+    <name>Salto do Lontra</name>
+    <state>PR</state>
+  </city>
+  <city>
+    <id>4107207</id>
+    <name>Dois Vizinhos</name>
+    <state>PR</state>
+  </city>
+  <city>
+    <id>4205407</id>
+    <name>Florianópolis</name>
+    <state>SC</state>
+  </city>
+  <city>
+    <id>3550308</id>
+    <name>São Paulo</name>
+    <state>SP</state>
+  </city>
+  <city>
+    <id>4306403</id>
+    <name>Dois Irmãos</name>
+    <state>RS</state>
+  </city>
+  <city>
+    <id>3514106</id>
+    <name>Dois Córregos</name>
+    <state>SP</state>
+  </city>
+</result>

@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import location.City;
 import utils.ControllerUtils;
 import utils.DateUtils;
 import java.io.IOException;
@@ -83,7 +84,7 @@ public class DashboardWeekController extends DashboardController implements Init
 
     @FXML
     public void monthVision(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
-        DashboardMonthController controller = new DashboardMonthController(this.userId, dayDisplayed, selectedComboSpecialty, selectedComboDoctor);
+        DashboardMonthController controller = new DashboardMonthController(this.userId, dayDisplayed, selectedComboSpecialty, selectedComboDoctor, selectedCity);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardMonth.fxml");
     }
 
@@ -136,7 +137,7 @@ public class DashboardWeekController extends DashboardController implements Init
             WeekDay weekDay = new WeekDay(weekDate, this.user, this);
             days.add(weekDay);
 
-            weekDay.setAvailableAppointments((new DAOAppointment()).getAvailableAppointments(specialty, selectedCity, weekDay, doctor));
+            weekDay.setAvailableAppointments((new DAOAppointment()).getAvailableAppointments(specialty, selectedCity.getId(), weekDay, doctor));
 
             int time = (morning) ? 1 : 8;
             for (int j = 0; j < 9; j++) {
@@ -246,25 +247,26 @@ public class DashboardWeekController extends DashboardController implements Init
             //e.printStackTrace();
         }
     }
-
+/*
     public DashboardWeekController(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         super(userId);
         days = new ArrayList<>();
         dayDisplayed = new GregorianCalendar();
-    }
-
+    }*/
+/*
     public DashboardWeekController(int userId, GregorianCalendar date) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         super(userId);
         days = new ArrayList<>();
         dayDisplayed = date;
-    }
+    }*/
 
-    public DashboardWeekController(int userId, GregorianCalendar date, int currentComboSpecialty, int currentComboDoctor) throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
+    public DashboardWeekController(int userId, GregorianCalendar date, int currentComboSpecialty, int currentComboDoctor, City city) throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
         super(userId);
         days = new ArrayList<>();
         dayDisplayed = date;
         this.selectedComboSpecialty = currentComboSpecialty;
         this.selectedComboDoctor = currentComboDoctor;
+        this.selectedCity = city;
     }
 
 }

@@ -1,0 +1,21 @@
+.list-cell {
+    -fx-font-family: "Segoe UI";
+}
+
+.list-cell:even {
+    -fx-background-color: #dcf1ff;
+}
+
+.list-cell:odd {
+    -fx-background-color: #c5e7ff;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #87c3ff;
+    -fx-text-fill: white;
+}
+
+.list-cell:selected {
+    -fx-background-color: #1e90ff;
+    -fx-text-fill: white;
+}

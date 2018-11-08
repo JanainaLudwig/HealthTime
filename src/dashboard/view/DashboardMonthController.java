@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import location.City;
 import utils.ControllerUtils;
 import utils.DateUtils;
 import java.io.FileNotFoundException;
@@ -57,7 +58,7 @@ public class DashboardMonthController extends DashboardController implements Ini
 
         ActionEvent event = (ActionEvent) e;
 
-        DashboardWeekController controller = new DashboardWeekController(this.userId, monthDay.getDate(), selectedComboSpecialty, selectedComboDoctor);
+        DashboardWeekController controller = new DashboardWeekController(this.userId, monthDay.getDate(), selectedComboSpecialty, selectedComboDoctor, selectedCity);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardWeek.fxml");
     }
 
@@ -70,7 +71,7 @@ public class DashboardMonthController extends DashboardController implements Ini
             date = today;
         }
 
-        DashboardWeekController controller = new DashboardWeekController(this.userId, date, selectedComboSpecialty, selectedComboDoctor);
+        DashboardWeekController controller = new DashboardWeekController(this.userId, date, selectedComboSpecialty, selectedComboDoctor, selectedCity);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardWeek.fxml");
     }
 
@@ -139,7 +140,7 @@ public class DashboardMonthController extends DashboardController implements Ini
                 button.setStyle("-fx-text-fill: " + GRAY + ";");
             }
 
-            if ((! DateUtils.isPast(parameterDate)) && monthDays.get(i).hasAvailableAppointment(specialty, selectedCity, doctor)) {
+            if ((! DateUtils.isPast(parameterDate)) && monthDays.get(i).hasAvailableAppointment(specialty, selectedCity.getId(), doctor)) {
                 button.setStyle("-fx-text-fill: #22918e;");
                 if (date.get(Calendar.MONTH) != monthDisplayed) {
                     button.setStyle("-fx-text-fill: #30cfcb;");
@@ -188,18 +189,19 @@ public class DashboardMonthController extends DashboardController implements Ini
         this.monthDisplayed = calendar.get(Calendar.MONTH);
         this.yearDisplayed = calendar.get(Calendar.YEAR);
     }
-
+/*
     public DashboardMonthController(int userId, GregorianCalendar calendar) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         super(userId);
         this.monthDisplayed = calendar.get(Calendar.MONTH);
         this.yearDisplayed = calendar.get(Calendar.YEAR);
     }
-
-    public DashboardMonthController(int userId, GregorianCalendar calendar, int currentComboSpecialty, int currentComboDoctor) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+*/
+    public DashboardMonthController(int userId, GregorianCalendar calendar, int currentComboSpecialty, int currentComboDoctor, City city) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         super(userId);
         this.monthDisplayed = calendar.get(Calendar.MONTH);
         this.yearDisplayed = calendar.get(Calendar.YEAR);
         this.selectedComboSpecialty = currentComboSpecialty;
         this.selectedComboDoctor = currentComboDoctor;
+        this.selectedCity = city;
     }
 }

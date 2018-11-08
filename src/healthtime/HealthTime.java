@@ -36,7 +36,6 @@ public class HealthTime extends Application {
         Parent root = fxmlLoader.load();
         // End of month controller
 
-
         stage.setTitle("HealthTime");
         stage.getIcons().add(new Image("/resources/images/logo.png"));
 

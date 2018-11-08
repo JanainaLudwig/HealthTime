@@ -14,7 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.DateUtils;
-import utils.Notification;
+import utils.NotificationUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -62,7 +62,7 @@ public class ConfirmAppointment implements Initializable {
         availableAppointment.getDay().getController().closeModal();
 
         String message = "Sua consulta foi agendada para " + appointmentDate.getText() + " às " + appointmentTime.getText();
-        Notification.showNotification("Consulta agendada", message);
+        NotificationUtils.showNotification("Consulta agendada", message);
 
     }
 

@@ -10,6 +10,8 @@ import dashboard.appointmentNotification.AppointmentNotification;
 import javafx.collections.FXCollections;
 import javafx.scene.layout.Pane;
 import javafx.util.StringConverter;
+import location.City;
+import location.modal.ChangeLocation;
 import manager.UserAppointment;
 import manager.view.AppointmentManagerController;
 import javafx.fxml.FXML;
@@ -22,7 +24,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.Controller;
 import utils.DateUtils;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -35,20 +36,18 @@ public class DashboardController implements Initializable, Controller {
     protected int userId;
     protected User user;
 
-
     ArrayList<Specialty> specialtyList = new ArrayList<>();
     ArrayList<Doctor> doctorList = new ArrayList<>();
 
     public Rectangle modalOpened;
-
     public int selectedComboSpecialty = 0,
                   selectedComboDoctor = 0;
-    public static int selectedCity = 1;
+    public City selectedCity;
 
     @FXML
     public AnchorPane pane;
     @FXML
-    private Text userName, dayWeek, dayMonth;
+    private Text userName, dayWeek, dayMonth, city;
     @FXML
     protected JFXComboBox<Specialty> specialtyComboBox;
     @FXML
@@ -108,7 +107,7 @@ public class DashboardController implements Initializable, Controller {
         int specialty = specialtyComboBox.getSelectionModel().getSelectedItem().getSpecialtyId();
 
         DAODoctorSpecialty dao = new DAODoctorSpecialty();
-        doctorList = dao.getDoctor(specialty, user.getIdCity());
+        doctorList = dao.getDoctor(specialty, selectedCity.getId());
 
         //Prevent onChange behavior
         doctorComboBox.setOnAction(null);
@@ -164,6 +163,15 @@ public class DashboardController implements Initializable, Controller {
         AppointmentManagerController manager = new AppointmentManagerController(userName.getScene(), this, this.user);
     }
 
+    @FXML void changeCity() {
+        openModal();
+        try {
+            ChangeLocation location = new ChangeLocation(this, userName.getScene());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void openModal() {
         modalOpened = new Rectangle(1220, 660);
         modalOpened.setStyle("-fx-background-color: #303030b1");
@@ -216,7 +224,24 @@ public class DashboardController implements Initializable, Controller {
             e.printStackTrace();
         }
 
+        //Set initial city -> user city
+        city.setText(selectedCity.toString());
+
+        //Set reminders to the next two user appointments
         setNotifications();
+    }
+
+    public void setCity(City city) {
+        selectedCity = city;
+        this.city.setText(selectedCity.toString());
+
+        try {
+            setSelectedComboDoctor(0);
+            doctorCombo();
+            createCalendar();
+        } catch (FileNotFoundException | ClassNotFoundException | InstantiationException | SQLException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     public void createCalendar() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
@@ -256,14 +281,7 @@ public class DashboardController implements Initializable, Controller {
     public DashboardController(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         this.userId = userId;
         this.user = new User(userId);
-        selectedCity = user.getIdCity();
-    }
-
-    public DashboardController(int userId, JFXComboBox<Specialty> comboSpecialty) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        this.userId = userId;
-        this.user = new User(userId);
-        selectedCity = user.getIdCity();
-        this.specialtyComboBox = comboSpecialty;
+        selectedCity = user.getCity();
     }
 
     public User getUser() {

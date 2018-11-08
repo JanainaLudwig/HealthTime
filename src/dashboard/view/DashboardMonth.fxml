@@ -298,19 +298,26 @@
       </GridPane>
       <Pane layoutX="38.0" layoutY="207.0" prefHeight="227.0" prefWidth="225.0" stylesheets="@../../resources/css/comboBox.css">
          <children>
-            <Text fill="#f2f2f2" layoutX="8.0" layoutY="186.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dois Vizinhos" wrappingWidth="202.31349521130323">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="14.0" fitWidth="20.0" layoutX="200.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../resources/images/down.png" />
-               </image>
-            </ImageView>
-            <Line endX="137.0" layoutX="81.0" layoutY="192.0" startX="-75.0" stroke="#f2f2f2" strokeWidth="2.0" />
             <JFXComboBox fx:id="specialtyComboBox" layoutX="5.0" layoutY="27.0" onAction="#switchSpecialty" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
             <JFXComboBox fx:id="doctorComboBox" layoutX="6.0" layoutY="92.0" onAction="#switchDoctor" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
+            <Pane layoutX="7.0" layoutY="164.0" onMouseClicked="#changeCity" prefHeight="30.0" prefWidth="213.0">
+               <children>
+                  <Text fx:id="city" fill="#f2f2f2" layoutX="2.0" layoutY="21.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dois Vizinhos" wrappingWidth="213.0000198483467">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="14.0" fitWidth="20.0" layoutX="190.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/images/change.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="137.0" layoutX="75.0" layoutY="28.0" startX="-75.0" stroke="#f2f2f2" strokeWidth="2.0" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
          </children>
       </Pane>
       <JFXButton layoutX="242.0" layoutY="624.0" onAction="#logout" prefHeight="18.0" prefWidth="50.0" style="-fx-background-color: #E05959;" text="Sair" textFill="WHITE">
