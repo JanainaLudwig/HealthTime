@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DAODoctorSpecialty {
@@ -29,6 +30,26 @@ public class DAODoctorSpecialty {
 
         ArrayList<Specialty> specialtyList = new ArrayList<>();
         specialtyList.add(new Specialty(1, "Clínica Geral"));
+
+        while (rs.next()) {
+            specialtyList.add(new Specialty(rs.getInt("id_specialty"), rs.getString("description")));
+        }
+        return specialtyList;
+    }
+
+    public ArrayList<Specialty> getAllDescriptionFilter(int userId, LocalDate initialDate, LocalDate finalDate) throws SQLException {
+        String query = "SELECT DISTINCT s.id_specialty, s.description " +
+                "FROM specialty AS s JOIN appointment AS a ON s.id_specialty = a.id_specialty " +
+                "WHERE a.id_consultant = '" + userId + "' AND " +
+                "a.appointment_date BETWEEN '" + initialDate +"' AND '" + finalDate +"' " +
+                "ORDER BY s.description";
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        ArrayList<Specialty> specialtyList = new ArrayList<>();
+
+        specialtyList.add(new Specialty(0, "Todas"));
 
         while (rs.next()) {
             specialtyList.add(new Specialty(rs.getInt("id_specialty"), rs.getString("description")));
@@ -59,6 +80,40 @@ public class DAODoctorSpecialty {
         return doctorList;
     }
 
+    public ArrayList<Doctor> getDoctorFilter(int idSpecialty, int userId, LocalDate initialDate, LocalDate finalDate) throws SQLException {
+        String query;
+        if (idSpecialty == 0) {
+            query = "SELECT DISTINCT u.id_user, u.name " +
+                    "FROM users u JOIN doctor d ON u.id_user = d.id_user " +
+                    "JOIN appointment AS a ON a.id_doctor = u.id_user " +
+                    "WHERE a.id_consultant = '" + userId + "' AND " +
+                    "a.appointment_date BETWEEN '" + initialDate +"' AND '" + finalDate +"' " +
+                    "ORDER BY u.name;";
+
+        } else {
+            query = "SELECT DISTINCT u.id_user, u.name " +
+                    "FROM users u JOIN doctor d ON u.id_user = d.id_user " +
+                    "JOIN appointment AS a ON a.id_doctor = u.id_user " +
+                    "WHERE a.id_specialty = '" + idSpecialty + "' " +
+                    "AND a.id_consultant = '" + userId + "' AND " +
+                    "a.appointment_date BETWEEN '" + initialDate +"' AND '" + finalDate +"' " +
+                    "ORDER BY u.name;";
+        }
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        ArrayList<Doctor> doctorList = new ArrayList<>();
+
+        doctorList.add(new Doctor(0, "Todos"));
+
+        while (rs.next()) {
+            Doctor doctor = new Doctor(rs.getInt("id_user"), rs.getString("name"));
+            doctorList.add(doctor);
+        }
+        return doctorList;
+    }
+
     public String getSpecialty(int id_specialty) throws SQLException {
         String query = "SELECT description FROM specialty WHERE id_specialty = " + id_specialty;
 
@@ -66,5 +121,15 @@ public class DAODoctorSpecialty {
         ResultSet rs = stm.executeQuery(query);
 
         return (rs.next()) ? rs.getString("description") : null;
+    }
+
+    public String getDoctorName(int idDoctor) throws SQLException {
+        String query = "SELECT u.name FROM users AS u JOIN doctor AS d ON u.id_user = d.id_user " +
+                "WHERE u.id_user = " + idDoctor + ";";
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        return (rs.next()) ? rs.getString("name") : null;
     }
 }

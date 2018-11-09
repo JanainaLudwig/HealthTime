@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="620.0" prefWidth="1180.0" stylesheets="@../../resources/css/appointmentManager.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5dafed" height="100.0" layoutX="-2.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1182.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5dafed" height="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1182.0" />
       <Pane layoutX="1138.0" layoutY="9.0" onMouseClicked="#closeModal" prefHeight="30.0" prefWidth="30.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bf4a4a" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="30.0" />
@@ -33,7 +36,7 @@
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                   </GridPane>
-                  <Text fx:id="noAppointments" fill="#727272" layoutX="352.0" layoutY="15.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Você não possui nenhuma consulta.">
+                  <Text fx:id="noAppointments" fill="#727272" layoutX="0.00" layoutY="15.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
                      <font>
                         <Font name="Segoe UI" size="20.0" />
                      </font>
@@ -42,10 +45,40 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Text fill="WHITE" layoutX="18.0" layoutY="56.0" stroke="#d0d0d0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Barra de ferramentas (filtros)#" wrappingWidth="362.98015170544386">
+      <Text fill="#f8f8f8" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dê:" wrappingWidth="29.99998837709427">
          <font>
-            <Font name="Segoe UI" size="24.0" />
+            <Font name="Segoe UI" size="16.0" />
          </font>
       </Text>
+      <Text fill="#f8f8f8" layoutX="147.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Até:" wrappingWidth="29.99998837709427">
+         <font>
+            <Font name="Segoe UI" size="16.0" />
+         </font>
+      </Text>
+       <Text fill="#f8f8f8" layoutX="282.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade:" wrappingWidth="138.08467054367065">
+           <font>
+               <Font name="Segoe UI" size="16.0" />
+           </font>
+       </Text>
+      <Text fill="#f8f8f8" layoutX="514.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médico:" wrappingWidth="138.08467054367065">
+         <font>
+            <Font name="Segoe UI" size="16.0" />
+         </font>
+      </Text>
+      <!--<Text fill="#f8f8f8" layoutX="752.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade:" wrappingWidth="138.08467054367065">-->
+         <!--<font>-->
+            <!--<Font name="Segoe UI" size="16.0" />-->
+         <!--</font>-->
+      <!--</Text>-->
+       <JFXComboBox fx:id="specialtyComboFilter" layoutX="282.0" layoutY="41.0" onAction="#switchSpecialty" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
+       <JFXComboBox fx:id="doctorComboFilter" layoutX="514.0" layoutY="41.0" onAction="#switchDoctor" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
+       <!--<JFXComboBox fx:id="cityFilter" layoutX="752.0" layoutY="41.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />-->
+       <JFXButton layoutX="1005.0" layoutY="47.0" onAction="#resetFilters" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #617380;" text="Todos" textFill="WHITE">
+           <font>
+               <Font name="Segoe UI Bold" size="16.0" />
+           </font>
+       </JFXButton>
+      <JFXDatePicker fx:id="initialDate" defaultColor="#617380" layoutX="20.0" layoutY="47.0" onAction="#switchDate" prefHeight="25.0" prefWidth="112.0" />
+      <JFXDatePicker fx:id="finalDate" defaultColor="#617380" layoutX="147.0" layoutY="47.0" onAction="#switchDate" prefHeight="25.0" prefWidth="112.0" />
    </children>
 </AnchorPane>

@@ -1,0 +1,28 @@
+.combo-box-base .list-cell {
+    -fx-font-size: 18px;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #f2f2f2;
+}
+
+.jfx-date-picker > .jfx-text-field {
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #f2f2f2;
+    -jfx-unfocus-color: #f2f2f2;
+}
+
+.jfx-date-picker > .arrow-button > .jfx-svg-glyph {
+    -fx-background-color: #f2f2f2;
+}
+
+.arrow {
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-view .list-cell  {
+    -fx-background-color: #116fb6;
+}
+
+.combo-box-popup .list-view .list-cell:hover  {
+    -fx-background-color: #168EE9;
+}

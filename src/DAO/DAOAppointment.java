@@ -60,6 +60,33 @@ public class DAOAppointment {
         return rs.next();
     }
 
+    public String minDate() throws SQLException {
+        String query = "SELECT MIN(appointment_date) FROM appointment";
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        String min = "";
+        while (rs.next()) {
+            min = rs.getString("min");
+        }
+        return min;
+    }
+
+    public String maxDate() throws SQLException {
+        String query = "SELECT MAX(appointment_date) FROM appointment";
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        String max = "";
+        while (rs.next()) {
+            max = rs.getString("max");
+        }
+        return max;
+    }
+
+
     public void scheduleAppointment(AvailableAppointment availableAppointment) throws SQLException {
         int idDoctor = availableAppointment.getDoctor().getDoctorId(),
             idConsultant = availableAppointment.getDay().getUser().getUserId(),

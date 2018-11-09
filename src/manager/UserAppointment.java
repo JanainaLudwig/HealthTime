@@ -4,6 +4,8 @@ import DAO.DAOAppointment;
 import dashboard.Appointment;
 import dashboard.Doctor;
 import dashboard.User;
+import location.City;
+import manager.view.AppointmentManagerController;
 import utils.DateUtils;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
@@ -45,6 +47,11 @@ public class UserAppointment extends Appointment {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public int getIdCity() { return idCity; }
+
+//    @Override
+//    public GregorianCalendar getDate() { return super.getDate(); }
 
     public int getIdAppointment() {
         return idAppointment;

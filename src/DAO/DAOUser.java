@@ -60,6 +60,61 @@ public class DAOUser {
         return appointments;
     }
 
+//    public ArrayList<UserAppointment> getFilterAppointments(int idUser ,int idSpecialty, int idDoctor, int idCity) throws SQLException {
+//        String query;
+//
+//        if (idDoctor == 0) {
+//            if (idSpecialty == 0) {
+//                query = "SELECT * FROM  appointment " +
+//                        "WHERE id_city='" + idCity +"' AND " +
+//                        "id_consultant='" + idUser + "' " +
+//                        "ORDER BY (appointment_date, appointment_time) DESC";
+//            } else {
+//                query = "SELECT * FROM  appointment " +
+//                        "WHERE id_specialty='" + idSpecialty + "' AND " +
+//                        "id_city='" + idCity +"' AND " +
+//                        "id_consultant='" + idUser + "' " +
+//                        "ORDER BY (appointment_date, appointment_time) DESC";
+//            }
+//        } else {
+//            if (idSpecialty == 0) {
+//                query = "SELECT * FROM  appointment " +
+//                        "WHERE id_doctor='" + idDoctor + "' AND " +
+//                        "id_city='" + idCity +"' AND " +
+//                        "id_consultant='" + idUser + "' " +
+//                        "ORDER BY (appointment_date, appointment_time) DESC";
+//            } else {
+//                query = "SELECT * FROM  appointment " +
+//                        "WHERE id_specialty='" + idSpecialty + "' AND " +
+//                        "id_doctor='" + idDoctor + "' AND " +
+//                        "id_city='" + idCity +"' AND " +
+//                        "id_consultant='" + idUser + "' " +
+//                        "ORDER BY (appointment_date, appointment_time) DESC";
+//            }
+//        }
+//
+////        String query = "SELECT * FROM  appointment " +
+////                "WHERE id_specialty='" + idSpecialty + "' AND " +
+////                "id_doctor='" + idDoctor + "' AND " +
+////                "id_city='" + idCity +"' AND " +
+////                "id_consultant='" + idUser + "' " +
+////                "ORDER BY (appointment_date, appointment_time) DESC";
+//
+//        Statement stm = connection.createStatement();
+//        ResultSet rs = stm.executeQuery(query);
+//
+//        ArrayList<UserAppointment> appointments = new ArrayList();
+//        while (rs.next()) {
+//            GregorianCalendar date = DateUtils.stringToGregorianCalendar(rs.getString("appointment_date"));
+//            Doctor doctor = new Doctor(rs.getInt("id_doctor"));
+//
+//            appointments.add(new UserAppointment(date, rs.getInt("appointment_time"), doctor,
+//                    rs.getInt("id_specialty"), rs.getInt("id_city"), this.user, rs.getInt("id_appointment")));
+//        }
+//
+//        return appointments;
+//    }
+
     public ArrayList<UserAppointment> getNextAppointments() throws SQLException {
         String query = "SELECT * FROM  appointment " +
                 "WHERE id_consultant='" + user.getUserId() + "'" +
