@@ -28,18 +28,23 @@ public class LocationUtils {
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = null;
+        Document doc = null;
 
         try {
             dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(uri);
+            doc = dBuilder.parse(uri);
             doc.getDocumentElement().normalize();
-
-            city = doc.getElementsByTagName("city").item(0).getTextContent();
-            state = doc.getElementsByTagName("region_code").item(0).getTextContent();
         } catch (ParserConfigurationException | SAXException | IOException e) {
             //e.printStackTrace();
             System.out.println("----ipstack----");
             System.out.println("Error trying to get current city.");
+            return null;
+        }
+
+        try {
+            city = doc.getElementsByTagName("city").item(0).getTextContent();
+            state = doc.getElementsByTagName("region_code").item(0).getTextContent();
+        } catch (Exception e) {
             return null;
         }
 
