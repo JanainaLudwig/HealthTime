@@ -7,12 +7,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root fx:id="cardPane" prefHeight="130.0" prefWidth="470.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="cardPane" prefHeight="130.0" prefWidth="470.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.192" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane maxHeight="130.0" maxWidth="470.0" minHeight="130.0" minWidth="470.0" prefHeight="130.0" prefWidth="470.0" styleClass="card" stylesheets="@../../../resources/css/managerCard.css">
+      <AnchorPane maxHeight="137.0" maxWidth="470.0" minHeight="130.0" minWidth="470.0" prefHeight="137.0" prefWidth="470.0" styleClass="card" stylesheets="@../../../resources/css/managerCard.css">
          <children>
-            <Rectangle fx:id="rectangleTime" arcWidth="5.0" fill="#79eb85" height="130.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rect" width="150.0" />
-            <VBox alignment="CENTER" prefHeight="130.0" prefWidth="150.0">
+            <Rectangle fx:id="rectangleTime" arcWidth="5.0" fill="#79eb85" height="137.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rect" width="150.0" />
+            <VBox alignment="CENTER" prefHeight="137.0" prefWidth="150.0">
                <children>
                   <Text fx:id="time" fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="8:30">
                      <font>
@@ -26,22 +26,22 @@
                   </Text>
                </children>
             </VBox>
-            <Text fx:id="doctor" fill="#323232" layoutX="162.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médico">
+            <Text fx:id="doctor" fill="#656363" layoutX="163.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médico">
+               <font>
+                  <Font name="Segoe UI Semilight" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="specialty" fill="#323232" layoutX="161.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade">
                <font>
                   <Font name="Segoe UI Semilight" size="20.0" />
                </font>
             </Text>
-            <Text fx:id="specialty" fill="#323232" layoutX="162.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade">
+            <Text fx:id="city" fill="#323232" layoutX="162.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Cidade#">
                <font>
-                  <Font name="Segoe UI Semilight" size="20.0" />
+                  <Font name="Segoe UI Semilight" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="city" fill="#323232" layoutX="319.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Cidade#">
-               <font>
-                  <Font name="Segoe UI Semilight" size="20.0" />
-               </font>
-            </Text>
-            <JFXButton fx:id="cancelAppointment" layoutX="351.0" layoutY="102.0" onAction="#deleteAppointment" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #E05959;" text="Cancelar consulta" textFill="WHITE">
+            <JFXButton fx:id="cancelAppointment" layoutX="351.0" layoutY="108.0" onAction="#deleteAppointment" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #E05959;" text="Cancelar consulta" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Semibold" size="12.0" />
                </font>

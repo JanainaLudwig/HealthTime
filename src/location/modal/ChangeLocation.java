@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -33,6 +34,8 @@ public class ChangeLocation implements Initializable {
     private TextField searchInput;
     @FXML
     private Text cityNotSelected;
+    @FXML
+    private Button confirm;
 
     private Stage modalStage;
     private DashboardController controller;
@@ -71,6 +74,7 @@ public class ChangeLocation implements Initializable {
     @FXML
     private void itemSelected() {
         cityNotSelected.setOpacity(0);
+        confirm.requestFocus();
     }
 
     @FXML

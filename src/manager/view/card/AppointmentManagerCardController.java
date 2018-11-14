@@ -67,7 +67,7 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
         date.setText(DateUtils.getDateDMY(appointment.getDate()));
         specialty.setText(appointment.getSpecialty().getDescription());
         doctor.setText(appointment.getDoctor().getDoctorName());
-        city.setText("#Cidade#");
+        city.setText(appointment.getCity().toString());
     }
 
     @FXML

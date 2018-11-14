@@ -92,7 +92,7 @@ public class DAOAppointment {
             idConsultant = availableAppointment.getDay().getUser().getUserId(),
             idSpecialty = availableAppointment.getIdSpecialty(),
             appointmentTime = availableAppointment.getTime().getTimeCode(),
-            idCity = availableAppointment.getDay().getUser().getCity().getId();
+            idCity = availableAppointment.getCity().getId();
 
         String appointmentDate = DateUtils.getDateString(availableAppointment.getDay().getDate());
 

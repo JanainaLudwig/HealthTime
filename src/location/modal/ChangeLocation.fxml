@@ -21,7 +21,8 @@
                   <Font name="Segoe UI Semilight" size="30.0" />
                </font>
             </Text>
-            <JFXButton layoutX="370.0" layoutY="341.0" onAction="#confirmChange" style="-fx-background-color: #84cc5a;" text="Confirmar" textFill="#f8f8f8">
+            <JFXTextField fx:id="searchInput" focusColor="DODGERBLUE" layoutX="136.0" layoutY="101.0" onKeyReleased="#searchCities" prefHeight="25.0" prefWidth="235.0" unFocusColor="#5b5b5b" />
+            <JFXButton fx:id="confirm" defaultButton="true" layoutX="370.0" layoutY="341.0" onAction="#confirmChange" style="-fx-background-color: #84cc5a;" styleClass="button-confirm" text="Confirmar" textFill="#f8f8f8">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -37,7 +38,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXTextField fx:id="searchInput" focusColor="DODGERBLUE" layoutX="136.0" layoutY="101.0" onKeyReleased="#searchCities" prefHeight="25.0" prefWidth="235.0" unFocusColor="#5b5b5b" />
             <JFXListView fx:id="cityList" layoutX="91.0" layoutY="138.0" onMouseClicked="#itemSelected" prefHeight="178.0" prefWidth="337.0" style="-fx-background-color: #ebf7ff;" />
             <Text fill="#515151" layoutX="161.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite o nome da cidade:">
                <font>

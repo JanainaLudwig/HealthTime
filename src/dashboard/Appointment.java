@@ -1,5 +1,8 @@
 package dashboard;
 
+import location.City;
+import utils.LocationUtils;
+
 import java.util.GregorianCalendar;
 
 public class Appointment {
@@ -8,6 +11,7 @@ public class Appointment {
     protected int idSpecialty;
     protected Specialty specialty;
     protected int idCity;
+    protected City city;
     protected GregorianCalendar date;
 
     public Appointment(GregorianCalendar date, int time, Doctor doctor, int idSpecialty, int idCity) {
@@ -16,7 +20,17 @@ public class Appointment {
         this.doctor = doctor;
         this.idSpecialty = idSpecialty;
         specialty = new Specialty(idSpecialty);
-        this.idCity = idCity;
+        //TODO: remover idCity
+        //this.idCity = idCity;
+        this.city = LocationUtils.getCity(String.valueOf(idCity));
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public AppointmentTime getTime() {
