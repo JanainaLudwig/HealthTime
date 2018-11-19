@@ -2,6 +2,8 @@ package dashboard.view;
 
 import DAO.DAODoctorSpecialty;
 import DAO.DAOUser;
+import chatbot.Watson;
+import chatbot.view.ChatController;
 import com.jfoenix.controls.JFXComboBox;
 import dashboard.Doctor;
 import dashboard.Specialty;
@@ -35,6 +37,7 @@ public class DashboardController implements Initializable, Controller {
     protected final String GRAY = "#394e5e";
     protected int userId;
     protected User user;
+    public ChatController assistant;
 
     ArrayList<Specialty> specialtyList = new ArrayList<>();
     ArrayList<Doctor> doctorList = new ArrayList<>();
@@ -244,6 +247,34 @@ public class DashboardController implements Initializable, Controller {
         }
     }
 
+    @FXML
+    public void openHelp() {
+        openModal();
+
+        if (assistant == null) {
+            assistant = new ChatController(this);
+        }
+
+        assistant.setLayoutY(pane.getHeight() - 530);
+        assistant.setLayoutX(pane.getWidth() - 400);
+
+        pane.getChildren().add(assistant);
+    }
+
+    public void closeAssistant() {
+        closeModal();
+
+        pane.getChildren().removeIf(node -> node instanceof ChatController);
+
+        assistant = null;
+    }
+
+    public void minimizeAssistant() {
+        closeModal();
+
+        pane.getChildren().removeIf(node -> node instanceof ChatController);
+    }
+
     public void createCalendar() throws FileNotFoundException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
     }
 
@@ -282,6 +313,7 @@ public class DashboardController implements Initializable, Controller {
         this.userId = userId;
         this.user = new User(userId);
         selectedCity = user.getCity();
+        assistant = null;
     }
 
     public User getUser() {
@@ -322,5 +354,13 @@ public class DashboardController implements Initializable, Controller {
         } catch (FileNotFoundException | ClassNotFoundException | InstantiationException | SQLException | IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    public DashboardController(int userId, ChatController assistant) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        this.userId = userId;
+        this.user = new User(userId);
+        selectedCity = user.getCity();
+        this.assistant = assistant;
+        this.assistant.setDashboardController(this);
     }
 }

@@ -1,6 +1,8 @@
 package dashboard.view;
 
 import DAO.DAOAppointment;
+import chatbot.Watson;
+import chatbot.view.ChatController;
 import com.jfoenix.controls.JFXButton;
 import dashboard.AvailableAppointment;
 import dashboard.WeekDay;
@@ -84,7 +86,7 @@ public class DashboardWeekController extends DashboardController implements Init
 
     @FXML
     public void monthVision(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, IOException {
-        DashboardMonthController controller = new DashboardMonthController(this.userId, dayDisplayed, selectedComboSpecialty, selectedComboDoctor, selectedCity);
+        DashboardMonthController controller = new DashboardMonthController(this.userId, dayDisplayed, selectedComboSpecialty, selectedComboDoctor, selectedCity, assistant);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardMonth.fxml");
     }
 
@@ -247,21 +249,10 @@ public class DashboardWeekController extends DashboardController implements Init
             //e.printStackTrace();
         }
     }
-/*
-    public DashboardWeekController(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        super(userId);
-        days = new ArrayList<>();
-        dayDisplayed = new GregorianCalendar();
-    }*/
-/*
-    public DashboardWeekController(int userId, GregorianCalendar date) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        super(userId);
-        days = new ArrayList<>();
-        dayDisplayed = date;
-    }*/
 
-    public DashboardWeekController(int userId, GregorianCalendar date, int currentComboSpecialty, int currentComboDoctor, City city) throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
-        super(userId);
+
+    public DashboardWeekController(int userId, GregorianCalendar date, int currentComboSpecialty, int currentComboDoctor, City city, ChatController assistant) throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
+        super(userId, assistant);
         days = new ArrayList<>();
         dayDisplayed = date;
         this.selectedComboSpecialty = currentComboSpecialty;

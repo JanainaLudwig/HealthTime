@@ -1,6 +1,8 @@
 
 package dashboard.view;
 
+import chatbot.view.ChatController;
+import chatbot.view.MessageController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import dashboard.MonthDay;
@@ -58,7 +60,7 @@ public class DashboardMonthController extends DashboardController implements Ini
 
         ActionEvent event = (ActionEvent) e;
 
-        DashboardWeekController controller = new DashboardWeekController(this.userId, monthDay.getDate(), selectedComboSpecialty, selectedComboDoctor, selectedCity);
+        DashboardWeekController controller = new DashboardWeekController(this.userId, monthDay.getDate(), selectedComboSpecialty, selectedComboDoctor, selectedCity, assistant);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardWeek.fxml");
     }
 
@@ -71,7 +73,7 @@ public class DashboardMonthController extends DashboardController implements Ini
             date = today;
         }
 
-        DashboardWeekController controller = new DashboardWeekController(this.userId, date, selectedComboSpecialty, selectedComboDoctor, selectedCity);
+        DashboardWeekController controller = new DashboardWeekController(this.userId, date, selectedComboSpecialty, selectedComboDoctor, selectedCity, assistant);
         ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardWeek.fxml");
     }
 
@@ -189,15 +191,9 @@ public class DashboardMonthController extends DashboardController implements Ini
         this.monthDisplayed = calendar.get(Calendar.MONTH);
         this.yearDisplayed = calendar.get(Calendar.YEAR);
     }
-/*
-    public DashboardMonthController(int userId, GregorianCalendar calendar) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        super(userId);
-        this.monthDisplayed = calendar.get(Calendar.MONTH);
-        this.yearDisplayed = calendar.get(Calendar.YEAR);
-    }
-*/
-    public DashboardMonthController(int userId, GregorianCalendar calendar, int currentComboSpecialty, int currentComboDoctor, City city) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        super(userId);
+
+    public DashboardMonthController(int userId, GregorianCalendar calendar, int currentComboSpecialty, int currentComboDoctor, City city, ChatController assistant) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        super(userId, assistant);
         this.monthDisplayed = calendar.get(Calendar.MONTH);
         this.yearDisplayed = calendar.get(Calendar.YEAR);
         this.selectedComboSpecialty = currentComboSpecialty;

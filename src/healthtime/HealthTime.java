@@ -5,6 +5,7 @@
  */
 package healthtime;
 
+import chatbot.Watson;
 import dashboard.view.DashboardMonthController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import utils.ControllerUtils;
-
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -49,6 +49,7 @@ public class HealthTime extends Application {
      */
     public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException, ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         launch(args);
+        //Watson watson = new Watson();
     }
     
 }

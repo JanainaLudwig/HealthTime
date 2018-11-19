@@ -1,0 +1,13 @@
+.message-sent {
+    -fx-background-color: #add8ff;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-effect:  dropshadow(three-pass-box, rgba(41, 41, 41, 0.5), 8, 0, 1, 1);
+}
+
+.message-received {
+    -fx-background-color: #cdf5c2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-effect:  dropshadow(three-pass-box, rgba(41, 41, 41, 0.5), 8, 0, 1, 1);
+}
