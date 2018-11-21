@@ -361,6 +361,8 @@ public class DashboardController implements Initializable, Controller {
         this.user = new User(userId);
         selectedCity = user.getCity();
         this.assistant = assistant;
-        this.assistant.setDashboardController(this);
+        if (this.assistant != null) {
+            this.assistant.setDashboardController(this);
+        }
     }
 }
