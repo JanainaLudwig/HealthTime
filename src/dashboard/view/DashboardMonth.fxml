@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -327,17 +328,6 @@
       </JFXButton>
       <Pane layoutX="636.0" layoutY="1.0" prefHeight="98.0" prefWidth="305.0">
          <children>
-
-            <Text fx:id="month" fill="#168ee9" layoutX="83.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Month">
-               <font>
-                  <Font name="Segoe UI Semilight" size="36.0" />
-               </font>
-            </Text>
-            <Text fx:id="year" fill="#168ee9" layoutX="86.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2018">
-               <font>
-                  <Font name="Segoe UI Light" size="36.0" />
-               </font>
-            </Text>
             <JFXButton fx:id="previousM" layoutY="64.0" onAction="#previousMonth" text="Anterior" textFill="#168ee9" />
             <ImageView fitHeight="50.0" fitWidth="25.0" layoutX="265.0" layoutY="16.0" onMouseClicked="#nextMonth" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -356,6 +346,21 @@
                </cursor>
             </ImageView>
             <JFXButton layoutX="246.0" layoutY="63.0" onAction="#nextMonth" text="Próximo" textFill="#168ee9" />
+            <VBox alignment="CENTER" layoutX="56.0" prefHeight="98.0" prefWidth="195.0">
+               <children>
+      
+                        <Text fx:id="month" fill="#168ee9" strokeType="OUTSIDE" strokeWidth="0.0" text="Month">
+                     <font>
+                        <Font name="Segoe UI Semilight" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="year" fill="#168ee9" strokeType="OUTSIDE" strokeWidth="0.0" text="2018">
+                     <font>
+                        <Font name="Segoe UI Light" size="36.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
          </children>
       </Pane>
       <JFXButton layoutX="26.0" layoutY="620.0" onAction="#openManager" style="-fx-background-color: #A0CA88;" text="Gerenciador de Consultas" textFill="WHITE">

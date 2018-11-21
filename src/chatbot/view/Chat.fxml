@@ -23,10 +23,10 @@
          <children>
             <Pane prefHeight="41.0" prefWidth="39.0">
                <children>
-                  <Circle fill="#ffffff00" layoutX="18.0" layoutY="23.0" radius="14.0" stroke="#eeeeee" strokeType="INSIDE" />
-                  <Text fill="#eeeeee" layoutX="13.5" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
+                  <Circle fill="#ffffff00" layoutX="18.0" layoutY="23.0" radius="14.0" stroke="#eeeeee" strokeType="INSIDE" strokeWidth="1.5" />
+                  <Text fill="#eeeeee" layoutX="13.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?">
                      <font>
-                        <Font name="Segoe UI" size="20.0" />
+                        <Font name="Segoe UI" size="25.0" />
                      </font>
                   </Text>
                </children>
@@ -54,7 +54,7 @@
             <Insets left="5.0" />
          </padding>
       </HBox>
-      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutY="44.0" prefHeight="412.0" prefWidth="400.0" style="-fx-background-insets: 0; -fx-background: #eee; -fx-border-color: #eee;">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutY="44.0" prefHeight="403.0" prefWidth="400.0" style="-fx-background-insets: 0; -fx-background: #eee; -fx-border-color: #eee;">
          <padding>
             <Insets left="20.0" right="10.0" top="10.0" />
          </padding>
