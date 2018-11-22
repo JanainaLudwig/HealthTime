@@ -50,8 +50,9 @@ public class UserAppointment extends Appointment {
 
     public int getIdCity() { return idCity; }
 
-//    @Override
-//    public GregorianCalendar getDate() { return super.getDate(); }
+    public City getCity() { return super.city; }
+
+    public GregorianCalendar getDate() { return super.date; }
 
     public int getIdAppointment() {
         return idAppointment;

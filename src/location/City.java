@@ -1,5 +1,7 @@
 package location;
 
+import utils.LocationUtils;
+
 public class City {
     private int id;
     private String name, state;
@@ -10,9 +12,21 @@ public class City {
         this.state = state;
     }
 
+    public City(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.state = "";
+    }
+
+//    public City(int id) {
+//        this.id = id;
+//        //TODO: search id in API
+//    }
+
     public City(int id) {
         this.id = id;
-        //TODO: search id in API
+        this.name = LocationUtils.getCity(String.valueOf(id)).getName();
+        this.state = LocationUtils.getCity(String.valueOf(id)).getState();
     }
 
     public int getId() {
@@ -29,7 +43,11 @@ public class City {
 
     @Override
     public String toString() {
-        return name + " - " + state;
+        if (this.id == 0) {
+            return name;
+        } else {
+            return name + " - " + state;
+        }
     }
 
 }

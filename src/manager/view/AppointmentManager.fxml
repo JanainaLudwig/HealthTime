@@ -36,7 +36,7 @@
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                   </GridPane>
-                  <Text fx:id="noAppointments" fill="#727272" layoutX="0.00" layoutY="15.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+                  <Text fx:id="noAppointments" fill="#727272" layoutX="0.00" layoutY="15.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="oi">
                      <font>
                         <Font name="Segoe UI" size="20.0" />
                      </font>
@@ -45,7 +45,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Text fill="#f8f8f8" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dê:" wrappingWidth="29.99998837709427">
+      <Text fill="#f8f8f8" layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="De:" wrappingWidth="29.99998837709427">
          <font>
             <Font name="Segoe UI" size="16.0" />
          </font>
@@ -65,14 +65,14 @@
             <Font name="Segoe UI" size="16.0" />
          </font>
       </Text>
-      <!--<Text fill="#f8f8f8" layoutX="752.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade:" wrappingWidth="138.08467054367065">-->
-         <!--<font>-->
-            <!--<Font name="Segoe UI" size="16.0" />-->
-         <!--</font>-->
-      <!--</Text>-->
+      <Text fill="#f8f8f8" layoutX="752.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade:" wrappingWidth="138.08467054367065">
+         <font>
+            <Font name="Segoe UI" size="16.0" />
+         </font>
+      </Text>
        <JFXComboBox fx:id="specialtyComboFilter" layoutX="282.0" layoutY="41.0" onAction="#switchSpecialty" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
        <JFXComboBox fx:id="doctorComboFilter" layoutX="514.0" layoutY="41.0" onAction="#switchDoctor" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
-       <!--<JFXComboBox fx:id="cityFilter" layoutX="752.0" layoutY="41.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />-->
+       <JFXComboBox fx:id="cityFilter" layoutX="752.0" layoutY="41.0" onAction="#switchCity" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
        <JFXButton layoutX="1005.0" layoutY="47.0" onAction="#resetFilters" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #617380;" text="Todos" textFill="WHITE">
            <font>
                <Font name="Segoe UI Bold" size="16.0" />

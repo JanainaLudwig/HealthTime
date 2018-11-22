@@ -10,6 +10,7 @@ import dashboard.Specialty;
 import dashboard.User;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.scene.control.DateCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -33,6 +34,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.Controller;
 import utils.DateUtils;
+import utils.LocationUtils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -55,8 +57,8 @@ public class AppointmentManagerController implements Initializable, Controller {
     protected JFXComboBox<Specialty> specialtyComboFilter;
     @FXML
     protected JFXComboBox<Doctor> doctorComboFilter;
-//    @FXML
-//    protected JFXComboBox cityFilter;
+    @FXML
+    protected JFXComboBox<City> cityFilter;
     @FXML
     private JFXDatePicker initialDate;
     @FXML
@@ -64,22 +66,22 @@ public class AppointmentManagerController implements Initializable, Controller {
 
     ArrayList<Specialty> specialtyList = new ArrayList<>();
     ArrayList<Doctor> doctorList = new ArrayList<>();
-    ArrayList cityList = new ArrayList();
+    ArrayList<City> cityList = new ArrayList<>();
 
     private Stage modalStage;
     private DashboardController dashboard;
     private User user;
 
-    LocalDate firstDate;
-    LocalDate lastDate;
+    LocalDate firstDate, lastDate, minDate, maxDate;
 
     private int idSpecialty,
                 idDoctor,
                 idCity;
 
     public int selectedComboSpecialty = 0,
-            selectedComboDoctor = 0;
-    public static int selectedCity = 1;
+               selectedComboDoctor = 0,
+               selectedComboCity = 0;
+//    public static int selectedCity = 1;
 
     public AppointmentManagerController(Scene scene, DashboardController dashboard, User user) throws IOException {
         this.dashboard = dashboard;
@@ -122,7 +124,8 @@ public class AppointmentManagerController implements Initializable, Controller {
 
         if (numberOfAppointments == 0) {
             String specialtyText = "",
-                    doctorText = "";
+                    doctorText = "",
+                    cityText = "";;
 
             DAODoctorSpecialty dao = new DAODoctorSpecialty();
             if (idSpecialty != 0) {
@@ -131,7 +134,10 @@ public class AppointmentManagerController implements Initializable, Controller {
             if (idDoctor != 0) {
                 doctorText = " com o(a) médico(a) " + dao.getDoctorName(idDoctor);
             }
-            noAppointments.setText("Você não possui nenhuma consulta" + specialtyText + doctorText + ".");
+            if (idCity != 0) {
+                cityText = " em " + LocationUtils.getCity(String.valueOf(idCity));
+            }
+            noAppointments.setText("Você não possui nenhuma consulta" + specialtyText + doctorText + cityText + ".");
             noAppointments.setTextAlignment(TextAlignment.CENTER);
             noAppointments.setOpacity(1);
         }
@@ -156,19 +162,65 @@ public class AppointmentManagerController implements Initializable, Controller {
         try {
             specialtyCombo();
             doctorCombo();
+            cityCombo();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
 
+    public LocalDate minDate() {
+        LocalDate menor = user.getUserAppointments().get(0).getDate().toZonedDateTime().toLocalDate();
+
+        for (int i = 1; i < user.getUserAppointments().size(); i++) {
+            if (menor.compareTo(user.getUserAppointments().get(i).getDate().toZonedDateTime().toLocalDate()) > 0) {
+                menor = user.getUserAppointments().get(i).getDate().toZonedDateTime().toLocalDate();
+            }
+        }
+
+        return menor;
+    }
+
+    public LocalDate maxDate() {
+        LocalDate maior = user.getUserAppointments().get(0).getDate().toZonedDateTime().toLocalDate();
+
+        for (int i = 1; i < user.getUserAppointments().size(); i++) {
+            if (maior.compareTo(user.getUserAppointments().get(i).getDate().toZonedDateTime().toLocalDate()) < 0) {
+                maior = user.getUserAppointments().get(i).getDate().toZonedDateTime().toLocalDate();
+            }
+        }
+
+        return maior;
+    }
+
     @FXML
     public void datePicker() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
-        DAOAppointment dao = new DAOAppointment();
-        initialDate.setValue(LocalDate.parse(dao.minDate()));
-        finalDate.setValue(LocalDate.parse(dao.maxDate()));
+        user.updateUserAppointments();
+        initialDate.setValue(minDate());
+        finalDate.setValue(maxDate());
 
-        firstDate = initialDate.getValue();
-        lastDate = finalDate.getValue();
+        minDate = initialDate.getValue();
+        maxDate = finalDate.getValue();
+
+        firstDate = minDate;
+        lastDate = maxDate;
+
+        //Bloqueia datas fora do período de consultas agendadas e
+        //Bloqueia a inversão de datas (de futuro para passado))
+        initialDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+
+                setDisable(empty || date.compareTo(minDate) < 0 || date.compareTo(lastDate) > 0 );
+            }
+        });
+
+        finalDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+
+                setDisable(empty || date.compareTo(firstDate) < 0 || date.compareTo(maxDate) > 0);
+            }
+        });
 
         switchDate();
     }
@@ -199,7 +251,6 @@ public class AppointmentManagerController implements Initializable, Controller {
         specialtyComboFilter.setItems(FXCollections.observableArrayList(specialtyList));
 
         //Select one item in the combo
-        findPositionSpecialty();
         specialtyComboFilter.getSelectionModel().select(selectedComboSpecialty);
 
         //Set onChange behavior
@@ -240,7 +291,7 @@ public class AppointmentManagerController implements Initializable, Controller {
         doctorComboFilter.setItems(FXCollections.observableArrayList(doctorList));
 
         //Select one item in the combo
-        findPositionDoctor();
+        //findPositionDoctor();
         doctorComboFilter.getSelectionModel().select(selectedComboDoctor);
         //Set onChange behavior
         doctorComboFilter.setOnAction((event) -> {
@@ -252,33 +303,58 @@ public class AppointmentManagerController implements Initializable, Controller {
         });
     }
 
-//    @FXML
-//    public void cityCombo() {
-//
-//        //Prevent onChange behavior
-//        cityFilter.setOnAction(null);
-//        //Clear items
-//        cityFilter.getItems().clear();
-//
-//        for (int i = 0; i < user.getUserAppointments().size(); i++) {
-//            cityList.add(user.getUserAppointments().get(i).getIdCity());
-//        }
-//
-//        cityFilter.setItems(FXCollections.observableArrayList(cityList));
-//    }
+    @FXML
+    public void cityCombo() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        DAOUser dao = new DAOUser();
+        cityList = dao.getCities(this.user.getUserId(), idDoctor, idSpecialty, firstDate, lastDate);
+
+        //Prevent onChange behavior
+        cityFilter.setOnAction(null);
+
+        //Clear items
+        cityFilter.getItems().clear();
+
+        //Set converter
+        cityFilter.setConverter(new StringConverter<City>() {
+            @Override
+            public String toString(City object) { return object.toString(); }
+
+            @Override
+            public City fromString(String string) {
+                return null;
+            }
+        });
+
+        cityFilter.setItems(FXCollections.observableArrayList(cityList));
+
+        cityFilter.getSelectionModel().select(selectedComboCity);
+
+        //Set onChange behavior
+        cityFilter.setOnAction((event) -> {
+            try {
+                switchCity();
+            } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     @FXML
-    public void switchDate() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public void switchDate() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
         firstDate = initialDate.getValue();
         lastDate = finalDate.getValue();
 
+        //Reseta os combos posteriores
+        idSpecialty = 0;
+        idDoctor = 0;
+        idCity = 0;
 
-        try {
-            specialtyCombo();
-            doctorCombo();
-        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        setSelectedComboSpecialty(0);
+        setSelectedComboDoctor(0);
+        setSelectedComboCity(0);
+        specialtyCombo();
+        doctorCombo();
+        cityCombo();
 
         //Reseta as consultas a serem filtradas
         user.updateUserAppointments();
@@ -290,40 +366,20 @@ public class AppointmentManagerController implements Initializable, Controller {
         createAppointmentsGrid();
     }
 
-    public void findPositionSpecialty() {
-        for (int i = 0; i < specialtyComboFilter.getItems().size(); i++) {
-            if (specialtyComboFilter.getItems().get(i).getSpecialtyId() == idSpecialty) {
-                selectedComboSpecialty = i;
-                return;
-            }
-        }
-        setSelectedComboSpecialty(0);
-    }
-
-    public void findPositionDoctor() {
-        for (int i = 0; i < doctorComboFilter.getItems().size(); i++) {
-            if (doctorComboFilter.getItems().get(i).getDoctorId() == idDoctor) {
-                selectedComboDoctor = i;
-                return;
-            }
-        }
-        setSelectedComboSpecialty(0);
-//        findPositionSpecialty();
-        setSelectedComboDoctor(0);
-    }
-
     @FXML
     public void switchSpecialty() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException, FileNotFoundException {
         selectedComboSpecialty = specialtyComboFilter.getSelectionModel().getSelectedIndex();
 
-        //Reseta o combo de doutores para "Todos"
-        selectedComboDoctor = 0;
-        doctorCombo();
-
         //Pega os filtros selecionados
         idSpecialty = specialtyComboFilter.getSelectionModel().selectedItemProperty().getValue().getSpecialtyId();
-        idDoctor = doctorComboFilter.getSelectionModel().selectedItemProperty().getValue().getDoctorId();
-        idCity = user.getCity().getId();
+        idDoctor = 0;
+        idCity = 0;
+
+        //Reseta os combos posteriores
+        setSelectedComboDoctor(0);
+        setSelectedComboCity(0);
+        doctorCombo();
+        cityCombo();
 
         //Reseta as consultas a serem filtradas
         user.updateUserAppointments();
@@ -339,9 +395,32 @@ public class AppointmentManagerController implements Initializable, Controller {
     public void switchDoctor() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException, FileNotFoundException {
         selectedComboDoctor = doctorComboFilter.getSelectionModel().getSelectedIndex();
 
+        //Pega os filtros selecionados
         idSpecialty = specialtyComboFilter.getSelectionModel().selectedItemProperty().getValue().getSpecialtyId();
         idDoctor = doctorComboFilter.getSelectionModel().selectedItemProperty().getValue().getDoctorId();
-        idCity = user.getCity().getId();
+        idCity = 0;
+
+        //Reseta os combos posteriores
+        setSelectedComboCity(0);
+        cityCombo();
+
+        //Reseta as consultas a serem filtradas
+        user.updateUserAppointments();
+
+        //Adiciona consultas filtradas
+        filters();
+
+        //Cria o grid atualizado
+        createAppointmentsGrid();
+    }
+
+    @FXML
+    public void switchCity() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        selectedComboCity = cityFilter.getSelectionModel().getSelectedIndex();
+
+        idSpecialty = specialtyComboFilter.getSelectionModel().selectedItemProperty().getValue().getSpecialtyId();
+        idDoctor = doctorComboFilter.getSelectionModel().selectedItemProperty().getValue().getDoctorId();
+        idCity = cityFilter.getSelectionModel().selectedItemProperty().getValue().getId();
 
         //Reseta as consultas a serem filtradas
         user.updateUserAppointments();
@@ -357,27 +436,30 @@ public class AppointmentManagerController implements Initializable, Controller {
         updateFilterDate();
         updateFilterSpecialty();
         updateFilterDoctor();
+        updateFilterCity();
     }
 
     @FXML
     public void resetFilters(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        DAOAppointment dao = new DAOAppointment();
-        initialDate.setValue(LocalDate.parse(dao.minDate()));
-        finalDate.setValue(LocalDate.parse(dao.maxDate()));
-        firstDate = initialDate.getValue();
-        lastDate = finalDate.getValue();
-
         user.updateUserAppointments();
         createAppointmentsGrid();
 
+        initialDate.setValue(minDate);
+        finalDate.setValue(maxDate);
+        firstDate = initialDate.getValue();
+        lastDate = finalDate.getValue();
+
         idSpecialty = 0;
         idDoctor = 0;
+        idCity = 0;
 
         try {
             setSelectedComboDoctor(0);
             setSelectedComboSpecialty(0);
+            setSelectedComboCity(0);
             specialtyCombo();
             doctorCombo();
+            cityCombo();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -410,8 +492,7 @@ public class AppointmentManagerController implements Initializable, Controller {
 
         if (idSpecialty != 0) {
             for (int i = 0; i < user.getUserAppointments().size(); i++) {
-                if (user.getUserAppointments().get(i).getSpecialty().getSpecialtyId() == idSpecialty &&
-                        user.getUserAppointments().get(i).getIdCity() == idCity) {
+                if (user.getUserAppointments().get(i).getSpecialty().getSpecialtyId() == idSpecialty) {
                     newAppointmentsSpecialty.add(user.getUserAppointments().get(i));
                 }
             }
@@ -434,15 +515,30 @@ public class AppointmentManagerController implements Initializable, Controller {
         }
     }
 
+    private void updateFilterCity() {
+        ArrayList<UserAppointment> newAppointmentsCity = new ArrayList<>();
+
+        if (idCity != 0) {
+            for (int i = 0; i < user.getUserAppointments().size(); i++) {
+                if (user.getUserAppointments().get(i).getCity().getId() == idCity) {
+                    newAppointmentsCity.add(user.getUserAppointments().get(i));
+                }
+            }
+
+            user.setUserAppointments(newAppointmentsCity);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             setSelectedComboDoctor(0);
             setSelectedComboSpecialty(0);
+            setSelectedComboCity(0);
             datePicker();
             specialtyCombo();
             doctorCombo();
-//            cityCombo();
+            cityCombo();
 
             createAppointmentsGrid();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -462,9 +558,7 @@ public class AppointmentManagerController implements Initializable, Controller {
         return selectedComboSpecialty;
     }
 
-    public void setSelectedComboSpecialty(int selectedComboSpecialty) {
-        this.selectedComboSpecialty = selectedComboSpecialty;
-    }
+    public void setSelectedComboSpecialty(int selectedComboSpecialty) { this.selectedComboSpecialty = selectedComboSpecialty; }
 
     public int getSelectedComboDoctor() {
         return selectedComboDoctor;
@@ -474,10 +568,15 @@ public class AppointmentManagerController implements Initializable, Controller {
         this.selectedComboDoctor = selectedComboDoctor;
     }
 
+    public void setSelectedComboCity(int selectedComboCity) {
+        this.selectedComboCity = selectedComboCity;
+    }
+
     @Override
     public void update() {
         try {
             createAppointmentsGrid();
+            datePicker();
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }

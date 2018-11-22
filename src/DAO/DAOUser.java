@@ -2,6 +2,7 @@ package DAO;
 
 import dashboard.Doctor;
 import dashboard.User;
+import location.City;
 import login.Hash;
 import manager.UserAppointment;
 import database.ConnectionDB;
@@ -13,6 +14,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -60,61 +62,6 @@ public class DAOUser {
         return appointments;
     }
 
-//    public ArrayList<UserAppointment> getFilterAppointments(int idUser ,int idSpecialty, int idDoctor, int idCity) throws SQLException {
-//        String query;
-//
-//        if (idDoctor == 0) {
-//            if (idSpecialty == 0) {
-//                query = "SELECT * FROM  appointment " +
-//                        "WHERE id_city='" + idCity +"' AND " +
-//                        "id_consultant='" + idUser + "' " +
-//                        "ORDER BY (appointment_date, appointment_time) DESC";
-//            } else {
-//                query = "SELECT * FROM  appointment " +
-//                        "WHERE id_specialty='" + idSpecialty + "' AND " +
-//                        "id_city='" + idCity +"' AND " +
-//                        "id_consultant='" + idUser + "' " +
-//                        "ORDER BY (appointment_date, appointment_time) DESC";
-//            }
-//        } else {
-//            if (idSpecialty == 0) {
-//                query = "SELECT * FROM  appointment " +
-//                        "WHERE id_doctor='" + idDoctor + "' AND " +
-//                        "id_city='" + idCity +"' AND " +
-//                        "id_consultant='" + idUser + "' " +
-//                        "ORDER BY (appointment_date, appointment_time) DESC";
-//            } else {
-//                query = "SELECT * FROM  appointment " +
-//                        "WHERE id_specialty='" + idSpecialty + "' AND " +
-//                        "id_doctor='" + idDoctor + "' AND " +
-//                        "id_city='" + idCity +"' AND " +
-//                        "id_consultant='" + idUser + "' " +
-//                        "ORDER BY (appointment_date, appointment_time) DESC";
-//            }
-//        }
-//
-////        String query = "SELECT * FROM  appointment " +
-////                "WHERE id_specialty='" + idSpecialty + "' AND " +
-////                "id_doctor='" + idDoctor + "' AND " +
-////                "id_city='" + idCity +"' AND " +
-////                "id_consultant='" + idUser + "' " +
-////                "ORDER BY (appointment_date, appointment_time) DESC";
-//
-//        Statement stm = connection.createStatement();
-//        ResultSet rs = stm.executeQuery(query);
-//
-//        ArrayList<UserAppointment> appointments = new ArrayList();
-//        while (rs.next()) {
-//            GregorianCalendar date = DateUtils.stringToGregorianCalendar(rs.getString("appointment_date"));
-//            Doctor doctor = new Doctor(rs.getInt("id_doctor"));
-//
-//            appointments.add(new UserAppointment(date, rs.getInt("appointment_time"), doctor,
-//                    rs.getInt("id_specialty"), rs.getInt("id_city"), this.user, rs.getInt("id_appointment")));
-//        }
-//
-//        return appointments;
-//    }
-
     public ArrayList<UserAppointment> getNextAppointments() throws SQLException {
         String query = "SELECT * FROM  appointment " +
                 "WHERE id_consultant='" + user.getUserId() + "'" +
@@ -143,6 +90,33 @@ public class DAOUser {
         ResultSet rs = stm.executeQuery(query);
 
         return (rs.next()) ? rs.getInt("id_city") : 0;
+    }
+
+    public ArrayList<City> getCities(int idUser, int idDoctor, int idSpecialty, LocalDate initialDate, LocalDate finalDate) throws SQLException {
+        String query = "SELECT DISTINCT id_city FROM  appointment a " +
+                "WHERE a.id_consultant='" + idUser + "' AND " +
+                "a.appointment_date BETWEEN '" + initialDate + "' AND '" + finalDate + "'";
+
+        if (idDoctor != 0) {
+            query += " AND a.id_doctor = '" + idDoctor + "'";
+        }
+        if (idSpecialty != 0) {
+            query += " AND a.id_specialty = '" + idSpecialty + "'";
+        }
+
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        ArrayList<City> citiesList = new ArrayList<>();
+
+        citiesList.add(new City(0, "Todas"));
+
+        while (rs.next()) {
+            City city = new City(rs.getInt("id_city"));
+            citiesList.add(city);
+        }
+        return citiesList;
     }
 
     //Password recovery
