@@ -444,6 +444,15 @@ public class AppointmentManagerController implements Initializable, Controller {
 
     @FXML
     public void resetFilters() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        if (!checkQueue.isSelected()) {
+            checkQueue.setSelected(true);
+            if (user.checkbox == true) {
+                user.setCheckboxFalse();
+            } else {
+                user.setCheckboxTrue();
+            }
+        }
+        
         user.updateUserAppointments();
         createAppointmentsGrid();
 
@@ -476,7 +485,28 @@ public class AppointmentManagerController implements Initializable, Controller {
             user.setCheckboxTrue();
         }
 
-        resetFilters();
+        user.updateUserAppointments();
+        createAppointmentsGrid();
+
+        initialDate.setValue(minDate);
+        finalDate.setValue(maxDate());
+        firstDate = initialDate.getValue();
+        lastDate = finalDate.getValue();
+
+        idSpecialty = 0;
+        idDoctor = 0;
+        idCity = 0;
+
+        try {
+            setSelectedComboDoctor(0);
+            setSelectedComboSpecialty(0);
+            setSelectedComboCity(0);
+            specialtyCombo();
+            doctorCombo();
+            cityCombo();
+        } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -161,6 +161,18 @@ ALTER TABLE appointment_queue ADD CONSTRAINT FK_SPECIALTY_QUEUE
     FOREIGN KEY (id_specialty) REFERENCES specialty (id_specialty);
 
 
+-- Remove old appointments on queue
+CREATE OR REPLACE FUNCTION delete_old_queue(today date) 
+RETURNS VOID AS
+$$ 
+BEGIN
+    DELETE FROM appointment_queue 
+      WHERE appointment_date <= $1;  
+END;
+$$ 
+LANGUAGE 'plpgsql';
+
+
 -- Select available appointments
 CREATE OR REPLACE FUNCTION available_appointments(consultant int, city int, search_day DATE default CURRENT_TIMESTAMP, specialty int default 1)
   RETURNS TABLE (appointment_time dmn_appointment_time, week_day double precision, id_doctor int)

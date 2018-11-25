@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
+import DAO.DAOAppointment;
 import dashboard.view.DashboardMonthController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +23,7 @@ import login.ConsultantLogin;
 import login.DoctorLogin;
 import login.UserLogin;
 import utils.ControllerUtils;
+import utils.DateUtils;
 
 public class LoginController implements Initializable {
     
@@ -73,6 +76,17 @@ public class LoginController implements Initializable {
 
         if (loginValidation) {
             int id = user.getUserId();
+
+            GregorianCalendar today = new GregorianCalendar();
+
+            //Clear old appointments on queue
+            DAOAppointment dao = null;
+            try {
+                dao = new DAOAppointment();
+                dao.deleteOldQueue(today);
+            } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
 
             DashboardMonthController controller = new DashboardMonthController(id);
             ControllerUtils.changeScene(controller, event, "../../dashboard/view/DashboardMonth.fxml");

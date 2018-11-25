@@ -168,4 +168,13 @@ public class DAOAppointment {
         Statement stm = connection.createStatement();
         stm.executeUpdate(query);
     }
+
+    public boolean deleteOldQueue(GregorianCalendar date) throws SQLException {
+        String query = "SELECT delete_old_queue('" + DateUtils.getDateString(date) + "')";
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        return rs.next();
+    }
 }

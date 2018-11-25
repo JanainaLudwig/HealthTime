@@ -25,15 +25,15 @@ public class HealthTime extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Starts at login
-        //Parent root = FXMLLoader.load(getClass().getResource("/login/view/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/login/view/Login.fxml"));
 
 
         //Starts at month view (for dev purposes)
-        DashboardMonthController controller = new DashboardMonthController(1);
-
-        FXMLLoader fxmlLoader = new FXMLLoader(controller.getClass().getResource("../../dashboard/view/DashboardMonth.fxml"));
-        fxmlLoader.setController(controller);
-        Parent root = fxmlLoader.load();
+//        DashboardMonthController controller = new DashboardMonthController(1);
+//
+//        FXMLLoader fxmlLoader = new FXMLLoader(controller.getClass().getResource("../../dashboard/view/DashboardMonth.fxml"));
+//        fxmlLoader.setController(controller);
+//        Parent root = fxmlLoader.load();
         // End of month controller
 
         stage.setTitle("HealthTime");
