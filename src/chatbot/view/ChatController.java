@@ -84,7 +84,7 @@ public class ChatController extends AnchorPane implements Initializable {
 
     public ChatController(DashboardController dashboard) {
         this.numberOfMessages = 0;
-        this.assistant = new Watson();
+        this.assistant = new Watson(dashboard.getUser());
         this.dashboardController = dashboard;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Chat.fxml"));
