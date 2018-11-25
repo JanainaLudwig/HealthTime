@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="400.0" maxWidth="500.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: rgba(10, 10, 10, 0.5);;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+    <Pane fx:id="pane" maxHeight="400.0" maxWidth="500.0" prefHeight="400.0" prefWidth="500.0" stylesheets="@../../resources/css/location.css">
+        <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebf7ff" height="400.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
+            <Rectangle fill="DODGERBLUE" height="70.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
+            <Text fill="#f8f8f8" layoutX="161.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fila de espera" textAlignment="CENTER">
+                <font>
+                    <Font name="Segoe UI Semilight" size="30.0" />
+                </font>
+            </Text>
+
+            <Text fill="#617380" layoutX="181.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data:" wrappingWidth="138.08467054367065">
+                <font>
+                    <Font name="Segoe UI" size="16.0" />
+                </font>
+            </Text>
+            <Text fill="#617380" layoutX="181.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Período:" wrappingWidth="138.08467054367065">
+                <font>
+                    <Font name="Segoe UI" size="16.0" />
+                </font>
+            </Text>
+            <JFXDatePicker fx:id="queueDate" defaultColor="#617380" layoutX="181.0" layoutY="137.0" prefHeight="35.0" prefWidth="133.0" style="-fx-font-size: 16px;" />
+            <JFXComboBox fx:id="queueCombo" layoutX="181.0" layoutY="237.0" prefHeight="35.0" prefWidth="133.0" stylesheets="@../../resources/css/comboBoxQueue.css" visibleRowCount="5" />
+            <Label fx:id="errorLabel" contentDisplay="CENTER" layoutX="9.0" layoutY="280.0" prefHeight="35.0" prefWidth="482.0" textFill="#ff504b" textOverrun="CENTER_ELLIPSIS">
+                <font>
+                    <Font name="Segoe UI Semibold" size="16.0" />
+                </font>
+            </Label>
+
+            <JFXButton fx:id="confirm" defaultButton="true" layoutX="370.0" layoutY="341.0" onAction="#confirmQueue" style="-fx-background-color: #84cc5a;" styleClass="button-confirm" text="Confirmar" textFill="#f8f8f8">
+                <font>
+                    <Font name="Segoe UI" size="18.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </JFXButton>
+            <JFXButton cancelButton="true" layoutX="251.0" layoutY="341.0" onAction="#closeModal" style="-fx-background-color: #E05959;" text="Cancelar" textFill="#f8f8f8">
+                <font>
+                    <Font name="Segoe UI" size="18.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </JFXButton>
+        </children>
+    </Pane>
+</children>
+</AnchorPane>

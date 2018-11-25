@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.Cursor?>
@@ -73,12 +74,16 @@
        <JFXComboBox fx:id="specialtyComboFilter" layoutX="282.0" layoutY="41.0" onAction="#switchSpecialty" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
        <JFXComboBox fx:id="doctorComboFilter" layoutX="514.0" layoutY="41.0" onAction="#switchDoctor" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
        <JFXComboBox fx:id="cityFilter" layoutX="752.0" layoutY="41.0" onAction="#switchCity" prefHeight="25.0" prefWidth="213.0" unFocusColor="#f2f2f2" />
-       <JFXButton layoutX="1005.0" layoutY="47.0" onAction="#resetFilters" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #617380;" text="Todos" textFill="WHITE">
+       <JFXButton layoutX="1005.0" layoutY="17.0" onAction="#resetFilters" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #617380;" text="Todos" textFill="WHITE">
            <font>
                <Font name="Segoe UI Bold" size="16.0" />
            </font>
        </JFXButton>
       <JFXDatePicker fx:id="initialDate" defaultColor="#617380" layoutX="20.0" layoutY="47.0" onAction="#switchDate" prefHeight="25.0" prefWidth="112.0" />
       <JFXDatePicker fx:id="finalDate" defaultColor="#617380" layoutX="147.0" layoutY="47.0" onAction="#switchDate" prefHeight="25.0" prefWidth="112.0" />
+      <JFXCheckBox fx:id="checkQueue" checkedColor="#617380" layoutX="1005.0" layoutY="66.0" onAction="#switchCheck" mnemonicParsing="false" prefHeight="19.0" prefWidth="138.0" selected="true" text="Fila de espera" textFill="#f2f2f2" unCheckedColor="#f2f2f2">
+         <font>
+            <Font name="Segoe UI" size="16.0" />
+         </font></JFXCheckBox>
    </children>
 </AnchorPane>

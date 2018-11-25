@@ -12,6 +12,7 @@ public class User {
     private String userName;
     private ArrayList<UserAppointment> userAppointments;
     private City city;
+    public boolean checkbox = true;
 
     public User(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         this.userId = userId;
@@ -46,6 +47,10 @@ public class User {
         this.userName = userName;
     }
 
+    public void setCheckboxFalse() { this.checkbox = false; }
+
+    public void setCheckboxTrue() { this.checkbox = true; }
+
     public ArrayList<UserAppointment> getUserAppointments() {
         if (userAppointments == null) {
             this.updateUserAppointments();
@@ -60,7 +65,13 @@ public class User {
     public void updateUserAppointments() {
         try {
             DAOUser dao = new DAOUser(this);
-            this.userAppointments = dao.getAppointments();
+            if (checkbox) {
+                this.userAppointments = dao.getQueueAppointments();
+                this.userAppointments.addAll(dao.getAppointments());
+            } else {
+                this.userAppointments = dao.getAppointments();
+            }
+
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }

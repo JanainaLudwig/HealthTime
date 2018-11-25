@@ -25,6 +25,15 @@ public class Appointment {
         this.city = LocationUtils.getCity(String.valueOf(idCity));
     }
 
+    public Appointment(GregorianCalendar date, int time, int idSpecialty, int idCity) {
+        this.date = date;
+        this.time = new AppointmentTime(time);
+        this.doctor = null;
+        this.idSpecialty = idSpecialty;
+        specialty = new Specialty(idSpecialty);
+        this.city = LocationUtils.getCity(String.valueOf(idCity));
+    }
+
     public City getCity() {
         return city;
     }

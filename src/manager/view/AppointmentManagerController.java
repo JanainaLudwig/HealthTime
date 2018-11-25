@@ -3,6 +3,7 @@ package manager.view;
 import DAO.DAOAppointment;
 import DAO.DAODoctorSpecialty;
 import DAO.DAOUser;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import dashboard.Doctor;
@@ -63,6 +64,8 @@ public class AppointmentManagerController implements Initializable, Controller {
     private JFXDatePicker initialDate;
     @FXML
     private JFXDatePicker finalDate;
+    @FXML
+    private JFXCheckBox checkQueue;
 
     ArrayList<Specialty> specialtyList = new ArrayList<>();
     ArrayList<Doctor> doctorList = new ArrayList<>();
@@ -440,12 +443,12 @@ public class AppointmentManagerController implements Initializable, Controller {
     }
 
     @FXML
-    public void resetFilters(ActionEvent event) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+    public void resetFilters() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         user.updateUserAppointments();
         createAppointmentsGrid();
 
         initialDate.setValue(minDate);
-        finalDate.setValue(maxDate);
+        finalDate.setValue(maxDate());
         firstDate = initialDate.getValue();
         lastDate = finalDate.getValue();
 
@@ -463,6 +466,17 @@ public class AppointmentManagerController implements Initializable, Controller {
         } catch (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void switchCheck() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        if (user.checkbox == true) {
+            user.setCheckboxFalse();
+        } else {
+            user.setCheckboxTrue();
+        }
+
+        resetFilters();
     }
 
     @FXML
@@ -506,8 +520,10 @@ public class AppointmentManagerController implements Initializable, Controller {
 
         if (idDoctor != 0) {
             for (int i = 0; i < user.getUserAppointments().size(); i++) {
-                if (user.getUserAppointments().get(i).getDoctor().getDoctorId() == idDoctor) {
-                    newAppointmentsDoctor.add(user.getUserAppointments().get(i));
+                if (user.getUserAppointments().get(i).getDoctor() != null) {
+                    if (user.getUserAppointments().get(i).getDoctor().getDoctorId() == idDoctor) {
+                        newAppointmentsDoctor.add(user.getUserAppointments().get(i));
+                    }
                 }
             }
 

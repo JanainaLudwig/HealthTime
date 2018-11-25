@@ -58,4 +58,7 @@ public class AppointmentTime {
     public void setTimeCode(int timeCode) {
         this.timeCode = timeCode;
     }
+
+    @Override
+    public String toString() { return super.toString(); }
 }

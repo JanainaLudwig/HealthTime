@@ -59,6 +59,21 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
         } else if (DateUtils.isToday(appointment.getDate())) {
             cancelAppointment.setDisable(true);
             cancelAppointment.setOpacity(0);
+        } else if (appointment.getIdAppointment() == 0) {
+            rectangleTime.setStyle("-fx-fill: #aca462;");
+
+            if (appointment.getTime().getTimeCode() == 1) {
+                time.setText("Manhã");
+            } else if (appointment.getTime().getTimeCode() == 2) {
+                time.setText("Tarde");
+            }
+
+            date.setText(DateUtils.getDateDMY(appointment.getDate()));
+            specialty.setText(appointment.getSpecialty().getDescription());
+            doctor.setText("Fila de espera");
+            city.setText(appointment.getCity().toString());
+
+            return;
         } else {
             rectangleTime.setStyle("-fx-fill: #79eb85;");
         }

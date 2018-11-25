@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import location.City;
+import queue.modal.QueueController;
 import utils.ControllerUtils;
 import utils.DateUtils;
 import java.io.IOException;
@@ -235,6 +236,16 @@ public class DashboardWeekController extends DashboardController implements Init
         Image previousArrowImg = new Image(input);
         previousArrow.setImage(previousArrowImg);
 
+    }
+
+    @FXML
+    public void openQueue() throws IOException {
+        openModal();
+
+        int specialty = specialtyComboBox.getSelectionModel().getSelectedItem().getSpecialtyId();
+        int city = selectedCity.getId();
+
+        QueueController queue = new QueueController(this, fDay.getScene(), specialty, city, super.user);
     }
 
     @Override

@@ -1,0 +1,19 @@
+.combo-box-base .list-cell {
+    -fx-font-size: 18px;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #617380;
+    -fx-background-color: #ebf7ff;
+}
+
+.arrow .scroll-bar {
+    -fx-background-color: #617380;
+}
+
+.combo-box-popup .list-view .list-cell .scroll-pane{
+    -fx-background-color: #ebf7ff;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #ebf7ff;
+}
+

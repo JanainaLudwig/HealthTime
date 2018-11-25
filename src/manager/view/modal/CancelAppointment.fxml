@@ -14,7 +14,7 @@
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebf7ff" height="359.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
             <Rectangle fill="DODGERBLUE" height="70.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
-            <Text fill="#f8f8f8" layoutX="137.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancelar consulta">
+            <Text fx:id="title" fill="#f8f8f8" layoutX="137.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancelar consulta">
                <font>
                   <Font name="Segoe UI Semilight" size="30.0" />
                </font>

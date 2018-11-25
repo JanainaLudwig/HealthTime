@@ -62,6 +62,24 @@ public class DAOUser {
         return appointments;
     }
 
+    public ArrayList<UserAppointment> getQueueAppointments() throws SQLException {
+        String query = "SELECT * FROM  appointment_queue WHERE id_consultant='" + user.getUserId() + "' ORDER BY (appointment_date, appointment_time) DESC";
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        ArrayList<UserAppointment> appointments = new ArrayList();
+        while (rs.next()) {
+            GregorianCalendar date = DateUtils.stringToGregorianCalendar(rs.getString("appointment_date"));
+
+            appointments.add(new UserAppointment(date, rs.getInt("appointment_time"),
+                    rs.getInt("id_specialty"), rs.getInt("id_city"), this.user, 0, rs.getInt("id_appointment_queue")));
+        }
+
+        return appointments;
+    }
+
+
     public ArrayList<UserAppointment> getNextAppointments() throws SQLException {
         String query = "SELECT * FROM  appointment " +
                 "WHERE id_consultant='" + user.getUserId() + "'" +

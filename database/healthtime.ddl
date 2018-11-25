@@ -144,6 +144,22 @@ ALTER TABLE appointment_release ADD CONSTRAINT FK_APPOINTMENT
     FOREIGN KEY (id_appointment) REFERENCES appointment (id_appointment)
       ON DELETE SET NULL;
 
+CREATE TABLE appointment_queue (
+     id_appointment_queue SERIAL,     
+     id_consultant INT,
+     id_specialty INT,    
+     id_city INT,
+     appointment_date DATE NOT NULL,
+     appointment_time SMALLINT NOT NULL
+);
+
+ALTER TABLE appointment_queue ADD CONSTRAINT PK_APPOINTMENT_QUEUE
+    PRIMARY KEY (id_appointment_queue);
+ALTER TABLE appointment_queue ADD CONSTRAINT FK_CONSULTANT_QUEUE
+    FOREIGN KEY (id_consultant) REFERENCES consultant (id_user);
+ALTER TABLE appointment_queue ADD CONSTRAINT FK_SPECIALTY_QUEUE
+    FOREIGN KEY (id_specialty) REFERENCES specialty (id_specialty);
+
 
 -- Select available appointments
 CREATE OR REPLACE FUNCTION available_appointments(consultant int, city int, search_day DATE default CURRENT_TIMESTAMP, specialty int default 1)

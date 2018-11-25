@@ -13,11 +13,19 @@ import java.util.GregorianCalendar;
 public class UserAppointment extends Appointment {
     private User user;
     private int idAppointment;
+    private int idQueueAppointment;
 
     public UserAppointment(GregorianCalendar date, int time, Doctor doctor, int idSpecialty, int idCity, User user, int idAppointment) {
         super(date, time, doctor, idSpecialty, idCity);
         this.user = user;
         this.idAppointment = idAppointment;
+    }
+
+    public UserAppointment(GregorianCalendar date, int time, int idSpecialty, int idCity, User user, int idAppointment, int idQueueAppointment) {
+        super(date, time, idSpecialty, idCity);
+        this.user = user;
+        this.idAppointment = idAppointment;
+        this.idQueueAppointment = idQueueAppointment;
     }
 
     public boolean cancelAppointment() {
@@ -48,9 +56,15 @@ public class UserAppointment extends Appointment {
         this.user = user;
     }
 
+    public int getIdQueueAppointment() { return this.idQueueAppointment; }
+
+    public void setSpecialty(int idSpecialty) { super.idSpecialty = idSpecialty; }
+
     public int getIdCity() { return idCity; }
 
     public City getCity() { return super.city; }
+
+    public int getTimeCode() { return super.time.getTimeCode(); }
 
     public GregorianCalendar getDate() { return super.date; }
 

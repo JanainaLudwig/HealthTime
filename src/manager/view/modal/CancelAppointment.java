@@ -2,7 +2,7 @@ package manager.view.modal;
 
 import DAO.DAOAppointment;
 import DAO.DAODoctorSpecialty;
-import dashboard.AvailableAppointment;
+import dashboard.User;
 import dashboard.view.DashboardController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,22 +15,24 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import manager.UserAppointment;
-import manager.view.AppointmentManagerController;
-import manager.view.card.AppointmentManagerCardController;
+import queue.modal.AppointmentQueue;
 import utils.Controller;
 import utils.DateUtils;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 public class CancelAppointment implements Initializable {
     @FXML
     private Text appointmentDate,
                  appointmentSpecialty,
-                 appointmentTime;
+                 appointmentTime,
+                 title;
 
     private Stage modalStage;
     private Controller controller;
@@ -57,14 +59,73 @@ public class CancelAppointment implements Initializable {
     }
 
     @FXML
-    public void cancelAppointment() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        this.userAppointment.cancelAppointment();
+    public void cancelAppointment() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        if (userAppointment.getIdAppointment() == 0) {
+            DAOAppointment dao = new DAOAppointment();
+            dao.cancelAppointmentQueue(userAppointment.getIdQueueAppointment());
 
-        controller.update();
+            controller.update();
+        } else {
+            updateQueue();
+        }
 
         closeModal();
     }
 
+    public void updateQueue() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+
+        int idCity = this.userAppointment.getCity().getId();
+        int idDoctor = this.userAppointment.getDoctor().getDoctorId();
+        GregorianCalendar date = userAppointment.getDate();
+        int time;
+
+        int timeCode = userAppointment.getTimeCode();
+        if (timeCode < 8) {
+            time = 1;
+        } else {
+            time = 2;
+        }
+
+        DAOAppointment dao = new DAOAppointment();
+        //Busca por consultas na fila (exceto Clínica geral)
+        AppointmentQueue newConsultant = dao.findSpecificSpecialty(idCity, idDoctor, date, time);
+
+        if (newConsultant != null) { //Se encontrar, atualiza os campos da consulta
+            updateAppointment(newConsultant.getIdConsultant(), newConsultant.getIdSpecialty());
+
+            //Exclui a solicitação da fila de espera
+            dao.cancelAppointmentQueue(newConsultant.getIdQueue());
+
+            controller.update();
+
+            return;
+        } else { //Se não encontrar, busca as de clínica
+            newConsultant = dao.findClinic(idCity, idDoctor, date, time);
+
+            if (newConsultant != null) { //Se encontrar, atualiza os campos da consulta
+                updateAppointment(newConsultant.getIdConsultant(), newConsultant.getIdSpecialty());
+
+                //Exclui a solicitação da fila de espera
+                dao.cancelAppointmentQueue(newConsultant.getIdQueue());
+
+                controller.update();
+
+                return;
+            } else { //Se não encontrar mesmo assim, exclui a consulta
+                this.userAppointment.cancelAppointment();
+
+                controller.update();
+            }
+        }
+    }
+
+    public void updateAppointment(int idConsultant, int idSpecialty) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        int idAppointment = this.userAppointment.getIdAppointment();
+        DAOAppointment dao = new DAOAppointment();
+        dao.updateAppointment(idAppointment, idConsultant, idSpecialty);
+
+        controller.update();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,7 +144,18 @@ public class CancelAppointment implements Initializable {
             appointmentSpecialty.setText(specialty);
         }
 
-        appointmentTime.setText(userAppointment.getTime().getInitialTime());
+        if (userAppointment.getIdAppointment() == 0) {
+            title.setText("Cancelar Fila");
+            if (userAppointment.getTimeCode() == 1) {
+                appointmentTime.setText("Manhã");
+            } else if (userAppointment.getTimeCode() == 2) {
+                appointmentTime.setText("Tarde");
+            }
+        } else {
+            title.setText("Cancelar Consulta");
+            appointmentTime.setText(userAppointment.getTime().getInitialTime());
+        }
+
         appointmentDate.setText(DateUtils.getDateDMY(userAppointment.getDate()));
     }
 
