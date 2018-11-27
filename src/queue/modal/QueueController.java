@@ -46,16 +46,18 @@ public class QueueController implements Initializable {
     private DashboardController controller;
     private UserAppointment appointment;
     private User user;
+    private LocalDate initialDate;
 
     private int specialty, city;
 
     private AvailableAppointment availableAppointment;
 
-    public QueueController(DashboardController controller, Scene scene, int specialty, int city, User user) throws IOException {
+    public QueueController(DashboardController controller, Scene scene, int specialty, int city, User user, LocalDate initialDate) throws IOException {
         this.controller = controller;
         this.specialty = specialty;
         this.city = city;
         this.user = user;
+        this.initialDate = initialDate;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Queue.fxml"));
         fxmlLoader.setController(this);
@@ -78,12 +80,12 @@ public class QueueController implements Initializable {
         //Verificar os dados selecionados no modal
         LocalDate date = queueDate.getValue();
         String periodo = queueCombo.getValue();
-        int time = 0;
+        int period = 0;
         String timeText = "";
 
         String DATE_INCOMPLETE = "Informe a data desejada";
         String TIME_INCOMPLETE = "Informe o período desejado";
-        String HAS_APPOINTMENT = "Existe um horário de consulta disponível na data selecionada";
+        String HAS_APPOINTMENT_PERIOD = "Existe um horário disponível no período selecionado";
 
         if (date == null) {
             errorLabel.setText(DATE_INCOMPLETE);
@@ -91,10 +93,10 @@ public class QueueController implements Initializable {
         }
         if (periodo != null) {
             if (periodo.equals("De manhã")) {
-                time = 1;
+                period = 1;
                 timeText = "manhã";
             } else if (periodo.equals("À tarde")) {
-                time = 2;
+                period = 2;
                 timeText = "tarde";
             }
         } else {
@@ -106,11 +108,11 @@ public class QueueController implements Initializable {
         GregorianCalendar dateg = GregorianCalendar.from(date.atStartOfDay(ZoneId.systemDefault()));
         DAOAppointment dao = new DAOAppointment();
 
-        if (dao.hasAny(specialty, city, dateg, 0, user.getUserId())) {
-            errorLabel.setText(HAS_APPOINTMENT);
+        if (dao.hasAppointmentPeriod(specialty, city, period, dateg, 0, user.getUserId())) {
+            errorLabel.setText(HAS_APPOINTMENT_PERIOD);
             return;
         } else {
-            dao.addAppointmentQueue(this.user.getUserId(), specialty, city, date, time);
+            dao.addAppointmentQueue(this.user.getUserId(), specialty, city, date, period);
         }
 
         //Fechar o modal
@@ -152,6 +154,8 @@ public class QueueController implements Initializable {
         errorLabel.setText("");
         disableDates();
         queueCombo();
+
+        queueDate.setValue(initialDate);
     }
 
     @FXML

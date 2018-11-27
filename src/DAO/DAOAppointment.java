@@ -156,6 +156,20 @@ public class DAOAppointment {
         }
     }
 
+    public boolean hasAppointmentPeriod(int id_specialty, int id_city, int period, GregorianCalendar date, int id_doctor, int idUser) throws SQLException {
+        String query = "SELECT * FROM available_appointments_queue(" + idUser + ", " + id_city + ", " + period + ", '" + DateUtils.getDateString(date) + "', " + id_specialty + ")";
+        if (id_doctor != 0) {
+            query += " WHERE id_doctor = " + id_doctor + ";";
+        } else {
+            query += ";";
+        }
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+
+        return rs.next();
+    }
+
     public void cancelAppointmentQueue(int id) throws SQLException {
         String query = "DELETE FROM appointment_queue WHERE id_appointment_queue = " + id + ";";
 

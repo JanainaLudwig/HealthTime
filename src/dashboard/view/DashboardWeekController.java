@@ -19,10 +19,13 @@ import location.City;
 import queue.modal.QueueController;
 import utils.ControllerUtils;
 import utils.DateUtils;
+
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -45,6 +48,7 @@ public class DashboardWeekController extends DashboardController implements Init
 
     private boolean morning;
     private GregorianCalendar dayDisplayed;
+    private GregorianCalendar monday;
     private ArrayList<WeekDay> days;
     private String[] morningHours = {
             "8:00",
@@ -134,8 +138,24 @@ public class DashboardWeekController extends DashboardController implements Init
         GregorianCalendar startDay = DateUtils.copyGregorianCalendar(dayDisplayed);
         startDay.add(Calendar.DATE, 1);
 
+        this.monday = null;
+        int atual = 0;
         for (int i = 0; i < 5; i++) {
             GregorianCalendar weekDate = DateUtils.copyGregorianCalendar(startDay);
+
+            if (i == atual) {
+                //Se passado ou hoje
+                if (DateUtils.isPast(weekDate) || DateUtils.isToday(weekDate)) {
+                    if (DateUtils.isToday(weekDate) && i == 4) { //Se hoje for sexta, pular para segunda
+                        this.monday = weekDate;
+                        this.monday = DateUtils.stringToGregorianCalendar(this.monday.toZonedDateTime().toLocalDate().plusDays(3).toString());
+                    } else { //Se não, pegar o próximo dia
+                        atual++;
+                    }
+                } else { //Se não passado ou hoje, pegar o dia
+                    this.monday = weekDate;
+                }
+            }
 
             WeekDay weekDay = new WeekDay(weekDate, this.user, this);
             days.add(weekDay);
@@ -167,7 +187,6 @@ public class DashboardWeekController extends DashboardController implements Init
 
             startDay.add(Calendar.DATE, 1);
         }
-
 
         Text today = null;
 
@@ -245,7 +264,15 @@ public class DashboardWeekController extends DashboardController implements Init
         int specialty = specialtyComboBox.getSelectionModel().getSelectedItem().getSpecialtyId();
         int city = selectedCity.getId();
 
-        QueueController queue = new QueueController(this, fDay.getScene(), specialty, city, super.user);
+        LocalDate initialDate;
+
+        if (Calendar.DAY_OF_WEEK == 7 && monday == null) { //Se for sábado, pular para a segunda
+            initialDate = dayDisplayed.toZonedDateTime().toLocalDate().plusDays(2);
+        } else { //Usar data já retornada no 'monday'
+            initialDate = monday.toZonedDateTime().toLocalDate();
+        }
+
+        QueueController queue = new QueueController(this, fDay.getScene(), specialty, city, super.user, initialDate);
     }
 
     @Override
