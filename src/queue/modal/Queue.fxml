@@ -35,7 +35,7 @@
             </Text>
             <JFXDatePicker fx:id="queueDate" defaultColor="#617380" layoutX="181.0" layoutY="137.0" prefHeight="35.0" prefWidth="133.0" style="-fx-font-size: 16px;" />
             <JFXComboBox fx:id="queueCombo" layoutX="181.0" layoutY="237.0" prefHeight="35.0" prefWidth="133.0" stylesheets="@../../resources/css/comboBoxQueue.css" visibleRowCount="5" />
-            <Label fx:id="errorLabel" contentDisplay="CENTER" layoutX="9.0" layoutY="280.0" prefHeight="35.0" prefWidth="482.0" textFill="#ff504b" textOverrun="CENTER_ELLIPSIS">
+            <Label fx:id="errorLabel" contentDisplay="CENTER" layoutX="9.0" layoutY="287.0" prefHeight="35.0" prefWidth="482.0" style="-fx-text-alignment: center; -fx-alignment: center;" textAlignment="CENTER" textFill="#ff504b" textOverrun="CENTER_ELLIPSIS">
                 <font>
                     <Font name="Segoe UI Semibold" size="16.0" />
                 </font>

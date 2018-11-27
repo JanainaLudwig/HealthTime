@@ -85,17 +85,17 @@ public class QueueController implements Initializable {
 
         String DATE_INCOMPLETE = "Informe a data desejada";
         String TIME_INCOMPLETE = "Informe o período desejado";
-        String HAS_APPOINTMENT_PERIOD = "Existe um horário disponível no período selecionado";
+        String HAS_APPOINTMENT_PERIOD = "Ainda existe um horário disponível no período selecionado";
 
         if (date == null) {
             errorLabel.setText(DATE_INCOMPLETE);
             return;
         }
         if (periodo != null) {
-            if (periodo.equals("De manhã")) {
+            if (periodo.equals("Manhã")) {
                 period = 1;
                 timeText = "manhã";
-            } else if (periodo.equals("À tarde")) {
+            } else if (periodo.equals("Tarde")) {
                 period = 2;
                 timeText = "tarde";
             }
@@ -137,8 +137,8 @@ public class QueueController implements Initializable {
 
     public void queueCombo() {
         ArrayList<String> turnos = new ArrayList();
-        turnos.add("De manhã");
-        turnos.add("À tarde");
+        turnos.add("Manhã");
+        turnos.add("Tarde");
 
         //Prevent onChange behavior
         queueCombo.setOnAction(null);
