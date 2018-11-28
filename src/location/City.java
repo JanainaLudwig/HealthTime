@@ -1,5 +1,6 @@
 package location;
 
+import DAO.DAOStation;
 import utils.LocationUtils;
 
 public class City {
@@ -52,5 +53,17 @@ public class City {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getStation() {
+        DAOStation daoStation = new DAOStation();
+
+        String station = daoStation.getStations(this.id);
+
+        if (station == null) {
+            station = "Não há postos cadastrados.";
+        }
+
+        return station;
     }
 }

@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class AppointmentManagerCardController extends AnchorPane implements Initializable {
     @FXML
-    private Text time, date, specialty, doctor, city;
+    private Text time, date, specialty, doctor, city, station;
     @FXML
     private Rectangle rectangleTime;
     @FXML
@@ -72,7 +72,7 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
             specialty.setText(appointment.getSpecialty().getDescription());
             doctor.setText("Fila de espera");
             city.setText(appointment.getCity().toString());
-
+            station.setText(appointment.getCity().getStation());
             return;
         } else {
             rectangleTime.setStyle("-fx-fill: #79eb85;");
@@ -83,6 +83,7 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
         specialty.setText(appointment.getSpecialty().getDescription());
         doctor.setText(appointment.getDoctor().getDoctorName());
         city.setText(appointment.getCity().toString());
+        station.setText(appointment.getCity().getStation());
     }
 
     @FXML

@@ -26,17 +26,17 @@
                   </Text>
                </children>
             </VBox>
-            <Text fx:id="doctor" fill="#656363" layoutX="163.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médico">
+            <Text fx:id="doctor" fill="#656363" layoutX="163.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médico">
                <font>
                   <Font name="Segoe UI Semilight" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="specialty" fill="#323232" layoutX="161.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade">
+            <Text fx:id="specialty" fill="#323232" layoutX="161.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade">
                <font>
                   <Font name="Segoe UI Semilight" size="20.0" />
                </font>
             </Text>
-            <Text fx:id="city" fill="#323232" layoutX="162.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Cidade#">
+            <Text fx:id="city" fill="#323232" layoutX="162.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Cidade#">
                <font>
                   <Font name="Segoe UI Semilight" size="18.0" />
                </font>
@@ -46,6 +46,11 @@
                   <Font name="Segoe UI Semibold" size="12.0" />
                </font>
             </JFXButton>
+            <Text fx:id="station" fill="#323232" layoutX="162.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Posto#">
+               <font>
+                  <Font name="Segoe UI Semilight" size="18.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
