@@ -1,6 +1,7 @@
 package dashboard.view;
 
 import DAO.DAODoctorSpecialty;
+import DAO.DAOStation;
 import DAO.DAOUser;
 import chatbot.Watson;
 import chatbot.view.ChatController;
@@ -10,6 +11,7 @@ import dashboard.Specialty;
 import dashboard.User;
 import dashboard.appointmentNotification.AppointmentNotification;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.scene.layout.Pane;
 import javafx.util.StringConverter;
 import location.City;
@@ -55,6 +57,8 @@ public class DashboardController implements Initializable, Controller {
     protected JFXComboBox<Specialty> specialtyComboBox;
     @FXML
     protected JFXComboBox<Doctor> doctorComboBox;
+    @FXML
+    protected JFXComboBox comboStation;
     @FXML
     private Pane notification1, notification2;
     @FXML
@@ -232,6 +236,26 @@ public class DashboardController implements Initializable, Controller {
 
         //Set reminders to the next two user appointments
         setNotifications();
+
+        //Set station
+        setComboStation();
+    }
+
+    public void setComboStation() {
+        ArrayList<String> stations = new ArrayList();
+        DAOStation daoStation = new DAOStation();
+
+        String station = daoStation.getStations(selectedCity.getId());
+
+        if (station == null) {
+            station = "Não há postos cadastrados";
+            selectedCity.setId(0);
+        }
+
+        stations.add(station);
+
+        comboStation.setItems(FXCollections.observableArrayList(stations));
+        comboStation.getSelectionModel().select(0);
     }
 
     public void setCity(City city) {
@@ -241,6 +265,7 @@ public class DashboardController implements Initializable, Controller {
         try {
             setSelectedComboDoctor(0);
             doctorCombo();
+            setComboStation();
             createCalendar();
         } catch (FileNotFoundException | ClassNotFoundException | InstantiationException | SQLException | IllegalAccessException e) {
             e.printStackTrace();
@@ -339,6 +364,7 @@ public class DashboardController implements Initializable, Controller {
     public void setSelectedComboDoctor(int selectedComboDoctor) {
         this.selectedComboDoctor = selectedComboDoctor;
     }
+
 
     @Override
     public void update() {

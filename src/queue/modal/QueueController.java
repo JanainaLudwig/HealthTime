@@ -83,9 +83,9 @@ public class QueueController implements Initializable {
         int period = 0;
         String timeText = "";
 
-        String DATE_INCOMPLETE = "Informe a data desejada";
-        String TIME_INCOMPLETE = "Informe o período desejado";
-        String HAS_APPOINTMENT_PERIOD = "Ainda existe um horário disponível no período selecionado";
+        String DATE_INCOMPLETE = "Informe a data desejada.";
+        String TIME_INCOMPLETE = "Informe o período desejado.";
+        String HAS_APPOINTMENT_PERIOD = "Ainda existe um horário disponível no período selecionado.";
 
         if (date == null) {
             errorLabel.setText(DATE_INCOMPLETE);
@@ -120,8 +120,8 @@ public class QueueController implements Initializable {
 
         //Mostrar a notificação de fila marcada
         String message = "Sua pedido de consulta para " + DateUtils.getDateDMY(dateg) + ", no período da " + timeText +
-                ", está numa fila de espera e aguarda algum cancelamento";
-        NotificationUtils.showNotification("Fila agendada", message);
+                ", está na fila de espera e aguarda algum cancelamento para ser efetivada.";
+        NotificationUtils.showNotification("Consulta em fila de espera", message);
     }
 
     public void disableDates() {

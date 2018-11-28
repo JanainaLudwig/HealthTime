@@ -18,6 +18,7 @@ import manager.UserAppointment;
 import queue.modal.AppointmentQueue;
 import utils.Controller;
 import utils.DateUtils;
+import utils.NotificationUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -70,6 +71,9 @@ public class CancelAppointment implements Initializable {
         }
 
         closeModal();
+
+        String message = "Consulta cancelada com sucesso.";
+        NotificationUtils.showNotification("Consulta cancelada", message);
     }
 
     public void updateQueue() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException, UnsupportedEncodingException, NoSuchAlgorithmException {

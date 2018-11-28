@@ -94,6 +94,14 @@ public class DateUtils {
         return day + '/' + month + '/' + year;
     }
 
+    public static String getDayMonth(GregorianCalendar date) {
+        //Months start at 0
+        String month = MONTH_NAME[date.get(Calendar.MONTH)];
+        String day = String.valueOf(date.get(Calendar.DAY_OF_MONTH));
+
+        return day + " de " + month;
+    }
+
     public static GregorianCalendar stringToGregorianCalendar(String dateString) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;

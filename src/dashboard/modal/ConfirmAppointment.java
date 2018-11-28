@@ -2,6 +2,7 @@ package dashboard.modal;
 
 import DAO.DAOAppointment;
 import DAO.DAODoctorSpecialty;
+import DAO.DAOStation;
 import dashboard.AvailableAppointment;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,13 +19,18 @@ import utils.NotificationUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class ConfirmAppointment implements Initializable {
     @FXML
-    private Text appointmentDate,
+    private Text appointmentDayMonth,
+                 appointmentYear,
                  appointmentSpecialty,
-                 appointmentTime;
+                 appointmentTime,
+                 appointmentDoctor,
+                 appointmentCity,
+                 appointmentStation;
 
     private Stage modalStage;
 
@@ -61,9 +67,8 @@ public class ConfirmAppointment implements Initializable {
         availableAppointment.getDay().getController().update();
         availableAppointment.getDay().getController().closeModal();
 
-        String message = "Sua consulta foi agendada para " + appointmentDate.getText() + " às " + appointmentTime.getText();
+        String message = "Sua consulta foi agendada para " + appointmentDayMonth.getText() + " de " + appointmentYear + " às " + appointmentTime.getText();
         NotificationUtils.showNotification("Consulta agendada", message);
-
     }
 
     public AvailableAppointment getAvailableAppointment() {
@@ -92,7 +97,14 @@ public class ConfirmAppointment implements Initializable {
         }
 
         appointmentTime.setText(availableAppointment.getTime().getInitialTime());
-        appointmentDate.setText(DateUtils.getDateDMY(availableAppointment.getDay().getDate()));
+        appointmentDayMonth.setText(DateUtils.getDayMonth(availableAppointment.getDay().getDate()));
+        appointmentYear.setText(String.valueOf(availableAppointment.getDate().get(Calendar.YEAR)));
+        appointmentDoctor.setText(availableAppointment.getDoctor().getDoctorName());
+        appointmentCity.setText(availableAppointment.getCity().getName());
+
+        DAOStation daoStation = new DAOStation();
+
+        appointmentStation.setText(daoStation.getStations(availableAppointment.getCity().getId()));
     }
 
     @FXML

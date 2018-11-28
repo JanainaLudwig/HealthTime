@@ -60,7 +60,7 @@ public class AppointmentManagerCardController extends AnchorPane implements Init
             cancelAppointment.setDisable(true);
             cancelAppointment.setOpacity(0);
         } else if (appointment.getIdAppointment() == 0) {
-            rectangleTime.setStyle("-fx-fill: #FFBA05;");
+            rectangleTime.setStyle("-fx-fill: #ffba05;");
 
             if (appointment.getTime().getTimeCode() == 1) {
                 time.setText("Manhã");

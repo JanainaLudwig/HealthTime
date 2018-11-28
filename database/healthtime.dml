@@ -88,3 +88,8 @@ INSERT INTO working_time (id_doctor, id_city, appointment_time, week_day) VALUES
 INSERT INTO appointment_release (id_specialty, id_patient, id_doctor, release_date) VALUES
     (3, 1, 5, '2018-10-08'),
     (5, 1, 5, '2018-10-01');
+
+INSERT INTO cities_stations (id_city, station) VALUES
+    (4108403, 'Posto de Saúde Vila Nova'),
+    (4107207, 'Unidade Central de Saúde'),
+    (4106902, 'Unidade de Saúde Ouvidor Pardinho');

@@ -4,52 +4,33 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="400.0" maxWidth="500.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: rgba(10, 10, 10, 0.5);;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="400.0" maxWidth="500.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: rgba(10, 10, 10, 0.5);;" xmlns="http://javafx.com/javafx/8.0.192" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane maxHeight="400.0" maxWidth="500.0" prefHeight="400.0" prefWidth="500.0">
+      <Pane maxHeight="463.0" maxWidth="568.0" prefHeight="463.0" prefWidth="568.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebf7ff" height="400.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
-            <Rectangle fill="DODGERBLUE" height="70.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
-            <Text fill="#f8f8f8" layoutX="137.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agendar consulta">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebf7ff" height="465.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="0.0" width="571.0" />
+            <Rectangle fill="DODGERBLUE" height="70.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="571.0" />
+            <Text fill="#f8f8f8" layoutX="177.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agendar consulta">
                <font>
                   <Font name="Segoe UI Semilight" size="30.0" />
                </font>
             </Text>
-            <Text fill="#2c2c2c" layoutX="14.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data: " wrappingWidth="67.4150390625">
+            <Text fx:id="appointmentTime" fill="#434343" layoutX="414.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10:30" textAlignment="CENTER" wrappingWidth="103.04882362484932">
                <font>
-                  <Font name="Segoe UI Semibold" size="25.0" />
+                  <Font name="Segoe UI Light" size="35.0" />
                </font>
             </Text>
-            <Text fill="#2c2c2c" layoutX="14.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horário:" wrappingWidth="92.3583984375">
+            <Text fx:id="appointmentSpecialty" fill="#434343" layoutX="24.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clínica Geral" textAlignment="CENTER" wrappingWidth="524.4150387644768">
                <font>
-                  <Font name="Segoe UI Semibold" size="25.0" />
+                  <Font name="Segoe UI Semilight" size="30.0" />
                </font>
             </Text>
-            <Text fill="#2c2c2c" layoutX="14.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Especialidade: ">
-               <font>
-                  <Font name="Segoe UI Semibold" size="25.0" />
-               </font>
-            </Text>
-            <Text fx:id="appointmentDate" fill="#2c2c2c" layoutX="81.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="24 de agosto de 2018" wrappingWidth="348.4150390625">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font>
-            </Text>
-            <Text fx:id="appointmentTime" fill="#2c2c2c" layoutX="124.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8:30" wrappingWidth="297.4150390625">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font>
-            </Text>
-            <Text fx:id="appointmentSpecialty" fill="#2c2c2c" layoutX="188.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clínica Geral" wrappingWidth="297.4150390625">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font>
-            </Text>
-            <JFXButton layoutX="370.0" layoutY="341.0" onAction="#confirmAppointment" style="-fx-background-color: #84cc5a;" text="Confirmar" textFill="#f8f8f8">
+            <JFXButton layoutX="441.0" layoutY="414.0" onAction="#confirmAppointment" style="-fx-background-color: #84cc5a;" text="Confirmar" textFill="#f8f8f8">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -57,7 +38,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton cancelButton="true" layoutX="251.0" layoutY="341.0" onAction="#closeModal" style="-fx-background-color: #E05959;" text="Cancelar" textFill="#f8f8f8">
+            <JFXButton cancelButton="true" layoutX="322.0" layoutY="414.0" onAction="#closeModal" style="-fx-background-color: #E05959;" text="Cancelar" textFill="#f8f8f8">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
@@ -65,6 +46,38 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
+            <Text fx:id="appointmentDoctor" fill="#868686" layoutX="25.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alessandro Gambin" textAlignment="CENTER" wrappingWidth="524.4150387644768">
+               <font>
+                  <Font name="Segoe UI" size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="appointmentCity" fill="#434343" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dois Vizinhos - PR" textAlignment="CENTER" wrappingWidth="567.9999997913837">
+               <font>
+                  <Font name="Segoe UI Semilight" size="28.0" />
+               </font>
+            </Text>
+            <Text fx:id="appointmentStation" fill="#2c2c2c" layoutX="2.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Posto Central" textAlignment="CENTER" wrappingWidth="567.9999997913837">
+               <font>
+                  <Font name="Segoe UI Semilight" size="28.0" />
+               </font>
+            </Text>
+            <Text fx:id="appointmentDayMonth" fill="#434343" layoutX="70.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18 de Novembro" textAlignment="CENTER" wrappingWidth="268.0488236248493">
+               <font>
+                  <Font name="Segoe UI Light" size="35.0" />
+               </font>
+            </Text>
+            <Text fill="DODGERBLUE" layoutX="412.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horário" textAlignment="CENTER" wrappingWidth="103.04881511628628">
+               <font>
+                  <Font name="Segoe UI Semilight" size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="appointmentYear" fill="#434343" layoutX="70.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2018" textAlignment="CENTER" wrappingWidth="268.0488236248493">
+               <font>
+                  <Font name="Segoe UI Light" size="35.0" />
+               </font>
+            </Text>
+            <Line endX="-216.0" endY="64.0" layoutX="299.0" layoutY="224.0" startX="213.0" startY="64.0" stroke="#ababab" strokeWidth="0.5" />
+            <Line endX="-216.0" endY="64.0" layoutX="299.0" layoutY="121.0" startX="213.0" startY="64.0" stroke="#ababab" strokeWidth="0.5" />
          </children>
       </Pane>
    </children>

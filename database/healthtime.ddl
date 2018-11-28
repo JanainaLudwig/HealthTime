@@ -160,6 +160,10 @@ ALTER TABLE appointment_queue ADD CONSTRAINT FK_CONSULTANT_QUEUE
 ALTER TABLE appointment_queue ADD CONSTRAINT FK_SPECIALTY_QUEUE
     FOREIGN KEY (id_specialty) REFERENCES specialty (id_specialty);
 
+CREATE TABLE cities_stations (
+  id_city INT,
+  station VARCHAR(50)
+);
 
 -- Remove old appointments on queue
 CREATE OR REPLACE FUNCTION delete_old_queue(today date) 
