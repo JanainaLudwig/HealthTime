@@ -8,13 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="400.0" maxWidth="500.0" prefHeight="360.0" prefWidth="500.0" style="-fx-background-color: rgba(10, 10, 10, 0.5);;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="400.0" maxWidth="500.0" prefHeight="360.0" prefWidth="500.0" style="-fx-background-color: rgba(10, 10, 10, 0.5);;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane maxHeight="400.0" maxWidth="500.0" prefHeight="360.0" prefWidth="500.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebf7ff" height="359.0" stroke="#3c3c3c" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
             <Rectangle fill="DODGERBLUE" height="70.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="500.0" />
-            <Text fx:id="title" fill="#f8f8f8" layoutX="137.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancelar consulta">
+            <Text fx:id="title" fill="#f8f8f8" layoutX="15.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancelar consulta" textAlignment="CENTER" wrappingWidth="462.4287109375">
                <font>
                   <Font name="Segoe UI Semilight" size="30.0" />
                </font>

@@ -43,7 +43,7 @@ public class UserAppointment extends Appointment {
             e.printStackTrace();
         }
 
-        user.updateUserAppointments();
+        user.updateUserAppointments(true);
 
         return true;
     }

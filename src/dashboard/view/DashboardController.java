@@ -369,7 +369,7 @@ public class DashboardController implements Initializable, Controller {
     @Override
     public void update() {
         //TODO: ajustar lista
-        user.updateUserAppointments();
+        user.updateUserAppointments(true);
         try {
             createCalendar();
             //TODO: tentar pegar o objeto dos combos para depois de repopular o combo buscar os antigos objetos e setá-los

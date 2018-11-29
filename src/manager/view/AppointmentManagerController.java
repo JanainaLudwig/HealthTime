@@ -74,6 +74,7 @@ public class AppointmentManagerController implements Initializable, Controller {
     private Stage modalStage;
     private DashboardController dashboard;
     private User user;
+    public boolean checkbox = true;
 
     LocalDate firstDate, lastDate, minDate, maxDate;
 
@@ -197,7 +198,7 @@ public class AppointmentManagerController implements Initializable, Controller {
 
     @FXML
     public void datePicker() throws ClassNotFoundException, NullPointerException, SQLException, InstantiationException, IllegalAccessException {
-        user.updateUserAppointments();
+        user.updateUserAppointments(checkbox);
         initialDate.setValue(minDate());
         finalDate.setValue(maxDate());
 
@@ -360,7 +361,7 @@ public class AppointmentManagerController implements Initializable, Controller {
         cityCombo();
 
         //Reseta as consultas a serem filtradas
-        user.updateUserAppointments();
+        user.updateUserAppointments(checkbox);
 
         //Adiciona consultas filtradas
         filters();
@@ -385,7 +386,7 @@ public class AppointmentManagerController implements Initializable, Controller {
         cityCombo();
 
         //Reseta as consultas a serem filtradas
-        user.updateUserAppointments();
+        user.updateUserAppointments(checkbox);
 
         //Adiciona consultas filtradas
         filters();
@@ -408,7 +409,7 @@ public class AppointmentManagerController implements Initializable, Controller {
         cityCombo();
 
         //Reseta as consultas a serem filtradas
-        user.updateUserAppointments();
+        user.updateUserAppointments(checkbox);
 
         //Adiciona consultas filtradas
         filters();
@@ -426,7 +427,7 @@ public class AppointmentManagerController implements Initializable, Controller {
         idCity = cityFilter.getSelectionModel().selectedItemProperty().getValue().getId();
 
         //Reseta as consultas a serem filtradas
-        user.updateUserAppointments();
+        user.updateUserAppointments(checkbox);
 
         //Adiciona consultas filtradas
         filters();
@@ -446,14 +447,14 @@ public class AppointmentManagerController implements Initializable, Controller {
     public void resetFilters() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         if (!checkQueue.isSelected()) {
             checkQueue.setSelected(true);
-            if (user.checkbox == true) {
-                user.setCheckboxFalse();
+            if (this.checkbox == true) {
+                setCheckboxFalse();
             } else {
-                user.setCheckboxTrue();
+                setCheckboxTrue();
             }
         }
         
-        user.updateUserAppointments();
+        user.updateUserAppointments(checkbox);
         createAppointmentsGrid();
 
         initialDate.setValue(minDate);
@@ -479,13 +480,13 @@ public class AppointmentManagerController implements Initializable, Controller {
 
     @FXML
     private void switchCheck() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        if (user.checkbox == true) {
-            user.setCheckboxFalse();
+        if (this.checkbox == true) {
+            setCheckboxFalse();
         } else {
-            user.setCheckboxTrue();
+            setCheckboxTrue();
         }
 
-        user.updateUserAppointments();
+        user.updateUserAppointments(checkbox);
         createAppointmentsGrid();
 
         initialDate.setValue(minDate);
@@ -581,6 +582,8 @@ public class AppointmentManagerController implements Initializable, Controller {
             setSelectedComboDoctor(0);
             setSelectedComboSpecialty(0);
             setSelectedComboCity(0);
+            setCheckboxTrue();
+            this.checkQueue.setSelected(true);
             datePicker();
             specialtyCombo();
             doctorCombo();
@@ -617,6 +620,10 @@ public class AppointmentManagerController implements Initializable, Controller {
     public void setSelectedComboCity(int selectedComboCity) {
         this.selectedComboCity = selectedComboCity;
     }
+
+    public void setCheckboxFalse() { this.checkbox = false; }
+
+    public void setCheckboxTrue() { this.checkbox = true; }
 
     @Override
     public void update() {
