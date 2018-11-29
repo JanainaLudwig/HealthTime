@@ -2,6 +2,7 @@ package manager.view.modal;
 
 import DAO.DAOAppointment;
 import DAO.DAODoctorSpecialty;
+import SMS.SMS;
 import dashboard.User;
 import dashboard.view.DashboardController;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import manager.UserAppointment;
-import queue.modal.AppointmentQueue;
+import queue.AppointmentQueue;
 import utils.Controller;
 import utils.DateUtils;
 import utils.NotificationUtils;
@@ -101,8 +102,6 @@ public class CancelAppointment implements Initializable {
             dao.cancelAppointmentQueue(newConsultant.getIdQueue());
 
             controller.update();
-
-            return;
         } else { //Se não encontrar, busca as de clínica
             newConsultant = dao.findClinic(idCity, idDoctor, date, time);
 
@@ -113,13 +112,38 @@ public class CancelAppointment implements Initializable {
                 dao.cancelAppointmentQueue(newConsultant.getIdQueue());
 
                 controller.update();
-
-                return;
-            } else { //Se não encontrar mesmo assim, exclui a consulta
-                this.userAppointment.cancelAppointment();
-
-                controller.update();
             }
+        }
+
+        // Se uma consulta foi agendada, envia um SMS ao paciente
+        if (newConsultant != null) {
+            SMS sms = new SMS();
+
+            User releasedUser = new User(newConsultant.getIdConsultant());
+
+            String smsMessage = "Consulta em fila de espera agendada para " +
+                    DateUtils.getDateDMY(userAppointment.getDate()) +
+                    ", às " +
+                    userAppointment.getTime().getInitialTime() +
+                    ". " +
+                    userAppointment.getCity().getStation() +
+                    " - " +
+                    userAppointment.getCity().getName() +
+                    ".";
+
+            //Se for maior que 130 caracteres, corta a string.
+            if (smsMessage.length() > 130) {
+                smsMessage = smsMessage.substring(0, 131);            }
+
+            try {
+                sms.send(releasedUser.getTelephoneNumber(), smsMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else { //Se não encontrar mesmo assim, exclui a consulta
+            this.userAppointment.cancelAppointment();
+
+            controller.update();
         }
     }
 

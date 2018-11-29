@@ -364,7 +364,7 @@
             <Font name="Segoe UI Bold" size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1043.0" layoutY="18.0" onAction="#weeklyVision" prefHeight="57.0" prefWidth="162.0" style="-fx-background-color: #617380;" text="Visão semanal" textFill="WHITE">
+      <JFXButton layoutX="1019.0" layoutY="18.0" onAction="#weeklyVision" prefHeight="57.0" prefWidth="186.0" style="-fx-background-color: #617380;" text="Agenda semanal" textFill="WHITE">
          <font>
             <Font name="Segoe UI Bold" size="20.0" />
          </font>

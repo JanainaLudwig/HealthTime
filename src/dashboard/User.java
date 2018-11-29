@@ -13,6 +13,7 @@ public class User {
     private ArrayList<UserAppointment> userAppointments;
     private City city;
     public boolean checkbox = true;
+    private String telephoneNumber;
 
     public User(int userId) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         this.userId = userId;
@@ -21,6 +22,15 @@ public class User {
         this.userName = dao.getName();
         this.userAppointments = null;
         this.city = LocationUtils.getCity(String.valueOf(dao.getIdCity()));
+        this.telephoneNumber = dao.getTelephone();
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
 
     public City getCity() {

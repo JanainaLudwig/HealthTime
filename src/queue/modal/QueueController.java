@@ -119,7 +119,7 @@ public class QueueController implements Initializable {
         closeModal();
 
         //Mostrar a notificação de fila marcada
-        String message = "Sua pedido de consulta para " + DateUtils.getDateDMY(dateg) + ", no período da " + timeText +
+        String message = "Seu pedido de consulta para " + DateUtils.getDateDMY(dateg) + ", no período da " + timeText +
                 ", está na fila de espera e aguarda algum cancelamento para ser efetivada.";
         NotificationUtils.showNotification("Consulta em fila de espera", message);
     }

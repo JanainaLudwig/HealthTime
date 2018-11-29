@@ -156,13 +156,13 @@
          </tooltip>
         </JFXButton>
 
-        <JFXButton layoutX="1043.0" layoutY="18.0" onAction="#monthVision" prefHeight="57.0" prefWidth="162.0" style="-fx-background-color: #617380;" text="Visão mensal" textFill="WHITE">
+        <JFXButton layoutX="1030.0" layoutY="18.0" onAction="#monthVision" prefHeight="57.0" prefWidth="175.0" style="-fx-background-color: #617380;" text="Agenda mensal" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="20.0" />
             </font>
         </JFXButton>
       <Pane layoutX="364.0" layoutY="250.0" />
-      <ImageView fx:id="timeArrow" fitHeight="54.0" fitWidth="81.0" layoutX="329.0" layoutY="109.0" onMouseClicked="#changePeriod" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="timeArrow" fitHeight="45.0" fitWidth="38.0" layoutX="340.0" layoutY="121.0" onMouseClicked="#changePeriod" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/images/down.png" />
          </image>

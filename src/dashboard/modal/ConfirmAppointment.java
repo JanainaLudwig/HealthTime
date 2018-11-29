@@ -3,6 +3,7 @@ package dashboard.modal;
 import DAO.DAOAppointment;
 import DAO.DAODoctorSpecialty;
 import DAO.DAOStation;
+import SMS.SMS;
 import dashboard.AvailableAppointment;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,7 +68,7 @@ public class ConfirmAppointment implements Initializable {
         availableAppointment.getDay().getController().update();
         availableAppointment.getDay().getController().closeModal();
 
-        String message = "Sua consulta foi agendada para " + appointmentDayMonth.getText() + " de " + appointmentYear + " às " + appointmentTime.getText();
+        String message = "Sua consulta foi agendada para " + appointmentDayMonth.getText() + " de " + appointmentYear.getText() + " às " + appointmentTime.getText();
         NotificationUtils.showNotification("Consulta agendada", message);
     }
 

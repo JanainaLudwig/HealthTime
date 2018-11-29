@@ -180,4 +180,21 @@ public class DAOUser {
             return -1;
         }
     }
+
+    public String getTelephone() {
+        String query = "SELECT telephone_number FROM consultant WHERE id_user = '" + user.getUserId() + "';";
+
+        Statement stm = null;
+        ResultSet rs = null;
+        try {
+            stm = connection.createStatement();
+            rs = stm.executeQuery(query);
+            if (rs.next()) {
+                return rs.getString("telephone_number");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

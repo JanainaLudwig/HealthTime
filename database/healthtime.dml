@@ -6,9 +6,9 @@ INSERT  INTO users (name, cpf, mother_name) VALUES
 	('Antônio José Marques', '145', 'Dona Marta'),
 	('Jaine Rodrigues', '144', 'Dona Claudia');
 
-INSERT INTO consultant (id_user, sus_number, id_city) VALUES
-	(1, '123456', 4107207),
-	(2, '456789', 4106902);
+INSERT INTO consultant (id_user, sus_number, id_city, telephone_number) VALUES
+	(1, '123456', 4107207, '46991221082'),
+	(2, '456789', 4106902, '46991221082');
 
 INSERT INTO doctor (id_user, crm_number) VALUES
 	(3, 12541254),

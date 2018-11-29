@@ -1,4 +1,4 @@
-package queue.modal;
+package queue;
 
 public class AppointmentQueue {
     private int idQueue, idConsultant, idSpecialty;

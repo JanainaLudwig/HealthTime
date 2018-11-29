@@ -8,7 +8,7 @@ import dashboard.view.DashboardController;
 import database.ConnectionDB;
 import login.Hash;
 import manager.UserAppointment;
-import queue.modal.AppointmentQueue;
+import queue.AppointmentQueue;
 import utils.DateUtils;
 
 import java.io.UnsupportedEncodingException;
