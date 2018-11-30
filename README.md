@@ -36,6 +36,6 @@ Senha padrão: **123**
 
 ### Evoluções possíveis (para uma possível Release 3):
  - Login com tempo de espera incremental antes de novas tentativas, em caso de erro nas credenciais
- - Logout com timing
+ - Logout com _timing_
  - Prontuário médico
- - Balanço de medicações/equipamentos a serem adquiridas(os)
+ - Balanço de medicações/equipamentos a serem adquiridos
