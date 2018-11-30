@@ -1,6 +1,6 @@
 # HealthTime
 
-## Release 1
+## Release 2
 
 ### Requisitos:
  - Java 8
@@ -12,6 +12,8 @@ IDE utilizada: IntelliJ IDEA
 Bibliotecas utilizadas (as biibliotecas estão na pasta _lib_): 
  - jfoenix-8.0.7 (http://www.jfoenix.com/)
  - postgresql-9.4.1209 (https://jdbc.postgresql.org/)
+ - watson-ibm-6.9.1 (https://github.com/watson-developer-cloud/java-sdk/)
+ - _[pasta]_ httpcomponents-client-4.4.1 (http://hc.apache.org/)
  
 DDL e DML estão na pasta _database_
 
@@ -24,10 +26,10 @@ Senha padrão: **123**
 
 ### Questões conhecidas:
 
-**Usabilidade:** salvar a seleção atual do usuário sobre especialidade e médico ao ser canceladas consultas. (Comportamento atual: filtros são reiniciados)
+**SMS:** não é enviado SMS no agendamento e no cancelamento de consultas, que poderiam servir de histórico para a parcela da população que utilizaria o sistema através dos ATM nas UBS. Também não é enviado das antes da consulta, como notificação de lembrete, de forma a não se perder a consulta ou cancela-la à tempo. Para isso seria necessário uma infra-estrutura que permitisse agendamento de tarefas e a extensão da solução em mais componentes.
 
-**GUI:** há um bug na renderização do componente JFXComboBox que foge ao escopo do projeto. Será verificado junto ao dev team do framework (se possível, solução para a R2).
-
-### Evolução para Release 2:
-
-Verificar documentação do projeto. _Obs.: Algumas áreas da interface gráfica já possuem boilerplates para as atualizações futuras._
+### Evoluções possíveis (para uma possível Release 3):
+ - Login com tempo de espera incremental antes de novas tentativas, em caso de erro nas credenciais
+ - Logout com timing
+ - Prontuário médico
+ - Balanço de medicações/equipamentos a serem adquiridas(os)
