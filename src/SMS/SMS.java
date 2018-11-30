@@ -13,7 +13,8 @@ public class SMS {
     private static final String HOST = "https://api.enviarsms.io/v1";
     private static final String SEND_REQUEST = HOST + "/send/";
 
-    private static final String TOKEN = "api?eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJGYWNlYm9va18xMDY1OTE4ODI2OTIwNDgyIiwiZW1haWwiOiJqYW5haW5hbHVkd2lnQGdtYWlsLmNvbSIsInRva2VuX3VzZSI6ImFwaSIsImNyZWF0ZWRBdCI6MTU0MzEwMDMzNjA2MCwiZXhwIjoxODU4NDYwMzM2LCJpYXQiOjE1NDMxMDAzMzZ9.qA5NqROGfDWIEyOV1HKxkytCpr1d9AjWpNf-s978RO0";
+    //private static final String TOKEN = "api?eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJGYWNlYm9va18xMDY1OTE4ODI2OTIwNDgyIiwiZW1haWwiOiJqYW5haW5hbHVkd2lnQGdtYWlsLmNvbSIsInRva2VuX3VzZSI6ImFwaSIsImNyZWF0ZWRBdCI6MTU0MzEwMDMzNjA2MCwiZXhwIjoxODU4NDYwMzM2LCJpYXQiOjE1NDMxMDAzMzZ9.qA5NqROGfDWIEyOV1HKxkytCpr1d9AjWpNf-s978RO0";
+    private static final String TOKEN = "api?eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlNjg1OGMwMi0wNDFkLTQxYmYtYWVjNi0xYTEzYzJmMjhkMTMiLCJlbWFpbCI6ImphbmFpbmFsdWR3aWdAZ21haWwuY29tIiwidG9rZW5fdXNlIjoiYXBpIiwiY3JlYXRlZEF0IjoxNTQzNTc3MjMzNjcyLCJleHAiOjE4NTg5MzcyMzMsImlhdCI6MTU0MzU3NzIzM30.w6d3ZNfgLmReSUYjSxMqP9GfWwFR8IM2Flc-ygs1s0U";
 
     public void send(String phone, String message) throws Exception {
         CloseableHttpClient client = HttpClients.createDefault();
